@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERIDA STUDIO NG— Brand Identity Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --accent-1: #08C4D1;
+  --accent-2: #29539E;
+  --gold: #FFB347;
+  --gradient: linear-gradient(135deg, #08C4D1, #29539E);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.6s;
+
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 16px; --sp-4: 24px;
+  --sp-5: 32px; --sp-6: 48px; --sp-7: 64px; --sp-8: 96px;
+}
+
+/* DARK THEME (default) */
+:root, [data-theme="dark"] {
+  --bg: #080A0C;
+  --bg-2: #0F1215;
+  --bg-3: #161A1F;
+  --bg-4: #1E2329;
+  --border: rgba(255,255,255,0.07);
+  --border-strong: rgba(255,255,255,0.12);
+  --text: #F0F2F5;
+  --text-2: #9AA3AE;
+  --text-3: #5A6370;
+  --highlight: #08C4D1;
+  --glass-bg: rgba(8,10,12,0.72);
+  --glass-border: rgba(255,255,255,0.08);
+  --card-bg: #0F1215;
+  --card-hover: #161A1F;
+  --input-bg: rgba(255,255,255,0.04);
+  --overlay: rgba(0,0,0,0.85);
+  --shadow: 0 24px 64px rgba(0,0,0,0.6);
+  --shadow-sm: 0 8px 32px rgba(0,0,0,0.4);
+  --lightbox-bg: rgba(0,0,0,0.75);
+  --lightbox-close-border: rgba(255,255,255,0.2);
+  --lightbox-close-color: rgba(255,255,255,0.7);
+  --lightbox-close-hover-border: rgba(255,255,255,1);
+  --lightbox-close-hover-color: #fff;
+  --lightbox-close-hover-bg: rgba(255,255,255,0.1);
+  --lightbox-frame-shadow: 0 32px 80px rgba(0,0,0,0.8);
+}
+
+/* LIGHT THEME */
+[data-theme="light"] {
+  --bg: #F4F5F7;
+  --bg-2: #EDEEF1;
+  --bg-3: #E5E7EB;
+  --bg-4: #DDDFE3;
+  --border: rgba(0,0,0,0.07);
+  --border-strong: rgba(0,0,0,0.12);
+  --text: #0D0F12;
+  --text-2: #4A5260;
+  --text-3: #8A939E;
+  --highlight: #0997A1;
+  --glass-bg: rgba(244,245,247,0.78);
+  --glass-border: rgba(0,0,0,0.08);
+  --card-bg: #FFFFFF;
+  --card-hover: #F8F9FA;
+  --input-bg: rgba(0,0,0,0.04);
+  --overlay: rgba(0,0,0,0.75);
+  --shadow: 0 24px 64px rgba(0,0,0,0.12);
+  --shadow-sm: 0 8px 32px rgba(0,0,0,0.08);
+  --lightbox-bg: rgba(0,0,0,0.75);
+  --lightbox-close-border: rgba(255,255,255,0.2);
+  --lightbox-close-color: rgba(255,255,255,0.8);
+  --lightbox-close-hover-border: rgba(255,255,255,1);
+  --lightbox-close-hover-color: #0D0F12;
+  --lightbox-close-hover-bg: rgba(0,0,0,0.06);
+  --lightbox-frame-shadow: 0 32px 80px rgba(0,0,0,0.25);
+}
+
+/* SYSTEM PREFERENCE */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg: #F4F5F7; --bg-2: #EDEEF1; --bg-3: #E5E7EB; --bg-4: #DDDFE3;
+    --border: rgba(0,0,0,0.07); --border-strong: rgba(0,0,0,0.12);
+    --text: #0D0F12; --text-2: #4A5260; --text-3: #8A939E;
+    --highlight: #0997A1;
+    --glass-bg: rgba(244,245,247,0.78); --glass-border: rgba(0,0,0,0.08);
+    --card-bg: #FFFFFF; --card-hover: #F8F9FA;
+    --input-bg: rgba(0,0,0,0.04); --overlay: rgba(0,0,0,0.75);
+    --shadow: 0 24px 64px rgba(0,0,0,0.12); --shadow-sm: 0 8px 32px rgba(0,0,0,0.08);
+    --lightbox-bg: rgba(0,0,0,0.75);
+    --lightbox-close-border: rgba(255,255,255,0.2); --lightbox-close-color: rgba(0,0,0,0.6);
+    --lightbox-close-hover-border: rgba(0,0,0,0.6); --lightbox-close-hover-color: #0D0F12;
+    --lightbox-close-hover-bg: rgba(0,0,0,0.06); --lightbox-frame-shadow: 0 32px 80px rgba(0,0,0,0.25);
+  }
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 2px; }
+
+/* ===== TYPOGRAPHY ===== */
+.t-hero { font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
+.t-display { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; }
+.t-title { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 600; letter-spacing: -0.02em; }
+.t-body { font-size: 0.95rem; font-weight: 300; color: var(--text-2); line-height: 1.75; }
+.t-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
+.t-accent { color: var(--highlight); }
+
+/* ===== SECTION HEADER ===== */
+.section-header { margin-bottom: var(--sp-7); }
+.section-header .t-label { margin-bottom: var(--sp-2); }
+.section-header .t-display { max-width: 600px; }
+.section-header .divider {
+  width: 48px; height: 2px;
+  background: var(--gradient);
+  margin-top: var(--sp-4);
+  border-radius: 2px;
+}
+
+/* ===== LAYOUT ===== */
+.container { max-width: 1240px; margin: 0 auto; padding: 0 var(--sp-5); }
+section { padding: var(--sp-8) 0; }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  height: 72px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid var(--glass-border);
+  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.navbar .container {
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { height: 36px; display: flex; align-items: center; }
+.nav-logo img { height: 36px; width: auto; }
+/* Logo visibility — explicit rules, no CSS var() in display (unreliable cross-browser) */
+/* Dark mode default: show light logo, hide dark logo */
+.logo-light { display: block; }
+.logo-dark  { display: none;  }
+/* Light theme overrides */
+[data-theme="light"] .logo-light { display: none;  }
+[data-theme="light"] .logo-dark  { display: block; }
+/* System light preference */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .logo-light { display: none;  }
+  :root:not([data-theme]) .logo-dark  { display: block; }
+}
+
+.hamburger {
+  width: 40px; height: 40px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; cursor: pointer; z-index: 1001; position: relative;
+}
+.hamburger span {
+  display: block; width: 24px; height: 1.5px;
+  background: var(--text);
+  transition: all 0.5s var(--ease);
+  transform-origin: center;
+}
+.hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-links a {
+  font-size: 0.38rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: color 0.3s var(--ease);
+}
+
+.nav-links a:hover {
+  color: var(--highlight);
+}
+
+.nav-socials {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-socials a {
+  font-size: 0.68rem;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  transition: color 0.3s var(--ease);
+}
+
+.nav-socials a:hover {
+  color: var(--highlight);
+}
+/* ===== MENU OVERLAY ===== */
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 950;
+  background: var(--overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s var(--ease);
+}
+.menu-overlay.active { opacity: 1; pointer-events: all; }
+
+.menu-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 960;
+  width: min(420px, 90vw);
+  background: var(--bg-2);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: var(--sp-8) var(--sp-7);
+  transform: translateX(100%);
+  transition: transform 0.65s var(--ease);
+}
+.menu-panel.active { transform: translateX(0); }
+
+.menu-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2); font-size: 1.3rem;
+  transition: color 0.3s var(--ease);
+  cursor: pointer;
+}
+.menu-close:hover { color: var(--highlight); }
+
+.menu-nav { margin-bottom: var(--sp-7); }
+.menu-nav a {
+  display: block;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  padding: var(--sp-2) 0;
+  opacity: 0;
+  transform: translateX(32px);
+  transition: color 0.3s var(--ease), opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.menu-nav a::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--gradient);
+  transition: width 0.4s var(--ease);
+}
+.menu-nav a:hover { color: var(--highlight); }
+.menu-nav a:hover::after { width: 100%; }
+.menu-panel.active .menu-nav a { opacity: 1; transform: translateX(0); }
+.menu-panel.active .menu-nav a:nth-child(1) { transition-delay: 0.1s; }
+.menu-panel.active .menu-nav a:nth-child(2) { transition-delay: 0.18s; }
+.menu-panel.active .menu-nav a:nth-child(3) { transition-delay: 0.26s; }
+.menu-panel.active .menu-nav a:nth-child(4) { transition-delay: 0.34s; }
+
+.menu-theme {
+  opacity: 0; transform: translateX(32px);
+  transition: opacity 0.5s 0.42s var(--ease), transform 0.5s 0.42s var(--ease);
+}
+.menu-panel.active .menu-theme { opacity: 1; transform: translateX(0); }
+.menu-theme .t-label { margin-bottom: var(--sp-3); }
+.theme-btns { display: flex; gap: var(--sp-2); }
+.theme-btn {
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-family: inherit; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--text-2);
+  background: var(--input-bg);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  text-transform: uppercase;
+}
+.theme-btn:hover, .theme-btn.active {
+  border-color: var(--highlight);
+  color: var(--highlight);
+  background: rgba(8,196,209,0.08);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 72px;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(8,196,209,0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 50% at 20% 80%, rgba(41,83,158,0.06) 0%, transparent 60%);
+}
+.hero-bg-line {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: 0;
+}
+[data-theme="light"] .hero-bg-line {
+  background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hero-bg-line {
+    background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  }
+}
+.hero .container { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  margin-bottom: var(--sp-5);
+  padding: var(--sp-2) var(--sp-3);
+  background: rgba(8,196,209,0.08);
+  border: 1px solid rgba(8,196,209,0.2);
+  border-radius: 100px;
+}
+.hero-eyebrow .dot { width: 6px; height: 6px; background: var(--highlight); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)} }
+
+.hero-headline {
+  margin-bottom: var(--sp-5);
+  max-width: 800px;
+}
+.hero-headline .t-hero { display: block; }
+.hero-headline .gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  max-width: 520px;
+  margin-bottom: var(--sp-6);
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+
+.hero-cta { display: flex; gap: var(--sp-3); flex-wrap: wrap; align-items: center; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: 16px 36px;
+  background: var(--gradient);
+  color: #fff; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.06em;
+  border-radius: 4px;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), opacity 0.4s var(--ease);
+  text-transform: uppercase;
+  box-shadow: 0 8px 32px rgba(8,196,209,0.25);
+}
+.btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 48px rgba(8,196,209,0.35); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: 15px 36px;
+  border: 1px solid var(--border-strong);
+  color: var(--text); font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em;
+  border-radius: 4px;
+  transition: all 0.4s var(--ease);
+  text-transform: uppercase;
+}
+.btn-secondary:hover { border-color: var(--highlight); color: var(--highlight); background: rgba(8,196,209,0.05); transform: translateY(-2px); }
+
+.hero-scroll {
+  position: absolute; bottom: var(--sp-6); left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+  opacity: 0.4;
+}
+.hero-scroll span { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); }
+.scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--text-3), transparent); animation: scrollLine 1.8s ease-in-out infinite; }
+@keyframes scrollLine { 0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1}100%{opacity:0;transform:scaleY(1);transform-origin:bottom} }
+
+/* ===== ABOUT ===== */
+.about { background: var(--bg-2); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+}
+.about-image-frame {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.about-image-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  transition: transform 0.8s var(--ease);
+}
+.about-image-frame:hover img { transform: scale(1.03); }
+.about-image-frame::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.4) 100%);
+}
+.about-accent-bar {
+  position: absolute; top: var(--sp-5); left: calc(-1 * var(--sp-4));
+  width: 4px; height: 80px;
+  background: var(--gradient);
+  border-radius: 2px;
+}
+
+.about-content { padding-left: var(--sp-4); }
+.about-name {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: var(--sp-4) 0 var(--sp-3);
+}
+.about-name span {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.about-role {
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--highlight);
+  margin-bottom: var(--sp-4);
+}
+.about-desc { margin-bottom: var(--sp-6); max-width: 520px; }
+
+.about-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: var(--sp-4);
+  width: fit-content;
+}
+[data-theme="light"] .about-role {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+}
+.role-dot {
+  width: 8px;
+  height: 8px;
+  background: #08C4D1;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.about-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin-top: var(--sp-6); }
+.metric {
+  padding: var(--sp-4);
+  background: var(--bg-3);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.metric:hover { border-color: var(--highlight); transform: translateY(-3px); }
+.metric-value {
+  font-size: 2rem; font-weight: 600; letter-spacing: -0.03em;
+  background: var(--gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: var(--sp-1);
+}
+.metric-label { font-size: 0.78rem; color: var(--text-3); font-weight: 500; }
+
+/* ===== WORK ===== */
+.work { background: var(--bg); }
+
+/* Work Tabs */
+.work-tabs {
+  display: flex; gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-7);
+  overflow-x: auto;
+}
+.work-tab {
+  padding: var(--sp-3) var(--sp-5);
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3);
+  background: none; border: none; cursor: pointer;
+  position: relative;
+  transition: color 0.3s var(--ease);
+  white-space: nowrap;
+}
+.work-tab::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 0; right: 0;
+  height: 2px; background: var(--gradient);
+  transform: scaleX(0); transition: transform 0.4s var(--ease);
+}
+.work-tab.active { color: var(--text); }
+.work-tab.active::after { transform: scaleX(1); }
+.work-tab:hover { color: var(--text-2); }
+
+.work-panel { display: none; }
+.work-panel.active { display: block; }
+
+/* Brand Identity */
+.brand-cases { display: flex; flex-direction: column; gap: var(--sp-6); }
+.brand-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.brand-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+.brand-card-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 320px;
+}
+.brand-card-visual {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.brand-card-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.brand-card-info {
+  padding: var(--sp-6);
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.brand-badge {
+  display: inline-flex;
+  padding: var(--sp-1) var(--sp-3);
+  background: rgba(8,196,209,0.1);
+  border: 1px solid rgba(8,196,209,0.2);
+  border-radius: 100px;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--highlight);
+  margin-bottom: var(--sp-4);
+  width: fit-content;
+}
+.brand-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: var(--sp-3); letter-spacing: -0.02em; }
+.brand-case-items { display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-5); }
+.brand-case-item { }
+.brand-case-item .t-label { margin-bottom: var(--sp-1); }
+.brand-case-item p { font-size: 0.88rem; color: var(--text-2); font-weight: 300; }
+
+.btn-expand {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: 12px 24px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-2);
+  cursor: pointer; background: none; font-family: inherit;
+  transition: all 0.3s var(--ease);
+  width: fit-content;
+}
+.btn-expand:hover { border-color: var(--highlight); color: var(--highlight); background: rgba(8,196,209,0.05); }
+.btn-expand svg { transition: transform 0.3s var(--ease); }
+.btn-expand:hover svg { transform: translateX(4px); }
+
+/* Brand project visuals */
+.brand-visual-1 { background: linear-gradient(135deg, #0A1628 0%, #162A50 50%, #1A3060 100%); }
+.brand-visual-1 .brand-logo-mock {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #08C4D1, #29539E);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; font-weight: 600; color: white;
+  position: relative;
+}
+.brand-visual-1 .brand-logo-mock::after {
+  content: '';
+  position: absolute; inset: -12px;
+  border-radius: 50%;
+  border: 1px solid rgba(8,196,209,0.3);
+}
+
+.brand-visual-2 { background: linear-gradient(135deg, #1A0A00 0%, #2D1500 50%, #3A1C00 100%); }
+.brand-visual-2 .brand-logo-mock {
+  width: 160px; height: 80px;
+  background: linear-gradient(90deg, #FFB347, #FF7A00);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; font-weight: 600; color: white; letter-spacing: 0.08em;
+}
+
+.brand-visual-3 { background: linear-gradient(135deg, #0A0A1A 0%, #0D0D2A 50%, #151530 100%); }
+.brand-visual-3 .brand-logo-mock {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.brand-visual-3 .brand-logo-shape {
+  width: 80px; height: 80px;
+  background: linear-gradient(45deg, #08C4D1, #29539E);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.brand-visual-3 .brand-logo-text {
+  font-size: 1.2rem; font-weight: 600; letter-spacing: 0.15em; color: white;
+}
+
+/* Brand expanded */
+.brand-expanded {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: var(--sp-6);
+  background: var(--bg-3);
+}
+.brand-expanded.open { display: block; }
+.brand-slides {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+.brand-slide {
+  aspect-ratio: 16/10; border-radius: 4px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  font-size: 0.75rem; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* Logo Grid */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+.logo-item {
+  aspect-ratio: 1;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; overflow: hidden;
+  position: relative;
+  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.logo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.logo-item:hover { border-color: var(--border-strong); transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+.logo-item .logo-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,196,209,0.08);
+  opacity: 0; transition: opacity 0.3s var(--ease);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-item:hover .logo-overlay { opacity: 1; }
+.logo-item .logo-overlay-icon { color: var(--highlight); font-size: 1.5rem; font-weight: 600; }
+
+/* Flyer Grid */
+.flyer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+.flyer-item {
+  aspect-ratio: 3/4;
+  border-radius: 4px; overflow: hidden;
+  cursor: pointer; position: relative;
+  border: 1px solid var(--border);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.flyer-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.flyer-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow); }
+.flyer-item .flyer-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0; transition: opacity 0.3s var(--ease);
+  display: flex; align-items: center; justify-content: center;
+}
+.flyer-item:hover .flyer-overlay { opacity: 1; }
+.flyer-item .view-icon {
+  width: 48px; height: 48px;
+  border: 2px solid white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.2rem;
+  transform: scale(0.8); transition: transform 0.4s var(--ease);
+}
+.flyer-item:hover .view-icon { transform: scale(1); }
+
+/* Logo design items */
+.logo-svg-item { width: 70%; height: 70%; display: flex; align-items: center; justify-content: center; }
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  position: fixed; inset: 0; z-index: 2000;
+  background: var(--lightbox-bg);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.lightbox.active { opacity: 1; pointer-events: all; }
+.lightbox img, .lightbox svg {
+  max-width: 90vw; max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: var(--lightbox-frame-shadow);
+  transform: scale(0.92);
+  transition: transform 0.5s var(--ease);
+}
+.lightbox.active img, .lightbox.active svg { transform: scale(1); }
+.lightbox-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 48px; height: 48px;
+  border: 1px solid var(--lightbox-close-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lightbox-close-color); font-size: 1.3rem; cursor: pointer;
+  transition: all 0.3s var(--ease);
+  background: transparent;
+}
+.lightbox-close:hover {
+  border-color: var(--lightbox-close-hover-border);
+  color: var(--lightbox-close-hover-color);
+  background: var(--lightbox-close-hover-bg);
+}
+
+/* ===== SERVICES ===== */
+.services { background: var(--bg-2); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+.service-card {
+  padding: var(--sp-6);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.service-card:hover { border-color: var(--border-strong); transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon {
+  width: 48px; height: 48px;
+  background: rgba(8,196,209,0.1);
+  border: 1px solid rgba(8,196,209,0.2);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-4);
+  font-size: 1.3rem;
+  color: var(--highlight);
+}
+.service-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: var(--sp-3); letter-spacing: -0.01em; }
+.service-card p { font-size: 0.88rem; color: var(--text-2); font-weight: 300; line-height: 1.7; }
+.service-num {
+  position: absolute; top: var(--sp-4); right: var(--sp-4);
+  font-size: 2.5rem; font-weight: 600; color: var(--border);
+  line-height: 1; letter-spacing: -0.05em;
+}
+
+/* ===== CONTACT ===== */
+.contact { background: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--sp-8); align-items: start; }
+.contact-info h2 { margin-bottom: var(--sp-4); }
+.contact-desc { margin-bottom: var(--sp-6); }
+.contact-links { display: flex; flex-direction: column; gap: var(--sp-3); }
+.contact-link {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.88rem; font-weight: 500;
+  color: var(--text-2);
+  transition: all 0.3s var(--ease);
+}
+.contact-link:hover { border-color: var(--highlight); color: var(--highlight); transform: translateX(4px); }
+.contact-link-icon {
+  width: 36px; height: 36px;
+  background: var(--bg-3);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 1rem;
+  transition: background 0.3s var(--ease);
+}
+.contact-link:hover .contact-link-icon { background: rgba(8,196,209,0.1); }
+
+/* Icon sizing */
+.contact-link-icon i,
+.contact-link-icon svg { font-size: 20px; line-height: 1; display: block; stroke-width: 2; }
+
+.service-icon i,
+.service-icon svg      { font-size: 26px; line-height: 1; display: block; stroke-width: 2; }
+
+.btn-primary i, .btn-primary svg,
+.btn-secondary i, .btn-secondary svg,
+.btn-expand i, .btn-expand svg { font-size: 16px; line-height: 1; display: block; stroke-width: 2; }
+
+/* Duotone secondary layer colour follows highlight */
+.ph-duotone::after { opacity: 0.25; }
+
+/* Contact Form */
+.contact-form { display: flex; flex-direction: column; gap: var(--sp-4); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.form-group { display: flex; flex-direction: column; gap: var(--sp-2); }
+.form-group label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 14px 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: inherit; font-size: 0.9rem; font-weight: 300;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+  outline: none;
+  appearance: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--highlight);
+  background: rgba(8,196,209,0.04);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select option { background: var(--bg-2); color: var(--text); }
+.form-submit { align-self: flex-start; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: var(--sp-6) 0;
+}
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: var(--sp-4);
+}
+.footer-logo { height: 28px; }
+.footer-copy { font-size: 0.78rem; color: var(--text-3); }
+.footer-links { display: flex; gap: var(--sp-5); }
+.footer-links a { font-size: 0.78rem; color: var(--text-3); transition: color 0.3s var(--ease); letter-spacing: 0.06em; }
+.footer-links a:hover { color: var(--highlight); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.7s var(--ease) both; }
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.2s; }
+.fade-up-3 { animation-delay: 0.3s; }
+.fade-up-4 { animation-delay: 0.45s; }
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr 1.2fr; gap: var(--sp-6); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .brand-slides { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  section { padding: var(--sp-7) 0; }
+  .container { padding: 0 var(--sp-4); }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-content { padding-left: 0; }
+  .about-accent-bar { display: none; }
+  .brand-card-header { grid-template-columns: 1fr; }
+  .brand-card-visual { min-height: 200px; }
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .flyer-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .brand-slides { grid-template-columns: 1fr; }
+  .about-metrics { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 480px) {
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .flyer-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-metrics { grid-template-columns: 1fr 1fr; }
+  .hero-cta { flex-direction: column; align-items: flex-start; }
+}
+
+.fs-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 1000;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.fs-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.fs-close {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  transition: background 0.2s;
+}
+
+.fs-close:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.fs-slides {
+  display: flex;
+  flex-direction: column;
+}
+
+.fs-slide {
+  width: 100%;
+  height: 100vh; /* each slide = full screen height */
+  flex-shrink: 0;
+}
+
+/* ===== FAQ ===== */
+.faq {
+  padding: var(--sp-10) 0;
+}
+
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-5) 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s var(--ease);
+}
+
+.faq-question:hover {
+  color: var(--highlight);
+}
+
+.faq-icon {
+  font-size: 1.2rem;
+  color: var(--highlight);
+  transition: transform 0.4s var(--ease);
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease);
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+.faq-answer p {
+  padding-bottom: var(--sp-5);
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <a href="#" class="nav-logo" aria-label="ERIDA STUDIO NG Home">
+      <img src="LOGO_LIGHT_PLACEHOLDER" alt="ERIDA STUDIO NG" class="logo-light">
+      <img src="LOGO_DARK_PLACEHOLDER" alt="ERIDA STUDIO NG" class="logo-dark">
+    </a>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Works</a>
+      <a href="#services">Services</a>
+    </div>
+
+    <div class="nav-socials">
+      <a href="https://www.instagram.com/eridastudiong?igsh=MXZmZmoweTE3MmJiNg==" target="_blank" aria-label="Instagram">
+        <i class="ph ph-instagram-logo"></i>
+      </a>
+      <a href="https://www.facebook.com/eridastudiong" target="_blank" aria-label="Facebook">
+        <i class="ph ph-facebook-logo"></i>
+      </a>
+      <a href="https://wa.me/09138037377" target="_blank" aria-label="WhatsApp">
+        <i class="ph ph-whatsapp-logo"></i>
+      </a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MENU OVERLAY -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
+
+<!-- MENU PANEL -->
+<div class="menu-panel" id="menuPanel" role="dialog" aria-label="Navigation menu">
+  <button class="menu-close" id="menuClose" aria-label="Close menu">&#x2715;</button>
+  <nav class="menu-nav">
+    <a href="#about" class="menu-link">About</a>
+    <a href="#work" class="menu-link">My Work</a>
+    <a href="#services" class="menu-link">Services</a>
+    <a href="#contact" class="menu-link">Contact</a>
+  </nav>
+  <div class="menu-theme">
+    <span class="t-label">Appearance</span>
+    <div class="theme-btns">
+      <button class="theme-btn" data-theme-val="light">Light</button>
+      <button class="theme-btn" data-theme-val="dark">Dark</button>
+      <button class="theme-btn active" data-theme-val="system">System</button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-line"></div>
+  <div class="container">
+    <div class="hero-eyebrow fade-up">
+      <span class="dot"></span>
+      <span class="t-label" style="color: var(--highlight); letter-spacing: 0.1em;">Brand Identity Studio — Nigeria</span>
+    </div>
+    <div class="hero-headline">
+      <span class="t-hero fade-up fade-up-1">Crafting brands that</span>
+      <span class="t-hero gradient-text fade-up fade-up-2"> command</span>
+      <span class="t-hero fade-up fade-up-3">attention.</span>
+    </div>
+    <p class="hero-sub fade-up fade-up-3">
+      We design bold, strategic brand identities that make businesses unforgettable — from mark to message, from concept to culture.
+    </p>
+    <div class="hero-cta fade-up fade-up-4">
+      <a href="#work" class="btn-primary">
+        View Work
+        <i class="ph ph-caret-right"></i>
+      </a>
+      <a href="#contact" class="btn-secondary">Start a Project</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <div class="about-accent-bar"></div>
+        <div class="about-image-frame">
+          <img src="PORTRAIT_PLACEHOLDER" alt="Emmanuel Kolade — Brand Identity Designer">
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="t-label reveal">About the Designer</p>
+        <h2 class="about-name reveal reveal-d1">Emmanuel <span>KOLADE</span></h2>
+        <div class="about-role reveal reveal-d1">
+  <span class="role-dot"></span>
+  <h6>Brand Identity Designer</h6>
+</div>
+        <div class="about-desc reveal reveal-d2">
+          <p class="t-body">
+            I'm a brand identity designer based in Nigeria, specialising in crafting visual systems that give businesses a distinct, lasting presence. Through ERIDA STUDIO NG, I work with founders, startups, and growing companies to build brands that speak clearly, stand out boldly, and endure over time.
+          </p>
+          <br>
+          <p class="t-body">
+            My approach blends strategic thinking with meticulous craft — every mark, typeface, and colour is chosen with intention. Great design isn't just beautiful; it's precise, purposeful, and deeply aligned with your brand's truth.
+          </p>
+        </div>
+        <div class="about-metrics reveal reveal-d3">
+          <div class="metric">
+            <div class="metric-value">40+</div>
+            <div class="metric-label">Projects Delivered</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">15+</div>
+            <div class="metric-label">Clients Served</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">NG</div>
+            <div class="metric-label">Nigeria Based</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="t-label">Selected Work</p>
+      <h2 class="t-display">Brands built to last</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="work-tabs reveal">
+      <button class="work-tab active" data-tab="brand">Brand Identity</button>
+      <button class="work-tab" data-tab="logo">Logo Design</button>
+      <button class="work-tab" data-tab="flyer">Print & Digital Design</button>
+    </div>
+
+    <!-- BRAND IDENTITY -->
+    <div class="work-panel active" id="panel-brand">
+      <div class="brand-cases">
+
+        <!-- Case 1 -->
+        <div class="brand-card reveal">
+          <div class="brand-card-header">
+           <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async"></a>         
+            <div class="brand-card-info">
+              <div>
+                <span class="brand-badge">Brand Identity</span>
+                <h3>NovuKraft Finance</h3>
+                <div class="brand-case-items">
+                  <div class="brand-case-item">
+                    <p class="t-label">The Problem</p>
+                    <p>A fintech startup launching into a saturated market with no visual identity. Their offering was sophisticated but they appeared indistinguishable from competitors.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Solution</p>
+                    <p>Developed a sharp, trust-forward identity — a monogram mark combining stability with forward motion, paired with a precise sans-serif and a deep teal-navy palette.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Result</p>
+                    <p>A complete brand system across digital and print. Client secured seed funding within two months of launch, citing brand confidence as a key factor.</p>
+                  </div>
+                </div>
+
+              <button class="btn-expand open-overlay" data-overlay="fs-overlay-1">
+              View Full Project
+            <i class="ph ph-arrow-circle-right"></i>
+            </button>
+            </div>
+          </div>   
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="brand-card reveal reveal-d1">
+          <div class="brand-card-header">
+            <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async"></a>
+            <div class="brand-card-info">
+              <div>
+                <span class="brand-badge">Brand Identity</span>
+                <h3>Amara Artisan Foods</h3>
+                <div class="brand-case-items">
+                  <div class="brand-case-item">
+                    <p class="t-label">The Problem</p>
+                    <p>An artisan food brand relaunching with premium products but carrying outdated packaging and a visual identity that no longer reflected their elevated quality.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Solution</p>
+                    <p>A warm, handcrafted identity rooted in Nigerian heritage — earthy gold tones, a custom wordmark with organic letterforms, and a brand story woven into every touchpoint.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Result</p>
+                    <p>Successful relaunch into premium retail channels. 3x engagement increase on social media within the first quarter post-rebrand.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-expand open-overlay" data-overlay="fs-overlay-2">
+                View Full Project
+                <i class="ph ph-arrow-circle-right"></i>
+              </button>
+            </div>
+          </div>     
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="brand-card reveal reveal-d2">
+          <div class="brand-card-header">            
+            <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async"></a>            
+            <div class="brand-card-info">
+              <div>
+                <span class="brand-badge">Brand Identity</span>
+                <h3>Zenith Creative Agency</h3>
+                <div class="brand-case-items">
+                  <div class="brand-case-item">
+                    <p class="t-label">The Problem</p>
+                    <p>A new creative agency needed to differentiate in a crowded space, attract high-value clients, and project authority without an established portfolio.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Solution</p>
+                    <p>A geometric, forward-pointing diamond mark symbolising peak performance and precision. Midnight palette with electric teal accents — distinctive, modern, memorable.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Result</p>
+                    <p>Landed three enterprise clients in the first month of operation. Brand identity became a portfolio showpiece, earning recognition in design circles.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-expand open-overlay" data-overlay="fs-overlay-3">
+                View Full Project
+                <i class="ph ph-arrow-circle-right"></i>
+              </button>
+            </div>
+          </div>        
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LOGO DESIGN -->
+    <div class="work-panel" id="panel-logo">
+      <div class="logo-grid">
+        <!-- Logo 1 -->
+<div class="logo-item reveal" data-lightbox-type="svg" data-lightbox-index="0">
+  <div class="logo-svg-item">
+    <div style="width:140px;height:140px;border-radius:50%;border:2px solid #08C4D1;display:flex;align-items:center;justify-content:center;">
+      <span style="font-size:2.2rem;font-weight:600;background:linear-gradient(135deg,#08C4D1,#29539E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AX</span>
+    </div>
+  </div>
+  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
+</div>
+
+<!-- Logo 2 -->
+<div class="logo-item reveal reveal-d1" data-lightbox-type="svg" data-lightbox-index="1">
+  <div class="logo-svg-item">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <svg viewBox="0 0 120 100" style="width:120px;height:100px;overflow:visible">
+        <polygon points="60,4 116,28 116,76 60,96 4,76 4,28" fill="none" stroke="#FFB347" stroke-width="1.5"/>
+      </svg>
+      <span style="font-size:1rem;font-weight:600;color:#FFB347;letter-spacing:0.1em;">BOLT</span>
+    </div>
+  </div>
+  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
+</div>
+
+<!-- Logo 3 -->
+<div class="logo-item reveal reveal-d2" data-lightbox-type="svg" data-lightbox-index="2">
+  <div class="logo-svg-item">
+    <div style="width:110px;height:110px;border-radius:20px;background:linear-gradient(135deg,#08C4D1,#29539E);display:flex;align-items:center;justify-content:center;">
+      <span style="font-size:3rem;font-weight:600;color:white;line-height:1;">V</span>
+    </div>
+  </div>
+  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
+</div>
+
+<!-- Logo 4 -->
+<div class="logo-item reveal" data-lightbox-type="svg" data-lightbox-index="3">
+  <div class="logo-svg-item">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <svg viewBox="0 0 100 90" style="width:90px;height:80px;">
+        <polygon points="50,4 96,88 4,88" fill="rgba(8,196,209,0.12)" stroke="#08C4D1" stroke-width="1.5"/>
+      </svg>
+      <span style="font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.2em;">APEX</span>
+    </div>
+  </div>
+  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
+</div>
+
+<!-- Logo 5 -->
+<div class="logo-item reveal reveal-d1" data-lightbox-type="svg" data-lightbox-index="4">
+  <div class="logo-svg-item">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <svg viewBox="0 0 120 80" style="width:120px;height:80px;">
+        <circle cx="48" cy="40" r="34" fill="none" stroke="#08C4D1" stroke-width="1.5"/>
+        <circle cx="72" cy="40" r="34" fill="none" stroke="#29539E" stroke-width="1.5"/>
+      </svg>
+      <span style="font-size:0.72rem;font-weight:600;color:#08C4D1;letter-spacing:0.18em;">MERGE</span>
+    </div>
+  </div>
+  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
+</div>
+
+<!-- Logo 6 -->
+<div class="logo-item reveal reveal-d2" data-lightbox-type="svg" data-lightbox-index="5">
+  <div class="logo-svg-item">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:90px;height:90px;">
+      <div style="border-radius:4px;background:linear-gradient(135deg,#FFB347,#08C4D1);opacity:0.9;"></div>
+      <div style="border-radius:4px;border:1.5px solid #FFB347;"></div>
+      <div style="border-radius:4px;border:1.5px solid #08C4D1;"></div>
+      <div style="border-radius:4px;background:linear-gradient(135deg,#FFB347,#08C4D1);opacity:0.4;"></div>
+    </div>
+  </div>
+  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
+</div>
+      </div><!-- end logo-grid -->
+    </div><!-- end panel-logo -->
+
+    <!-- PRINT & DIGITAL DESIGN -->
+    <div class="work-panel" id="panel-flyer">
+      <div class="flyer-grid">
+        <!-- Flyer 1 -->
+<div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="0">
+  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 2 -->
+<div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="1">
+  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 3 -->
+<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
+  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="children" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 4 -->
+<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
+  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 5 -->
+<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
+  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 6 -->
+<div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="3">
+  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 7 -->
+<div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="4">
+  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 8 -->
+<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="5">
+  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 9 -->
+<div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="6">
+  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 10 -->
+<div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="7">
+  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<!-- Flyer 11 -->
+<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="8">
+  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" decoding="async"></a>
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="t-label">What I Offer</p>
+      <h2 class="t-display">Design services</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <div class="service-icon">
+          <i class="ph ph-sketch-logo"></i>
+        </div>
+        <h3>Brand Identity Design</h3>
+        <p>Complete brand identity systems — logo design, typography, colour systems, visual language, and brand guidelines that create a cohesive, memorable presence.</p>
+      </div>
+      <div class="service-card reveal reveal-d1">
+        <span class="service-num">02</span>
+        <div class="service-icon">
+        <i class="ph ph-shapes"></i>
+        </div>
+        <h3>Logo Design</h3>
+        <p>Crafting marks and symbols that distil a brand's essence into a single, scalable, versatile form. From wordmarks to emblems, every logo tells a story.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <span class="service-num">03</span>
+        <div class="service-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-template"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1l0 -2" /><path d="M4 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6" /><path d="M14 12l6 0" /><path d="M14 16l6 0" /><path d="M14 20l6 0" /></svg>         
+       </div>
+        <h3>Print & Digital Design</h3>
+        <p>Compelling print materials — event flyers, posters, banners, and marketing collateral designed to capture attention and drive action.</p>
+      </div>
+      <div class="service-card reveal reveal-d2">
+        <span class="service-num">04</span>
+        <div class="service-icon">
+          <i class="ph ph-book-open"></i>
+        </div>
+        <h3>Brand Guidelines</h3>
+        <p>Comprehensive brand books and style guides that ensure your identity is applied consistently across every medium and touchpoint.</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <!-- Heading spans full width above both columns -->
+    <div class="section-header reveal" style="margin-bottom: var(--sp-5);">
+      <p class="t-label">Get In Touch</p>
+      <h2 class="t-display">Let's build something great</h2>
+      <div class="divider"></div>
+    </div>
+    <p class="t-body contact-desc reveal reveal-d1" style="margin-bottom: var(--sp-6);">
+      Have a project in mind? I'd love to hear about it. Let's talk about how great design can transform your brand.
+    </p>
+    <!-- Contact links + form side by side below the heading -->
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-links reveal reveal-d1">
+          <a href="mailto:eridastudiong@gmail.com" class="contact-link">
+            <span class="contact-link-icon">
+              <i class="ph ph-envelope-simple"></i>
+            </span>
+            eridastudiong@gmail.com
+          </a>
+          <a href="https://www.instagram.com/eridastudiong?igsh=MXZmZmoweTE3MmJiNg==" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link-icon">
+              <i class="ph ph-instagram-logo"></i>
+            </span>
+            @eridastudiong
+          </a>
+          <a href="https://www.facebook.com/eridastudiong" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link-icon">
+              <i class="ph ph-facebook-logo"></i>
+            </span>
+            ERIDA STUDIO NG
+          </a>
+          <a href="https://wa.me/09138037377" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link-icon">
+              <i class="ph ph-whatsapp-logo"></i>
+            </span>
+            Emmanuel Kolade
+          </a>
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <div class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Emmanuel Kolade" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="hello@yourbrand.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Required</label>
+            <select id="service" name="service">
+              <option value="" disabled selected>Select a service</option>
+              <option>Brand Identity Design</option>
+              <option>Logo Design</option>
+              <option>Print &amp; Digital Design</option>
+              <option>Brand Guidelines</option>
+              
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="project">Project Description</label>
+            <textarea id="project" name="project" placeholder="Tell me about your brand, your goals, and what you're looking to create…"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="button" class="btn-primary" id="submitBtn">
+              Send Message
+              <i class="ti ti-send"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="t-label">FAQ</p>
+      <h2 class="t-display">Frequently Asked Questions</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="faq-list reveal reveal-d1">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What services do you offer?
+          <i class="ph ph-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>We offer Brand Identity Design, Logo Design, Print & Digital Design, and Brand Guidelines. Every project is tailored to your business goals and target audience.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How long does a branding project take?
+          <i class="ph ph-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>A full brand identity project typically takes 2–4 weeks depending on scope and feedback cycles. Logo-only projects can be completed in 1–2 weeks.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How much does it cost?
+          <i class="ph ph-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Pricing varies based on project scope. Reach out via the contact form or WhatsApp for a custom quote tailored to your needs and budget.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you work with clients outside Nigeria?
+          <i class="ph ph-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Absolutely. We work with clients globally. All communication and file delivery is done digitally so location is never a barrier.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What do I need to get started?
+          <i class="ph ph-plus faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Just fill out the contact form with your project details or send us a message on WhatsApp. We'll schedule a discovery call to understand your brand and goals.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <img src="LOGO_LIGHT_PLACEHOLDER" alt="ERIDA STUDIO NG" class="footer-logo logo-light">
+      <img src="LOGO_DARK_PLACEHOLDER" alt="ERIDA STUDIO NG" class="footer-logo logo-dark">
+      <p class="footer-copy">&copy; 2025 ERIDA STUDIO NG. All rights reserved.</p>
+      <nav class="footer-links">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&#x2715;</button>
+  <div id="lightboxContent"></div>
+</div>
+
+<script>
+(function() {
+
+  /* ===== LOGO IMAGES ===== */
+  const LOGO_LIGHT_SRC = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBDcmVhdGVkIHdpdGggR3JhZmlrYSAoaHR0cHM6Ly93d3cuZ3JhZmlrYS5jYy8pIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoJPGcgaWQ9Ikdyb3VwIDIzMiI+CgkJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMC4wODM2OTQ4MjMwODYyNjE3NSwgMCwgMCwgMC4wODM2OTQ4OTAxNDE0ODcxMiwgOTQuNjg0MzU2Njg5NDUzMTIsIDM4Mi45ODUyMjk0OTIxODc1KSIgZD0iTTYzMC43NCw2MDMuODEgTDYzMC43NCwzNDQ1LjY4IEMxNzYzLjU4LDMxMTYuMDcgMjM2Ni4xOCwxNjY5LjYgMzc3Ni41OCwxNDIzLjc5IEwzNzc2LjU4LDYwMy44MSBMNjMwLjc0LDYwMy44MSBMNjMwLjc0LDYwMy44MSBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiAvPgoJCTxnIGlkPSJHcm91cCAzMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC44NzE4MjEwNDU4NzU1NDkzLCAwLCAwLCAwLjg3MTgyMTc2MTEzMTI4NjYsIDI0OS40NjcyODUxNTYyNSwgNjc0LjQ2MzYyMzA0Njg3NSkiPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc3LjQ5MjQ5MjY3NTc4MTI1LCAtMzExLjk3OTU4Mzc0MDIzNDQpIiBkPSJNMzc3Ni4wOSwxNzc2Ljc0IEMyMzk1LjIsMTc3Ni43NCAyMzMzLjcyLDI3NjYgNjMwLjI1LDMzMDkuNDEgQzIzMDYuMywzMjE4LjEzIDIzOTUuMiwyMDk4LjYgMzc3Ni4wOSwyMzk4LjA1IEMzNzc2LjA5LDIyNTQuNjkgMzc3Ni4wOSwxOTcxLjU1IDM3NzYuMDksMTc3Ni43NCBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOEM0RDE7IiAvPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc4LjEwODMyMjE0MzU1NDcsIC0yOTEuMjg5MTU0MDUyNzM0NCkiIGQ9Ik0zNzgyLjUsMjY3OS4xMyBDMjc2OC42NywyMTgyLjUyIDI0NTIuMTksMzE2Ny42OSA2MzYuNjYsMzIwNS4zNiBDMjU1Ny45NiwzNTQ2LjUgMjY4NS41MiwyNTU1LjE4IDM3ODIuNDksMzMwMS4yOCBDMzc4Mi40OSwyOTM0LjcxIDM3ODIuNDksMjg5OS4xNCAzNzgyLjUsMjY3OS4xMyBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOEM0RDE7IiAvPgoJCTwvZz4KCTwvZz4KCTxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEuODgzMjA2NzI1MTIwNTQ0NCwgMCwgMCwgMS44ODMyMDY3MjUxMjA1NDQ0LCA3MDQuMDY3NDQzODQ3NjU2MiwgNTU0LjM1NjIwMTE3MTg3NSkiIGQ9Ik0tMTIxLjE5LC0zMC42NiBMLTEyMS4xOSwyMi40IEwtNzguNzgsMjIuNCBMLTc4Ljc4LDEwLjggTC0xMDYuMzksMTAuOCBMLTEwNi4zOSwxLjEgTC04Mi45NSwxLjEgTC04Mi45NSwtMTAuMTIgTC0xMDYuMzksLTEwLjEyIEwtMTA2LjM5LC0xOS4wNyBMLTc5Ljc4LC0xOS4wNyBMLTc5Ljc4LC0zMC42NiBMLTEyMS4xOSwtMzAuNjYgWk0tNzAuNDksLTMwLjY2IEwtNzAuNDksMjIuNCBMLTU1LjU1LDIyLjQgTC01NS41NSw4LjMgTC00Ny40LDguMyBMLTM3LjgzLDIyLjQgTC0yMS44MiwyMi40IEwtMzMuMjQsNS43IFEtMjguNDQsMy40MSAtMjUuNzYsLTAuNjggUS0yMi44OSwtNS4wNSAtMjIuODksLTExLjAyIFEtMjIuODksLTIwLjEzIC0yOS4xMSwtMjUuMzggUS0zNS4zNCwtMzAuNjYgLTQ2Ljg3LC0zMC42NiBMLTcwLjQ5LC0zMC42NiBaTS01NS41NSwtMy4zMSBMLTU1LjU1LC0xOC44MyBMLTQ3LjI2LC0xOC44MyBRLTQyLjU4LC0xOC44MyAtNDAuMjgsLTE2Ljc4IFEtMzcuOTcsLTE0Ljc0IC0zNy45NywtMTEuMDIgUS0zNy45NywtNy40IC00MC4yOCwtNS4zNCBRLTQyLjU4LC0zLjMxIC00Ny4yNiwtMy4zMSBMLTU1LjU1LC0zLjMxIFpNLTE0LjY1LDIyLjQgTC0xNC42NSwtMzAuNjYgTDAuMjgsLTMwLjY2IEwwLjI4LDIyLjQgTC0xNC42NSwyMi40IFpNMTAuOTIsLTMwLjY2IEwxMC45MiwyMi40IEwzNS44OCwyMi40IFE0NC42NSwyMi40IDUxLjI4LDE5LjE0IFE1Ny45MywxNS44OSA2MS42NSw5Ljk0IFE2NS4zOSwzLjk5IDY1LjM5LC00LjE0IFE2NS4zOSwtMTIuMzIgNjEuNjUsLTE4LjIyIFE1Ny45MywtMjQuMTQgNTEuMjgsLTI3LjQgUTQ0LjY1LC0zMC42NiAzNS44OCwtMzAuNjYgTDEwLjkyLC0zMC42NiBaTTM1LjI5LDEwLjQzIEwyNS44NiwxMC40MyBMMjUuODYsLTE4LjY4IEwzNS4yOSwtMTguNjggUTM5LjgsLTE4LjY4IDQzLjE2LC0xNi45OCBRNDYuNTMsLTE1LjI4IDQ4LjQxLC0xMiBRNTAuMywtOC43NSA1MC4zLC00LjE0IFE1MC4zLDAuNDEgNDguNDEsMy43MyBRNDYuNTMsNy4wMiA0My4xNiw4LjcyIFEzOS44LDEwLjQzIDM1LjI5LDEwLjQzIFpNODkuNDUsLTMwLjY2IEw2Ni4xNSwyMi40IEw4MS4zOCwyMi40IEw4NS41LDEyLjA5IEwxMDcuOSwxMi4wOSBMMTEyLjAyLDIyLjQgTDEyNy41NiwyMi40IEwxMDQuMTcsLTMwLjY2IEw4OS40NSwtMzAuNjYgWk0xMDMuNDgsMS4wMiBMODkuOTIsMS4wMiBMOTYuNywtMTUuOTUgTDEwMy40OCwxLjAyIFoiIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiAvPgoJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMS44ODMyMDY3MjUxMjA1NDQ0LCAwLCAwLCAxLjg4MzIwNjcyNTEyMDU0NDQsIDcxMC44OTU0NDY3NzczNDM4LCA2NTUuMDQ2ODEzOTY0ODQzOCkiIGQ9Ik0tMTIxLDguNjkgUS0xMTguNjMsOS4zOCAtMTE2LjA0LDkuMzggUS0xMTIuOTYsOS4zOCAtMTEwLjk1LDguNDUgUS0xMDguOTQsNy41MyAtMTA3LjkyLDYuMDMgUS0xMDYuOSw0LjUyIC0xMDYuOSwyLjcgUS0xMDYuOSwxLjAxIC0xMDcuNiwtMC4xIFEtMTA4LjI5LC0xLjIxIC0xMDkuNCwtMS44OCBRLTExMC41MSwtMi41NiAtMTExLjg0LC0yLjk2IFEtMTEzLjE4LC0zLjM2IC0xMTQuNTIsLTMuNjcgUS0xMTUuODYsLTMuOTggLTExNi45NywtNC4yOCBRLTExOC4wNywtNC41OSAtMTE4Ljc2LC01LjEgUS0xMTkuNDMsLTUuNjEgLTExOS40MywtNi40NCBRLTExOS40MywtNy4xNCAtMTE5LjAzLC03LjY4IFEtMTE4LjYzLC04LjIzIC0xMTcuNywtOC41NiBRLTExNi43OCwtOC45IC0xMTUuMzQsLTguOSBRLTExMy44OSwtOC45IC0xMTIuMzgsLTguNDggUS0xMTAuODcsLTguMDcgLTEwOS4zNiwtNy4yMSBMLTEwNy44MiwtMTAuOTkgUS0xMDkuMzMsLTExLjk0IC0xMTEuMywtMTIuNDIgUS0xMTMuMjcsLTEyLjkgLTExNS4zMSwtMTIuOSBRLTExOC4zNSwtMTIuOSAtMTIwLjM3LC0xMS45OSBRLTEyMi4zOSwtMTEuMDkgLTEyMy4zOCwtOS41NiBRLTEyNC4zOCwtOC4wNCAtMTI0LjM4LC02LjE5IFEtMTI0LjM4LC00LjQ3IC0xMjMuNjksLTMuMzYgUS0xMjMsLTIuMjUgLTEyMS45LC0xLjU4IFEtMTIwLjc4LC0wLjkgLTExOS40NSwtMC40NiBRLTExOC4xLC0wLjA0IC0xMTYuNzYsMC4yNiBRLTExNS40MywwLjU1IC0xMTQuMzIsMC44NyBRLTExMy4yMSwxLjIgLTExMi41MywxLjcxIFEtMTExLjg2LDIuMjEgLTExMS44NiwzLjA3IFEtMTExLjg2LDMuNzUgLTExMi4yOSw0LjI4IFEtMTEyLjcyLDQuOCAtMTEzLjYzLDUuMDkgUS0xMTQuNTMsNS4zOCAtMTE2LjAxLDUuMzggUS0xMTcuOTUsNS4zOCAtMTE5Ljg1LDQuNzUgUS0xMjEuNzQsNC4xMiAtMTIzLjEyLDMuMTQgTC0xMjQuODEsNi44OCBRLTEyMy4zNyw4IC0xMjEsOC42OSBaTS05MC4zMSwtOC40NyBMLTkwLjMxLDkuMDEgTC04NS4zMyw5LjAxIEwtODUuMzMsLTguNDcgTC03OC40NCwtOC40NyBMLTc4LjQ0LC0xMi41MyBMLTk3LjIxLC0xMi41MyBMLTk3LjIxLC04LjQ3IEwtOTAuMzEsLTguNDcgWk0tNjQuNjUsNi44MiBRLTYyLjA2LDkuMzggLTU3LjQ4LDkuMzggUS01Mi44OSw5LjM4IC01MC4zMSw2LjgyIFEtNDcuNzIsNC4yNyAtNDcuNzIsLTAuNDcgTC00Ny43MiwtMTIuNTMgTC01Mi42NSwtMTIuNTMgTC01Mi42NSwtMC42NSBRLTUyLjY1LDIuNDIgLTUzLjkxLDMuNzggUS01NS4xNyw1LjEzIC01Ny40NSw1LjEzIFEtNTkuNzIsNS4xMyAtNjAuOTksMy43OCBRLTYyLjI1LDIuNDIgLTYyLjI1LC0wLjY1IEwtNjIuMjUsLTEyLjUzIEwtNjcuMjQsLTEyLjUzIEwtNjcuMjQsLTAuNDcgUS02Ny4yNCw0LjI3IC02NC42NSw2LjgyIFpNLTM0LjA5LC0xMi41MyBMLTM0LjA5LDkuMDEgTC0yNC4zMSw5LjAxIFEtMjAuOCw5LjAxIC0xOC4xMiw3LjY3IFEtMTUuNDQsNi4zNCAtMTMuOTMsMy45MiBRLTEyLjQyLDEuNSAtMTIuNDIsLTEuNzYgUS0xMi40MiwtNS4wNSAtMTMuOTMsLTcuNDUgUS0xNS40NCwtOS44NiAtMTguMTIsLTExLjE5IFEtMjAuOCwtMTIuNTMgLTI0LjMxLC0xMi41MyBMLTM0LjA5LC0xMi41MyBaTS0yNC41NSw0LjkyIEwtMjkuMSw0LjkyIEwtMjkuMSwtOC40NCBMLTI0LjU1LC04LjQ0IFEtMjIuNCwtOC40NCAtMjAuODEsLTcuNjIgUS0xOS4yMywtNi44MSAtMTguMzUsLTUuMzEgUS0xNy40NywtMy44MiAtMTcuNDcsLTEuNzYgUS0xNy40NywwLjI3IC0xOC4zNSwxLjc4IFEtMTkuMjMsMy4yOSAtMjAuODEsNC4xIFEtMjIuNCw0LjkyIC0yNC41NSw0LjkyIFpNMC4wNCw5LjAxIEwwLjA0LC0xMi41MyBMNS4wMywtMTIuNTMgTDUuMDMsOS4wMSBMMC4wNCw5LjAxIFpNMjQuNTgsOC41NSBRMjYuNzYsOS4zOCAyOS4zMSw5LjM4IFEzMS44Myw5LjM4IDMzLjk3LDguNTUgUTM2LjExLDcuNzIgMzcuNjksNi4yMyBRMzkuMjgsNC43NCA0MC4xNywyLjY5IFE0MS4wNiwwLjY0IDQxLjA2LC0xLjc2IFE0MS4wNiwtNC4xOSA0MC4xNywtNi4yIFEzOS4yOCwtOC4yMyAzNy42OSwtOS43MyBRMzYuMTEsLTExLjI0IDMzLjk3LC0xMi4wNiBRMzEuODMsLTEyLjkgMjkuMjgsLTEyLjkgUTI2Ljc2LC0xMi45IDI0LjYsLTEyLjA2IFEyMi40NCwtMTEuMjQgMjAuODQsLTkuNzMgUTE5LjI0LC04LjIzIDE4LjM2LC02LjE5IFExNy40OSwtNC4xNiAxNy40OSwtMS43NiBRMTcuNDksMC42NCAxOC4zNiwyLjY4IFExOS4yNCw0LjcxIDIwLjgzLDYuMjIgUTIyLjQxLDcuNzIgMjQuNTgsOC41NSBaTTMxLjk0LDQuNjUgUTMwLjcyLDUuMTMgMjkuMjgsNS4xMyBRMjcuODMsNS4xMyAyNi42LDQuNjUgUTI1LjM3LDQuMTUgMjQuNDYsMy4yMyBRMjMuNTUsMi4zIDIzLjA0LDEuMDIgUTIyLjUzLC0wLjI1IDIyLjUzLC0xLjc2IFEyMi41MywtMy4zIDIzLjA0LC00LjU2IFEyMy41NSwtNS44MiAyNC40NywtNi43NCBRMjUuNCwtNy42NyAyNi42MSwtOC4xNiBRMjcuODMsLTguNjUgMjkuMjgsLTguNjUgUTMwLjcyLC04LjY1IDMxLjk1LC04LjE2IFEzMy4xOSwtNy42NyAzNC4wOSwtNi43NCBRMzUsLTUuODIgMzUuNTEsLTQuNTYgUTM2LjAyLC0zLjMgMzYuMDIsLTEuNzYgUTM2LjAyLC0wLjIyIDM1LjUxLDEuMDQgUTM1LDIuMyAzNC4wNywzLjIzIFEzMy4xNiw0LjE1IDMxLjk0LDQuNjUgWk03MC45NSwtMTIuNTMgTDcwLjk1LDkuMDEgTDc1Ljg3LDkuMDEgTDc1Ljg3LC00LjA2IEw4Ni42MSw5LjAxIEw5MC43MSw5LjAxIEw5MC43MSwtMTIuNTMgTDg1Ljc4LC0xMi41MyBMODUuNzgsMC41NCBMNzUuMDcsLTEyLjUzIEw3MC45NSwtMTIuNTMgWk0xMTAuMjIsOC41NyBRMTEyLjM3LDkuMzggMTE0LjkyLDkuMzggUTExNy4yMyw5LjM4IDExOS41Niw4LjY3IFExMjEuODgsNy45NyAxMjMuNjQsNi42NCBMMTIzLjY0LC0yLjEgTDExOS4wNywtMi4xIEwxMTkuMDcsNC4yMyBRMTE4LjU4LDQuNDkgMTE4LjA4LDQuNjYgUTExNi42OCw1LjEzIDExNS4yLDUuMTMgUTExMy42Niw1LjEzIDExMi4zOCw0LjY1IFExMTEuMTEsNC4xNSAxMTAuMTcsMy4yMSBRMTA5LjIzLDIuMjcgMTA4LjcyLDEuMDEgUTEwOC4yMSwtMC4yNSAxMDguMjEsLTEuNzYgUTEwOC4yMSwtMy4zIDEwOC43MiwtNC41NiBRMTA5LjIzLC01LjgyIDExMC4xNywtNi43NCBRMTExLjExLC03LjY3IDExMi40LC04LjE2IFExMTMuNywtOC42NSAxMTUuMjYsLTguNjUgUTExNi45LC04LjY1IDExOC4yOCwtOC4wNSBRMTE5LjY2LC03LjQ1IDEyMC44MywtNi4yMyBMMTI0LjAzLC05LjE4IFExMjIuNDYsLTEwLjk5IDEyMC4xNywtMTEuOTQgUTExNy44OCwtMTIuOSAxMTUuMDIsLTEyLjkgUTExMi40MywtMTIuOSAxMTAuMjgsLTEyLjA4IFExMDguMTIsLTExLjI3IDEwNi41MiwtOS43NiBRMTA0LjkyLC04LjI2IDEwNC4wNCwtNi4yMiBRMTAzLjE3LC00LjE5IDEwMy4xNywtMS43NiBRMTAzLjE3LDAuNjcgMTA0LjA0LDIuNzEgUTEwNC45Miw0Ljc0IDEwNi41LDYuMjUgUTEwOC4wOSw3Ljc1IDExMC4yMiw4LjU3IFoiIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiAvPgo8L3N2Zz4=';
+  const LOGO_DARK_SRC  = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBDcmVhdGVkIHdpdGggR3JhZmlrYSAoaHR0cHM6Ly93d3cuZ3JhZmlrYS5jYy8pIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoJPGcgaWQ9Ikdyb3VwIDIzMiI+CgkJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMC4wODM2OTQ4MjMwODYyNjE3NSwgMCwgMCwgMC4wODM2OTQ4OTAxNDE0ODcxMiwgOTQuNjg0MzU2Njg5NDUzMTIsIDM4Mi45ODUyMjk0OTIxODc1KSIgZD0iTTYzMC43NCw2MDMuODEgTDYzMC43NCwzNDQ1LjY4IEMxNzYzLjU4LDMxMTYuMDcgMjM2Ni4xOCwxNjY5LjYgMzc3Ni41OCwxNDIzLjc5IEwzNzc2LjU4LDYwMy44MSBMNjMwLjc0LDYwMy44MSBMNjMwLjc0LDYwMy44MSBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwQTBBMEE7IiAvPgoJCTxnIGlkPSJHcm91cCAzMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC44NzE4MjEwNDU4NzU1NDkzLCAwLCAwLCAwLjg3MTgyMTc2MTEzMTI4NjYsIDI0OS40NjcyODUxNTYyNSwgNjc0LjQ2MzYyMzA0Njg3NSkiPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc3LjQ5MjQ5MjY3NTc4MTI1LCAtMzExLjk3OTU4Mzc0MDIzNDQpIiBkPSJNMzc3Ni4wOSwxNzc2Ljc0IEMyMzk1LjIsMTc3Ni43NCAyMzMzLjcyLDI3NjYgNjMwLjI1LDMzMDkuNDEgQzIzMDYuMywzMjE4LjEzIDIzOTUuMiwyMDk4LjYgMzc3Ni4wOSwyMzk4LjA1IEMzNzc2LjA5LDIyNTQuNjkgMzc3Ni4wOSwxOTcxLjU1IDM3NzYuMDksMTc3Ni43NCBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOTk3QTE7IiAvPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc4LjEwODMyMjE0MzU1NDcsIC0yOTEuMjg5MTU0MDUyNzM0NCkiIGQ9Ik0zNzgyLjUsMjY3OS4xMyBDMjc2OC42NywyMTgyLjUyIDI0NTIuMTksMzE2Ny42OSA2MzYuNjYsMzIwNS4zNiBDMjU1Ny45NiwzNTQ2LjUgMjY4NS41MiwyNTU1LjE4IDM3ODIuNDksMzMwMS4yOCBDMzc4Mi40OSwyOTM0LjcxIDM3ODIuNDksMjg5OS4xNCAzNzgyLjUsMjY3OS4xMyBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOTk3QTE7IiAvPgoJCTwvZz4KCTwvZz4KCTxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEuODgzMjA2NzI1MTIwNTQ0NCwgMCwgMCwgMS44ODMyMDY3MjUxMjA1NDQ0LCA3MDQuMDY3NDQzODQ3NjU2MiwgNTU0LjM1NjIwMTE3MTg3NSkiIGQ9Ik0tMTIxLjE5LC0zMC42NiBMLTEyMS4xOSwyMi40IEwtNzguNzgsMjIuNCBMLTc4Ljc4LDEwLjggTC0xMDYuMzksMTAuOCBMLTEwNi4zOSwxLjEgTC04Mi45NSwxLjEgTC04Mi45NSwtMTAuMTIgTC0xMDYuMzksLTEwLjEyIEwtMTA2LjM5LC0xOS4wNyBMLTc5Ljc4LC0xOS4wNyBMLTc5Ljc4LC0zMC42NiBMLTEyMS4xOSwtMzAuNjYgWk0tNzAuNDksLTMwLjY2IEwtNzAuNDksMjIuNCBMLTU1LjU1LDIyLjQgTC01NS41NSw4LjMgTC00Ny40LDguMyBMLTM3LjgzLDIyLjQgTC0yMS44MiwyMi40IEwtMzMuMjQsNS43IFEtMjguNDQsMy40MSAtMjUuNzYsLTAuNjggUS0yMi44OSwtNS4wNSAtMjIuODksLTExLjAyIFEtMjIuODksLTIwLjEzIC0yOS4xMSwtMjUuMzggUS0zNS4zNCwtMzAuNjYgLTQ2Ljg3LC0zMC42NiBMLTcwLjQ5LC0zMC42NiBaTS01NS41NSwtMy4zMSBMLTU1LjU1LC0xOC44MyBMLTQ3LjI2LC0xOC44MyBRLTQyLjU4LC0xOC44MyAtNDAuMjgsLTE2Ljc4IFEtMzcuOTcsLTE0Ljc0IC0zNy45NywtMTEuMDIgUS0zNy45NywtNy40IC00MC4yOCwtNS4zNCBRLTQyLjU4LC0zLjMxIC00Ny4yNiwtMy4zMSBMLTU1LjU1LC0zLjMxIFpNLTE0LjY1LDIyLjQgTC0xNC42NSwtMzAuNjYgTDAuMjgsLTMwLjY2IEwwLjI4LDIyLjQgTC0xNC42NSwyMi40IFpNMTAuOTIsLTMwLjY2IEwxMC45MiwyMi40IEwzNS44OCwyMi40IFE0NC42NSwyMi40IDUxLjI4LDE5LjE0IFE1Ny45MywxNS44OSA2MS42NSw5Ljk0IFE2NS4zOSwzLjk5IDY1LjM5LC00LjE0IFE2NS4zOSwtMTIuMzIgNjEuNjUsLTE4LjIyIFE1Ny45MywtMjQuMTQgNTEuMjgsLTI3LjQgUTQ0LjY1LC0zMC42NiAzNS44OCwtMzAuNjYgTDEwLjkyLC0zMC42NiBaTTM1LjI5LDEwLjQzIEwyNS44NiwxMC40MyBMMjUuODYsLTE4LjY4IEwzNS4yOSwtMTguNjggUTM5LjgsLTE4LjY4IDQzLjE2LC0xNi45OCBRNDYuNTMsLTE1LjI4IDQ4LjQxLC0xMiBRNTAuMywtOC43NSA1MC4zLC00LjE0IFE1MC4zLDAuNDEgNDguNDEsMy43MyBRNDYuNTMsNy4wMiA0My4xNiw4LjcyIFEzOS44LDEwLjQzIDM1LjI5LDEwLjQzIFpNODkuNDUsLTMwLjY2IEw2Ni4xNSwyMi40IEw4MS4zOCwyMi40IEw4NS41LDEyLjA5IEwxMDcuOSwxMi4wOSBMMTEyLjAyLDIyLjQgTDEyNy41NiwyMi40IEwxMDQuMTcsLTMwLjY2IEw4OS40NSwtMzAuNjYgWk0xMDMuNDgsMS4wMiBMODkuOTIsMS4wMiBMOTYuNywtMTUuOTUgTDEwMy40OCwxLjAyIFoiIHN0eWxlPSJmaWxsOiMwQTBBMEE7IiAvPgoJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMS44ODMyMDY3MjUxMjA1NDQ0LCAwLCAwLCAxLjg4MzIwNjcyNTEyMDU0NDQsIDcxMC44OTU0NDY3NzczNDM4LCA2NTUuMDQ2ODEzOTY0ODQzOCkiIGQ9Ik0tMTIxLDguNjkgUS0xMTguNjMsOS4zOCAtMTE2LjA0LDkuMzggUS0xMTIuOTYsOS4zOCAtMTEwLjk1LDguNDUgUS0xMDguOTQsNy41MyAtMTA3LjkyLDYuMDMgUS0xMDYuOSw0LjUyIC0xMDYuOSwyLjcgUS0xMDYuOSwxLjAxIC0xMDcuNiwtMC4xIFEtMTA4LjI5LC0xLjIxIC0xMDkuNCwtMS44OCBRLTExMC41MSwtMi41NiAtMTExLjg0LC0yLjk2IFEtMTEzLjE4LC0zLjM2IC0xMTQuNTIsLTMuNjcgUS0xMTUuODYsLTMuOTggLTExNi45NywtNC4yOCBRLTExOC4wNywtNC41OSAtMTE4Ljc2LC01LjEgUS0xMTkuNDMsLTUuNjEgLTExOS40MywtNi40NCBRLTExOS40MywtNy4xNCAtMTE5LjAzLC03LjY4IFEtMTE4LjYzLC04LjIzIC0xMTcuNywtOC41NiBRLTExNi43OCwtOC45IC0xMTUuMzQsLTguOSBRLTExMy44OSwtOC45IC0xMTIuMzgsLTguNDggUS0xMTAuODcsLTguMDcgLTEwOS4zNiwtNy4yMSBMLTEwNy44MiwtMTAuOTkgUS0xMDkuMzMsLTExLjk0IC0xMTEuMywtMTIuNDIgUS0xMTMuMjcsLTEyLjkgLTExNS4zMSwtMTIuOSBRLTExOC4zNSwtMTIuOSAtMTIwLjM3LC0xMS45OSBRLTEyMi4zOSwtMTEuMDkgLTEyMy4zOCwtOS41NiBRLTEyNC4zOCwtOC4wNCAtMTI0LjM4LC02LjE5IFEtMTI0LjM4LC00LjQ3IC0xMjMuNjksLTMuMzYgUS0xMjMsLTIuMjUgLTEyMS45LC0xLjU4IFEtMTIwLjc4LC0wLjkgLTExOS40NSwtMC40NiBRLTExOC4xLC0wLjA0IC0xMTYuNzYsMC4yNiBRLTExNS40MywwLjU1IC0xMTQuMzIsMC44NyBRLTExMy4yMSwxLjIgLTExMi41MywxLjcxIFEtMTExLjg2LDIuMjEgLTExMS44NiwzLjA3IFEtMTExLjg2LDMuNzUgLTExMi4yOSw0LjI4IFEtMTEyLjcyLDQuOCAtMTEzLjYzLDUuMDkgUS0xMTQuNTMsNS4zOCAtMTE2LjAxLDUuMzggUS0xMTcuOTUsNS4zOCAtMTE5Ljg1LDQuNzUgUS0xMjEuNzQsNC4xMiAtMTIzLjEyLDMuMTQgTC0xMjQuODEsNi44OCBRLTEyMy4zNyw4IC0xMjEsOC42OSBaTS05MC4zMSwtOC40NyBMLTkwLjMxLDkuMDEgTC04NS4zMyw5LjAxIEwtODUuMzMsLTguNDcgTC03OC40NCwtOC40NyBMLTc4LjQ0LC0xMi41MyBMLTk3LjIxLC0xMi41MyBMLTk3LjIxLC04LjQ3IEwtOTAuMzEsLTguNDcgWk0tNjQuNjUsNi44MiBRLTYyLjA2LDkuMzggLTU3LjQ4LDkuMzggUS01Mi44OSw5LjM4IC01MC4zMSw2LjgyIFEtNDcuNzIsNC4yNyAtNDcuNzIsLTAuNDcgTC00Ny43MiwtMTIuNTMgTC01Mi42NSwtMTIuNTMgTC01Mi42NSwtMC42NSBRLTUyLjY1LDIuNDIgLTUzLjkxLDMuNzggUS01NS4xNyw1LjEzIC01Ny40NSw1LjEzIFEtNTkuNzIsNS4xMyAtNjAuOTksMy43OCBRLTYyLjI1LDIuNDIgLTYyLjI1LC0wLjY1IEwtNjIuMjUsLTEyLjUzIEwtNjcuMjQsLTEyLjUzIEwtNjcuMjQsLTAuNDcgUS02Ny4yNCw0LjI3IC02NC42NSw2LjgyIFpNLTM0LjA5LC0xMi41MyBMLTM0LjA5LDkuMDEgTC0yNC4zMSw5LjAxIFEtMjAuOCw5LjAxIC0xOC4xMiw3LjY3IFEtMTUuNDQsNi4zNCAtMTMuOTMsMy45MiBRLTEyLjQyLDEuNSAtMTIuNDIsLTEuNzYgUS0xMi40MiwtNS4wNSAtMTMuOTMsLTcuNDUgUS0xNS40NCwtOS44NiAtMTguMTIsLTExLjE5IFEtMjAuOCwtMTIuNTMgLTI0LjMxLC0xMi41MyBMLTM0LjA5LC0xMi41MyBaTS0yNC41NSw0LjkyIEwtMjkuMSw0LjkyIEwtMjkuMSwtOC40NCBMLTI0LjU1LC04LjQ0IFEtMjIuNCwtOC40NCAtMjAuODEsLTcuNjIgUS0xOS4yMywtNi44MSAtMTguMzUsLTUuMzEgUS0xNy40NywtMy44MiAtMTcuNDcsLTEuNzYgUS0xNy40NywwLjI3IC0xOC4zNSwxLjc4IFEtMTkuMjMsMy4yOSAtMjAuODEsNC4xIFEtMjIuNCw0LjkyIC0yNC41NSw0LjkyIFpNMC4wNCw5LjAxIEwwLjA0LC0xMi41MyBMNS4wMywtMTIuNTMgTDUuMDMsOS4wMSBMMC4wNCw5LjAxIFpNMjQuNTgsOC41NSBRMjYuNzYsOS4zOCAyOS4zMSw5LjM4IFEzMS44Myw5LjM4IDMzLjk3LDguNTUgUTM2LjExLDcuNzIgMzcuNjksNi4yMyBRMzkuMjgsNC43NCA0MC4xNywyLjY5IFE0MS4wNiwwLjY0IDQxLjA2LC0xLjc2IFE0MS4wNiwtNC4xOSA0MC4xNywtNi4yIFEzOS4yOCwtOC4yMyAzNy42OSwtOS43MyBRMzYuMTEsLTExLjI0IDMzLjk3LC0xMi4wNiBRMzEuODMsLTEyLjkgMjkuMjgsLTEyLjkgUTI2Ljc2LC0xMi45IDI0LjYsLTEyLjA2IFEyMi40NCwtMTEuMjQgMjAuODQsLTkuNzMgUTE5LjI0LC04LjIzIDE4LjM2LC02LjE5IFExNy40OSwtNC4xNiAxNy40OSwtMS43NiBRMTcuNDksMC42NCAxOC4zNiwyLjY4IFExOS4yNCw0LjcxIDIwLjgzLDYuMjIgUTIyLjQxLDcuNzIgMjQuNTgsOC41NSBaTTMxLjk0LDQuNjUgUTMwLjcyLDUuMTMgMjkuMjgsNS4xMyBRMjcuODMsNS4xMyAyNi42LDQuNjUgUTI1LjM3LDQuMTUgMjQuNDYsMy4yMyBRMjMuNTUsMi4zIDIzLjA0LDEuMDIgUTIyLjUzLC0wLjI1IDIyLjUzLC0xLjc2IFEyMi41MywtMy4zIDIzLjA0LC00LjU2IFEyMy41NSwtNS44MiAyNC40NywtNi43NCBRMjUuNCwtNy42NyAyNi42MSwtOC4xNiBRMjcuODMsLTguNjUgMjkuMjgsLTguNjUgUTMwLjcyLC04LjY1IDMxLjk1LC04LjE2IFEzMy4xOSwtNy42NyAzNC4wOSwtNi43NCBRMzUsLTUuODIgMzUuNTEsLTQuNTYgUTM2LjAyLC0zLjMgMzYuMDIsLTEuNzYgUTM2LjAyLC0wLjIyIDM1LjUxLDEuMDQgUTM1LDIuMyAzNC4wNywzLjIzIFEzMy4xNiw0LjE1IDMxLjk0LDQuNjUgWk03MC45NSwtMTIuNTMgTDcwLjk1LDkuMDEgTDc1Ljg3LDkuMDEgTDc1Ljg3LC00LjA2IEw4Ni42MSw5LjAxIEw5MC43MSw5LjAxIEw5MC43MSwtMTIuNTMgTDg1Ljc4LC0xMi41MyBMODUuNzgsMC41NCBMNzUuMDcsLTEyLjUzIEw3MC45NSwtMTIuNTMgWk0xMTAuMjIsOC41NyBRMTEyLjM3LDkuMzggMTE0LjkyLDkuMzggUTExNy4yMyw5LjM4IDExOS41Niw4LjY3IFExMjEuODgsNy45NyAxMjMuNjQsNi42NCBMMTIzLjY0LC0yLjEgTDExOS4wNywtMi4xIEwxMTkuMDcsNC4yMyBRMTE4LjU4LDQuNDkgMTE4LjA4LDQuNjYgUTExNi42OCw1LjEzIDExNS4yLDUuMTMgUTExMy42Niw1LjEzIDExMi4zOCw0LjY1IFExMTEuMTEsNC4xNSAxMTAuMTcsMy4yMSBRMTA5LjIzLDIuMjcgMTA4LjcyLDEuMDEgUTEwOC4yMSwtMC4yNSAxMDguMjEsLTEuNzYgUTEwOC4yMSwtMy4zIDEwOC43MiwtNC41NiBRMTA5LjIzLC01LjgyIDExMC4xNywtNi43NCBRMTExLjExLC03LjY3IDExMi40LC04LjE2IFExMTMuNywtOC42NSAxMTUuMjYsLTguNjUgUTExNi45LC04LjY1IDExOC4yOCwtOC4wNSBRMTE5LjY2LC03LjQ1IDEyMC44MywtNi4yMyBMMTI0LjAzLC05LjE4IFExMjIuNDYsLTEwLjk5IDEyMC4xNywtMTEuOTQgUTExNy44OCwtMTIuOSAxMTUuMDIsLTEyLjkgUTExMi40MywtMTIuOSAxMTAuMjgsLTEyLjA4IFExMDguMTIsLTExLjI3IDEwNi41MiwtOS43NiBRMTA0LjkyLC04LjI2IDEwNC4wNCwtNi4yMiBRMTAzLjE3LC00LjE5IDEwMy4xNywtMS43NiBRMTAzLjE3LDAuNjcgMTA0LjA0LDIuNzEgUTEwNC45Miw0Ljc0IDEwNi41LDYuMjUgUTEwOC4wOSw3Ljc1IDExMC4yMiw4LjU3IFoiIHN0eWxlPSJmaWxsOiMwQTBBMEE7IiAvPgo8L3N2Zz4=';
+  const PORTRAIT_SRC = 'https://i.postimg.cc/3rv9x6CH/about2.jpg';
+  /* inject images */
+  document.querySelectorAll('img[src="LOGO_LIGHT_PLACEHOLDER"]').forEach(el => el.src = LOGO_LIGHT_SRC);
+  document.querySelectorAll('img[src="LOGO_DARK_PLACEHOLDER"]').forEach(el => el.src = LOGO_DARK_SRC);
+  document.querySelectorAll('img[src="PORTRAIT_PLACEHOLDER"]').forEach(el => el.src = PORTRAIT_SRC);
+
+  /* ===== THEME ===== */
+  const html = document.documentElement;
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  const stored = localStorage.getItem('erida-theme') || 'system';
+
+  function applyTheme(val) {
+    if (val === 'system') { html.removeAttribute('data-theme'); }
+    else { html.setAttribute('data-theme', val); }
+    themeBtns.forEach(b => b.classList.toggle('active', b.dataset.themeVal === val));
+    localStorage.setItem('erida-theme', val);
+  }
+  applyTheme(stored);
+  themeBtns.forEach(btn => btn.addEventListener('click', () => applyTheme(btn.dataset.themeVal)));
+
+  /* ===== MENU ===== */
+  const hamburger   = document.getElementById('hamburger');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuPanel   = document.getElementById('menuPanel');
+  const menuClose   = document.getElementById('menuClose');
+  const menuLinks   = document.querySelectorAll('.menu-link');
+
+  function openMenu() {
+    hamburger.classList.add('active');
+    menuOverlay.classList.add('active');
+    menuPanel.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    hamburger.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    menuPanel.classList.remove('active');
+    document.body.style.overflow = '';
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+  hamburger.addEventListener('click', () => hamburger.classList.contains('active') ? closeMenu() : openMenu());
+  menuClose.addEventListener('click', closeMenu);
+  menuOverlay.addEventListener('click', closeMenu);
+  menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  /* ===== WORK TABS ===== */
+  const tabs   = document.querySelectorAll('.work-tab');
+  const panels = document.querySelectorAll('.work-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* ===== LIGHTBOX ===== */
+  const lightbox        = document.getElementById('lightbox');
+  const lightboxContent = document.getElementById('lightboxContent');
+  const lightboxClose   = document.getElementById('lightboxClose');
+
+  function getLogoSVG(index) {
+    var ts = Date.now();
+    var svgs = [
+      (function(){ var id='g'+ts+'_0'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#08C4D1"/><stop offset="100%" stop-color="#29539E"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><circle cx="200" cy="200" r="140" fill="none" stroke="url(#'+id+')" stroke-width="3"/><text x="200" y="225" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="90" font-weight="600" fill="url(#'+id+')">AX</text></svg>'; })(),
+
+      (function(){ var id='g'+ts+'_1'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFB347"/><stop offset="100%" stop-color="#FF6B00"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><polygon points="200,40 360,160 360,300 200,370 40,300 40,160" fill="none" stroke="url(#'+id+')" stroke-width="3"/><text x="200" y="225" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="64" font-weight="600" fill="url(#'+id+')">BOLT</text></svg>'; })(),
+
+      (function(){ var id='g'+ts+'_2'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#08C4D1"/><stop offset="100%" stop-color="#29539E"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><rect x="60" y="60" width="280" height="280" rx="48" fill="url(#'+id+')"/><text x="200" y="238" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="120" font-weight="600" fill="white">V</text></svg>'; })(),
+
+      '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><rect width="400" height="400" fill="#0A0A0A"/><path d="M200 40 L360 340 L40 340 Z" fill="none" stroke="#08C4D1" stroke-width="3"/><path d="M200 100 L320 320 L80 320 Z" fill="rgba(8,196,209,0.1)"/><text x="200" y="370" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="32" font-weight="600" fill="rgba(255,255,255,0.6)" letter-spacing="8">APEX</text></svg>',
+
+      (function(){ var id='g'+ts+'_4'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#08C4D1"/><stop offset="100%" stop-color="#29539E"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><circle cx="160" cy="200" r="90" fill="none" stroke="url(#'+id+')" stroke-width="3"/><circle cx="240" cy="200" r="90" fill="none" stroke="url(#'+id+')" stroke-width="3"/><text x="200" y="340" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="28" font-weight="600" fill="url(#'+id+')" letter-spacing="6">MERGE</text></svg>'; })(),
+
+      (function(){ var id='g'+ts+'_5'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB347"/><stop offset="100%" stop-color="#08C4D1"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><rect x="80" y="80" width="105" height="105" rx="8" fill="url(#'+id+')" opacity="0.9"/><rect x="215" y="80" width="105" height="105" rx="8" fill="none" stroke="url(#'+id+')" stroke-width="3"/><rect x="80" y="215" width="105" height="105" rx="8" fill="none" stroke="url(#'+id+')" stroke-width="3"/><rect x="215" y="215" width="105" height="105" rx="8" fill="url(#'+id+')" opacity="0.4"/></svg>'; })()
+    ];
+    return svgs[index];
+  }
+
+  function openLightbox(content) {
+    lightboxContent.innerHTML = content;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(function() { lightboxContent.innerHTML = ''; }, 400);
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeLightbox(); closeMenu(); } });
+
+  document.querySelectorAll('.logo-item').forEach(function(item) {
+    item.addEventListener('click', function() { openLightbox(getLogoSVG(+item.dataset.lightboxIndex)); });
+  });
+  document.querySelectorAll('.flyer-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      var img = item.querySelector('img');
+var html = '<img src="' + img.src + '" style="max-width:90vw;max-height:85vh;width:auto;height:auto;border-radius:4px;object-fit:contain;">';
+      openLightbox(html);
+    });
+  });
+  
+  /* ===== SCROLL REVEAL ===== */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  /* ===== SUBMIT ===== */
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!name || !email) { alert('Please fill in your name and email.'); return; }
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = 'linear-gradient(135deg, #08C4D1, #29539E)';
+    setTimeout(() => { btn.innerHTML = 'Send Message <i class="ti ti-send"></i>'; }, 3000);
+  });
+
+/* ===== SMOOTH SCROLL ===== */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.open-overlay').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-overlay');
+        const overlay = document.getElementById(targetId);
+        if (!overlay) return;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        overlay.scrollTop = 0;
+      });
+    });
+
+    document.querySelectorAll('.fs-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.fs-overlay').classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.fs-overlay.active').forEach(overlay => {
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+  });
+  
+  document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  });
+});
+
+})();
+</script>
+<!-- OVERLAY 1 -->
+<div class="fs-overlay" id="fs-overlay-1">
+  <button class="fs-close"><i class="ph ph-x"></i></button>
+  <div class="fs-slides">
+       <!-- Your 10 slides go here -->
+    <div class="fs-slide" style="background: linear-gradient(135deg, #0A1628, #162A50);"></div>
+    <div class="fs-slide" style="background: linear-gradient(135deg, #08C4D1, #29539E);"></div>
+    <!-- ...repeat for all 10 slides -->
+  </div>
+</div>
+
+<!-- OVERLAY 2 -->
+<div class="fs-overlay" id="fs-overlay-2">
+  <button class="fs-close"><i class="ph ph-x"></i></button>
+  <div class="fs-slides">
+       <!-- Your 10 slides go here -->
+    <div class="fs-slide" style="background: linear-gradient(135deg, #0A1628, #162A50);"></div>
+    <div class="fs-slide" style="background: linear-gradient(135deg, #08C4D1, #29539E);"></div>
+    <!-- ...repeat for all 10 slides -->
+  </div>
+</div>
+
+<!-- OVERLAY 3 -->
+<div class="fs-overlay" id="fs-overlay-3">
+  <button class="fs-close"><i class="ph ph-x"></i></button>
+  <div class="fs-slides">
+       <!-- Your 10 slides go here -->
+    <div class="fs-slide" style="background: linear-gradient(135deg, #0A1628, #162A50);"></div>
+    <div class="fs-slide" style="background: linear-gradient(135deg, #08C4D1, #29539E);"></div>
+    <!-- ...repeat for all 10 slides -->
+  </div>
+</div>
+</body>
+</html>
