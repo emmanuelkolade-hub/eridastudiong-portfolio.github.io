@@ -533,6 +533,10 @@ section { padding: var(--sp-8) 0; }
 
 .work-panel { display: none; }
 .work-panel.active { display: block; }
+.work-panel .reveal {
+  opacity: 1;
+  transform: none;
+}
 
 /* Brand Identity */
 .brand-cases { display: flex; flex-direction: column; gap: var(--sp-6); }
@@ -1195,36 +1199,37 @@ footer {
       <div class="brand-cases">
 
         <!-- Case 1 -->
-        <div class="brand-card reveal">
-          <div class="brand-card-header">
-           <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async"></a>         
-            <div class="brand-card-info">
-              <div>
-                <span class="brand-badge">Brand Identity</span>
-                <h3>NovuKraft Finance</h3>
-                <div class="brand-case-items">
-                  <div class="brand-case-item">
-                    <p class="t-label">The Problem</p>
-                    <p>A fintech startup launching into a saturated market with no visual identity. Their offering was sophisticated but they appeared indistinguishable from competitors.</p>
-                  </div>
-                  <div class="brand-case-item">
-                    <p class="t-label">The Solution</p>
-                    <p>Developed a sharp, trust-forward identity — a monogram mark combining stability with forward motion, paired with a precise sans-serif and a deep teal-navy palette.</p>
-                  </div>
-                  <div class="brand-case-item">
-                    <p class="t-label">The Result</p>
-                    <p>A complete brand system across digital and print. Client secured seed funding within two months of launch, citing brand confidence as a key factor.</p>
-                  </div>
-                </div>
-
-              <button class="btn-expand open-overlay" data-overlay="fs-overlay-1">
-              View Full Project
-            <i class="ph ph-arrow-circle-right"></i>
-            </button>
-            </div>
-          </div>   
+<div class="brand-card reveal">
+  <div class="brand-card-header">
+    <div class="brand-card-visual brand-visual-1">
+      <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async">
+    </div>
+    <div class="brand-card-info">
+      <div>
+        <span class="brand-badge">Brand Identity</span>
+        <h3>NovuKraft Finance</h3>
+        <div class="brand-case-items">
+          <div class="brand-case-item">
+            <p class="t-label">The Problem</p>
+            <p>A fintech startup launching into a saturated market with no visual identity. Their offering was sophisticated but they appeared indistinguishable from competitors.</p>
+          </div>
+          <div class="brand-case-item">
+            <p class="t-label">The Solution</p>
+            <p>Developed a sharp, trust-forward identity — a monogram mark combining stability with forward motion, paired with a precise sans-serif and a deep teal-navy palette.</p>
+          </div>
+          <div class="brand-case-item">
+            <p class="t-label">The Result</p>
+            <p>A complete brand system across digital and print. Client secured seed funding within two months of launch, citing brand confidence as a key factor.</p>
           </div>
         </div>
+      </div>
+      <button class="btn-expand open-overlay" data-overlay="fs-overlay-1">
+        View Full Project
+        <i class="ph ph-arrow-circle-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
 
         <!-- Case 2 -->
         <div class="brand-card reveal reveal-d1">
@@ -1374,59 +1379,59 @@ footer {
     <!-- PRINT & DIGITAL DESIGN -->
     <div class="work-panel" id="panel-flyer">
       <div class="flyer-grid">
-        <!-- Flyer 1 -->
+<!-- Flyer 1 -->
 <div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="0">
-  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 2 -->
 <div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="1">
-  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 3 -->
 <div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
-  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="children" decoding="async"></a>
+  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="children" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 4 -->
 <div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
-  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 5 -->
 <div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
-  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 6 -->
 <div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="3">
-  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 7 -->
 <div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="4">
-  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 8 -->
 <div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="5">
-  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 9 -->
 <div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="6">
-  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 10 -->
 <div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="7">
-  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <!-- Flyer 11 -->
 <div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="8">
-  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" decoding="async"></a>
+  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
       </div>
