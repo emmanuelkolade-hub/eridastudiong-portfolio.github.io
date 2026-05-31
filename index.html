@@ -556,10 +556,9 @@ section { padding: var(--sp-8) 0; }
 .brand-card-visual {
   position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
+  min-height: 320px;
 }
-.brand-card-visual img {
-  position: absolute;
-  inset: 0;
+.brand-card-header img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -603,42 +602,8 @@ section { padding: var(--sp-8) 0; }
 
 /* Brand project visuals */
 .brand-visual-1 { background: linear-gradient(135deg, #0A1628 0%, #162A50 50%, #1A3060 100%); }
-.brand-visual-1 .brand-logo-mock {
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #08C4D1, #29539E);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2.5rem; font-weight: 600; color: white;
-  position: relative;
-}
-.brand-visual-1 .brand-logo-mock::after {
-  content: '';
-  position: absolute; inset: -12px;
-  border-radius: 50%;
-  border: 1px solid rgba(8,196,209,0.3);
-}
-
 .brand-visual-2 { background: linear-gradient(135deg, #1A0A00 0%, #2D1500 50%, #3A1C00 100%); }
-.brand-visual-2 .brand-logo-mock {
-  width: 160px; height: 80px;
-  background: linear-gradient(90deg, #FFB347, #FF7A00);
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; font-weight: 600; color: white; letter-spacing: 0.08em;
-}
-
-.brand-visual-3 { background: linear-gradient(135deg, #0A0A1A 0%, #0D0D2A 50%, #151530 100%); }
-.brand-visual-3 .brand-logo-mock {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-}
-.brand-visual-3 .brand-logo-shape {
-  width: 80px; height: 80px;
-  background: linear-gradient(45deg, #08C4D1, #29539E);
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-}
-.brand-visual-3 .brand-logo-text {
-  font-size: 1.2rem; font-weight: 600; letter-spacing: 0.15em; color: white;
-}
+.brand-visual-3 { background: linear-gradient(135deg, #0A0A1A 0%, #0D0D2A 50%, #151530 100%); } 
 
 /* Brand expanded */
 .brand-expanded {
@@ -918,7 +883,7 @@ footer {
   .about-content { padding-left: 0; }
   .about-accent-bar { display: none; }
   .brand-card-header { grid-template-columns: 1fr; }
-  .brand-card-visual { min-height: 200px; }
+.brand-card-header img { height: 450px; width: 100%; }
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .flyer-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: 1fr; }
@@ -1201,9 +1166,7 @@ footer {
         <!-- Case 1 -->
 <div class="brand-card reveal">
   <div class="brand-card-header">
-    <div class="brand-card-visual brand-visual-1">
       <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async">
-    </div>
     <div class="brand-card-info">
       <div>
         <span class="brand-badge">Brand Identity</span>
@@ -1232,36 +1195,35 @@ footer {
 </div>
 
         <!-- Case 2 -->
-        <div class="brand-card reveal reveal-d1">
-          <div class="brand-card-header">
-            <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async"></a>
-            <div class="brand-card-info">
-              <div>
-                <span class="brand-badge">Brand Identity</span>
-                <h3>Amara Artisan Foods</h3>
-                <div class="brand-case-items">
-                  <div class="brand-case-item">
-                    <p class="t-label">The Problem</p>
-                    <p>An artisan food brand relaunching with premium products but carrying outdated packaging and a visual identity that no longer reflected their elevated quality.</p>
-                  </div>
-                  <div class="brand-case-item">
-                    <p class="t-label">The Solution</p>
-                    <p>A warm, handcrafted identity rooted in Nigerian heritage — earthy gold tones, a custom wordmark with organic letterforms, and a brand story woven into every touchpoint.</p>
-                  </div>
-                  <div class="brand-case-item">
-                    <p class="t-label">The Result</p>
-                    <p>Successful relaunch into premium retail channels. 3x engagement increase on social media within the first quarter post-rebrand.</p>
-                  </div>
-                </div>
-              </div>
-              <button class="btn-expand open-overlay" data-overlay="fs-overlay-2">
-                View Full Project
-                <i class="ph ph-arrow-circle-right"></i>
-              </button>
-            </div>
-          </div>     
+<div class="brand-card reveal reveal-d1">
+  <div class="brand-card-header">
+    <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async">
+    <div class="brand-card-info">
+      <div>
+        <span class="brand-badge">Brand Identity</span>
+        <h3>Amara Artisan Foods</h3>
+        <div class="brand-case-items">
+          <div class="brand-case-item">
+            <p class="t-label">The Problem</p>
+            <p>An artisan food brand relaunching with premium products but carrying outdated packaging and a visual identity that no longer reflected their elevated quality.</p>
+          </div>
+          <div class="brand-case-item">
+            <p class="t-label">The Solution</p>
+            <p>A warm, handcrafted identity rooted in Nigerian heritage — earthy gold tones, a custom wordmark with organic letterforms, and a brand story woven into every touchpoint.</p>
+          </div>
+          <div class="brand-case-item">
+            <p class="t-label">The Result</p>
+            <p>Successful relaunch into premium retail channels. 3x engagement increase on social media within the first quarter post-rebrand.</p>
           </div>
         </div>
+      </div>
+      <button class="btn-expand open-overlay" data-overlay="fs-overlay-2">
+        View Full Project
+        <i class="ph ph-arrow-circle-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
 
         <!-- Case 3 -->
         <div class="brand-card reveal reveal-d2">
