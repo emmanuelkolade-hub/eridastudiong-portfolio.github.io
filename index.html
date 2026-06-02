@@ -835,11 +835,116 @@ section { padding: var(--sp-8) 0; }
 .form-group select option { background: var(--bg-2); color: var(--text); }
 .form-submit { align-self: flex-start; }
 
+/* ===== FAQ ===== */
+.faq {
+  padding: var(--sp-10) 0;
+}
+
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-5) 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s var(--ease);
+}
+
+.faq-question:hover {
+  color: var(--highlight);
+}
+
+.faq-icon {
+  font-size: 1.2rem;
+  color: var(--highlight);
+  transition: transform 0.4s var(--ease);
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease);
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+}
+
+.faq-answer p {
+  padding-bottom: var(--sp-5);
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.75;
+}
+
+/* ===== TIPS TICKER ===== */
+.tips-ticker {
+  width: 100%;
+  min-height: 72px;
+  background: rgba(8,196,209,0.06);
+  border-top: 1px solid rgba(8,196,209,0.2);
+  border-bottom: 1px solid rgba(8,196,209,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-5) var(--sp-4);
+  overflow: hidden;
+  margin: var(--sp-8) 0;
+}
+
+.tips-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  width: 100%;
+  max-width: 720px;
+}
+
+.tips-icon {
+  color: var(--highlight);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.tips-text {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  text-align: center;
+  animation: tipsFade 0.6s ease;
+}
+
+@keyframes tipsFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ===== FOOTER ===== */
 footer {
   background: var(--bg-2);
   border-top: 1px solid var(--border);
-  padding: var(--sp-6) 0;
+  padding: var(--sp-8) 0;
 }
 .footer-inner {
   display: flex; align-items: center; justify-content: space-between;
@@ -950,67 +1055,6 @@ footer {
   flex-shrink: 0;
 }
 
-/* ===== FAQ ===== */
-.faq {
-  padding: var(--sp-10) 0;
-}
-
-.faq-list {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.faq-item {
-  border-bottom: 1px solid var(--border);
-}
-
-.faq-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--sp-5) 0;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text);
-  text-align: left;
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: color 0.3s var(--ease);
-}
-
-.faq-question:hover {
-  color: var(--highlight);
-}
-
-.faq-icon {
-  font-size: 1.2rem;
-  color: var(--highlight);
-  transition: transform 0.4s var(--ease);
-  flex-shrink: 0;
-}
-
-.faq-item.active .faq-icon {
-  transform: rotate(45deg);
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s var(--ease);
-}
-
-.faq-item.active .faq-answer {
-  max-height: 200px;
-}
-
-.faq-answer p {
-  padding-bottom: var(--sp-5);
-  font-size: 0.9rem;
-  color: var(--text-2);
-  line-height: 1.75;
-}
 </style>
 </head>
 <body>
@@ -1593,6 +1637,14 @@ footer {
   </div>
 </section>
 
+<!-- TIPS TICKER -->
+<div class="tips-ticker">
+  <div class="tips-inner">
+    <span class="tips-icon"><i class="ph ph-lightbulb"></i></span>
+    <p class="tips-text"></p>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1792,6 +1844,47 @@ var html = '<img src="' + img.src + '" style="max-width:90vw;max-height:85vh;wid
     if (!isActive) item.classList.add('active');
   });
 });
+
+/* ===== TIPS TICKER ===== */
+const tips = [
+  "Tap any logo to preview it in full screen.",
+  "Click flyer images to view them in full screen.",
+  "Use the tabs to switch between Brand Identity, Logo Design and Print & Digital Design.",
+  "This site is best viewed in desktop mode for the full experience.",
+  "Experiencing lag? Switch to desktop mode for smoother performance.",
+  "Use the navbar links — About, Works, Services — to jump to any section quickly.",
+  "Tap the menu icon (☰) to access all sections from anywhere on the page.",
+  "Click 'View Full Project' on any brand card to see the full case study."
+];
+
+const tipsEl = document.querySelector('.tips-text');
+if (tipsEl) {
+  function shuffleTips(arr) {
+    const shuffled = arr.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
+  let queue = shuffleTips(tips);
+  let index = 0;
+
+  tipsEl.textContent = queue[index];
+
+  setInterval(() => {
+    index++;
+    if (index >= queue.length) {
+      queue = shuffleTips(tips);
+      index = 0;
+    }
+    tipsEl.style.animation = 'none';
+    tipsEl.offsetHeight;
+    tipsEl.textContent = queue[index];
+    tipsEl.style.animation = 'tipsFade 0.6s ease';
+  }, 5000);
+}
 
 })();
 </script>
