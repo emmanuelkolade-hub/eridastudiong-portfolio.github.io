@@ -1849,7 +1849,6 @@ var html = '<img src="' + img.src + '" style="max-width:90vw;max-height:85vh;wid
 /* ===== TIPS TICKER ===== */
 const tips = [
   "Use the tabs to switch between Brand Identity, Logo Design and Print & Digital Design.",
-  "This site is best viewed in desktop mode for the full experience and layout.",
   "Experiencing lag? Switch to mobile mode for smoother performance.",
   "Use the navbar links — About, Works, Services — to jump to any section quickly.",
   "Tap the menu icon (☰) to access all sections from anywhere on the page.",
@@ -1884,7 +1883,7 @@ if (tipsEl) {
     tipsEl.offsetHeight;
     tipsEl.textContent = queue[index];
     tipsEl.style.animation = 'tipsFade 0.6s ease';
-  }, 5000);
+  }, 3000);
 }
 
 })();
