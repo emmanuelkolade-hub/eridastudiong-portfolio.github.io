@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -628,37 +629,6 @@ section { padding: var(--sp-8) 0; }
   font-size: 0.75rem; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase;
 }
 
-/* Logo Grid */
-.logo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-1);
-}
-.logo-item {
-  aspect-ratio: 1;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; overflow: hidden;
-  position: relative;
-  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
-}
-.logo-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.logo-item:hover { border-color: var(--border-strong); transform: translateY(-4px); box-shadow: var(--shadow-sm); }
-.logo-item .logo-overlay {
-  position: absolute; inset: 0;
-  background: rgba(8,196,209,0.08);
-  opacity: 0; transition: opacity 0.3s var(--ease);
-  display: flex; align-items: center; justify-content: center;
-}
-.logo-item:hover .logo-overlay { opacity: 1; }
-.logo-item .logo-overlay-icon { color: var(--highlight); font-size: 1.5rem; font-weight: 600; }
 
 /* Flyer Grid */
 .flyer-grid {
@@ -696,8 +666,6 @@ section { padding: var(--sp-8) 0; }
 }
 .flyer-item:hover .view-icon { transform: scale(1); }
 
-/* Logo design items */
-.logo-svg-item { width: 70%; height: 70%; display: flex; align-items: center; justify-content: center; }
 
 /* ===== LIGHTBOX ===== */
 .lightbox {
@@ -1012,7 +980,7 @@ footer {
 .fs-overlay {
   position: fixed;
   inset: 0;
-  background: #0a0a0a;
+  background: #f5f5f5;
   z-index: 1000;
   overflow-y: auto;
   opacity: 0;
@@ -1025,6 +993,16 @@ footer {
   pointer-events: all;
 }
 
+#fs-overlay-1 .fs-section-title,
+#fs-overlay-1 .fs-section-text,
+#fs-overlay-1 .fs-head-title,
+#fs-overlay-1 .fs-head-sub,
+#fs-overlay-1 .fs-mv-card p,
+#fs-overlay-1 .fs-font-sample-lg,
+#fs-overlay-1 .fs-font-sample-sm {
+  font-family: 'DM Sans', sans-serif;
+}
+
 .fs-close {
   position: fixed;
   top: 24px;
@@ -1032,9 +1010,9 @@ footer {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.08);
   border: none;
-  color: white;
+  color: #111;
   font-size: 1.2rem;
   cursor: pointer;
   display: flex;
@@ -1045,7 +1023,7 @@ footer {
 }
 
 .fs-close:hover {
-  background: rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.15);
 }
 
 .fs-slides {
@@ -1053,10 +1031,278 @@ footer {
   flex-direction: column;
 }
 
-.fs-slide {
+/* Section Progress Indicator */
+.fs-progress {
+  position: fixed;
+  top: 50%;
+  left: 9px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1002;
+}
+
+.fs-progress-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.2);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.fs-progress-dot.active {
+  background: #111;
+  transform: scale(1.4);
+}
+
+/* Head Image Section */
+.fs-section-head {
   width: 100%;
-  height: 100vh; /* each slide = full screen height */
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.fs-head-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fs-head-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 40px 28px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  width: 100%;
+}
+
+.fs-head-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 8px;
+}
+
+.fs-head-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.fs-head-sub {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Overview Section */
+.fs-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 28px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.fs-section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.35);
+  margin-bottom: 32px;
+}
+
+.fs-section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.fs-section-text {
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.6);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.fs-mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.fs-mv-card {
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 20px 16px;
+}
+
+.fs-mv-card h4 {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  margin-bottom: 10px;
+}
+
+.fs-mv-card p {
+  font-size: 0.82rem;
+  color: rgba(0,0,0,0.6);
+  line-height: 1.6;
+}
+
+/* Logo Section */
+.fs-logo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.fs-logo-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.fs-logo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.fs-logo-card.wide {
+  grid-column: span 2;
+  aspect-ratio: 2/1;
+}
+
+/* Color Palette Section */
+.fs-palette {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.fs-color-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fs-color-swatch {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
   flex-shrink: 0;
+}
+
+.fs-color-info h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.fs-color-info span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  font-family: monospace;
+}
+
+/* Typography Section */
+.fs-font-display {
+  margin-top: 24px;
+  padding: 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+
+.fs-font-name {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+
+.fs-font-sample-lg {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.fs-font-sample-sm {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+}
+
+.fs-font-weights {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.fs-font-weight-tag {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Mockup Section */
+.fs-mockup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.fs-mockup-card {
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: rgba(255,255,255,0.05);
+}
+
+.fs-mockup-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  loading: lazy;
+}
+
+.fs-mockup-card.tall {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
 }
 
 </style>
@@ -1212,7 +1458,6 @@ footer {
     </div>
     <div class="work-tabs reveal">
       <button class="work-tab active" data-tab="brand">Brand Identity</button>
-      <button class="work-tab" data-tab="logo">Logo Design</button>
       <button class="work-tab" data-tab="flyer">Print & Digital Design</button>
     </div>
 
@@ -1317,83 +1562,6 @@ footer {
       </div>
     </div>
 
-    <!-- LOGO DESIGN -->
-    <div class="work-panel" id="panel-logo">
-      <div class="logo-grid">
-        <!-- Logo 1 -->
-<div class="logo-item reveal" data-lightbox-type="svg" data-lightbox-index="0">
-  <div class="logo-svg-item">
-    <div style="width:140px;height:140px;border-radius:50%;border:2px solid #08C4D1;display:flex;align-items:center;justify-content:center;">
-      <span style="font-size:2.2rem;font-weight:600;background:linear-gradient(135deg,#08C4D1,#29539E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AX</span>
-    </div>
-  </div>
-  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
-</div>
-
-<!-- Logo 2 -->
-<div class="logo-item reveal reveal-d1" data-lightbox-type="svg" data-lightbox-index="1">
-  <div class="logo-svg-item">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-      <svg viewBox="0 0 120 100" style="width:120px;height:100px;overflow:visible">
-        <polygon points="60,4 116,28 116,76 60,96 4,76 4,28" fill="none" stroke="#FFB347" stroke-width="1.5"/>
-      </svg>
-      <span style="font-size:1rem;font-weight:600;color:#FFB347;letter-spacing:0.1em;">BOLT</span>
-    </div>
-  </div>
-  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
-</div>
-
-<!-- Logo 3 -->
-<div class="logo-item reveal reveal-d2" data-lightbox-type="svg" data-lightbox-index="2">
-  <div class="logo-svg-item">
-    <div style="width:110px;height:110px;border-radius:20px;background:linear-gradient(135deg,#08C4D1,#29539E);display:flex;align-items:center;justify-content:center;">
-      <span style="font-size:3rem;font-weight:600;color:white;line-height:1;">V</span>
-    </div>
-  </div>
-  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
-</div>
-
-<!-- Logo 4 -->
-<div class="logo-item reveal" data-lightbox-type="svg" data-lightbox-index="3">
-  <div class="logo-svg-item">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-      <svg viewBox="0 0 100 90" style="width:90px;height:80px;">
-        <polygon points="50,4 96,88 4,88" fill="rgba(8,196,209,0.12)" stroke="#08C4D1" stroke-width="1.5"/>
-      </svg>
-      <span style="font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:0.2em;">APEX</span>
-    </div>
-  </div>
-  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
-</div>
-
-<!-- Logo 5 -->
-<div class="logo-item reveal reveal-d1" data-lightbox-type="svg" data-lightbox-index="4">
-  <div class="logo-svg-item">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
-      <svg viewBox="0 0 120 80" style="width:120px;height:80px;">
-        <circle cx="48" cy="40" r="34" fill="none" stroke="#08C4D1" stroke-width="1.5"/>
-        <circle cx="72" cy="40" r="34" fill="none" stroke="#29539E" stroke-width="1.5"/>
-      </svg>
-      <span style="font-size:0.72rem;font-weight:600;color:#08C4D1;letter-spacing:0.18em;">MERGE</span>
-    </div>
-  </div>
-  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
-</div>
-
-<!-- Logo 6 -->
-<div class="logo-item reveal reveal-d2" data-lightbox-type="svg" data-lightbox-index="5">
-  <div class="logo-svg-item">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;width:90px;height:90px;">
-      <div style="border-radius:4px;background:linear-gradient(135deg,#FFB347,#08C4D1);opacity:0.9;"></div>
-      <div style="border-radius:4px;border:1.5px solid #FFB347;"></div>
-      <div style="border-radius:4px;border:1.5px solid #08C4D1;"></div>
-      <div style="border-radius:4px;background:linear-gradient(135deg,#FFB347,#08C4D1);opacity:0.4;"></div>
-    </div>
-  </div>
-  <div class="logo-overlay"><span class="logo-overlay-icon">&#8599;</span></div>
-</div>
-      </div><!-- end logo-grid -->
-    </div><!-- end panel-logo -->
 
     <!-- PRINT & DIGITAL DESIGN -->
     <div class="work-panel" id="panel-flyer">
@@ -1478,23 +1646,16 @@ footer {
           <i class="ph ph-sketch-logo"></i>
         </div>
         <h3>Brand Identity Design</h3>
-        <p>Complete brand identity systems — logo design, typography, colour systems, visual language, and brand guidelines that create a cohesive, memorable presence.</p>
+        <p>Complete brand identity systems — logo design, typography, colour systems, visual language, brand mock-ups and brand guidelines that create a cohesive, memorable presence.</p>
       </div>
       <div class="service-card reveal reveal-d1">
         <span class="service-num">02</span>
         <div class="service-icon">
         <i class="ph ph-shapes"></i>
         </div>
-        <h3>Logo Design</h3>
-        <p>Crafting marks and symbols that distil a brand's essence into a single, scalable, versatile form. From wordmarks to emblems, every logo tells a story.</p>
-      </div>
-      <div class="service-card reveal reveal-d2">
-        <span class="service-num">03</span>
-        <div class="service-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-template"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 5a1 1 0 0 1 1 -1h14a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-14a1 1 0 0 1 -1 -1l0 -2" /><path d="M4 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6" /><path d="M14 12l6 0" /><path d="M14 16l6 0" /><path d="M14 20l6 0" /></svg>         
-       </div>
+        
         <h3>Print & Digital Design</h3>
-        <p>Compelling print materials — event flyers, posters, banners, and marketing collateral designed to capture attention and drive action.</p>
+        <p>Compelling print materials — event flyers, posters, banners, thumbnails, carousels and marketing collateral designed to capture attention and drive action.</p>
       </div>
       <div class="service-card reveal reveal-d2">
         <span class="service-num">04</span>
@@ -1531,7 +1692,7 @@ footer {
             </span>
             eridastudiong@gmail.com
           </a>
-          <a href="https://www.instagram.com/eridastudiong?" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://www.instagram.com/eridastudiong" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-link-icon">
               <i class="ph ph-instagram-logo"></i>
             </span>
@@ -1541,7 +1702,7 @@ footer {
             <span class="contact-link-icon">
               <i class="ph ph-facebook-logo"></i>
             </span>
-            ERIDA STUDIO NG
+            @eridastudiong
           </a>
           <a href="https://wa.me/09138037377" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-link-icon">
@@ -1568,10 +1729,7 @@ footer {
             <select id="service" name="service">
               <option value="" disabled selected>Select a service</option>
               <option>Brand Identity Design</option>
-              <option>Logo Design</option>
               <option>Print &amp; Digital Design</option>
-              <option>Brand Guidelines</option>
-              
             </select>
           </div>
           <div class="form-group">
@@ -1607,7 +1765,7 @@ footer {
           <i class="ph ph-plus faq-icon"></i>
         </button>
         <div class="faq-answer">
-          <p>We offer Brand Identity Design, Logo Design, Print & Digital Design, and Brand Guidelines. Every project is tailored to your business goals and target audience.</p>
+          <p>We offer Brand Identity Design (includes logo design) and Print & Digital Design. Every project is tailored to your business goals and target audience.</p>
         </div>
       </div>
 
@@ -1647,7 +1805,7 @@ footer {
           <i class="ph ph-plus faq-icon"></i>
         </button>
         <div class="faq-answer">
-          <p>Just fill out the contact form with your project details or send us a message on WhatsApp. We'll schedule a discovery call to understand your brand and goals.</p>
+          <p>Fill out the contact form with your project details or send us a message via Email/WhatsApp/Instagram/Facebook. We'll schedule a discovery call to understand your brand and goals.</p>
         </div>
       </div>
 
@@ -1747,24 +1905,6 @@ footer {
   const lightboxContent = document.getElementById('lightboxContent');
   const lightboxClose   = document.getElementById('lightboxClose');
 
-  function getLogoSVG(index) {
-    var ts = Date.now();
-    var svgs = [
-      (function(){ var id='g'+ts+'_0'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#08C4D1"/><stop offset="100%" stop-color="#29539E"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><circle cx="200" cy="200" r="140" fill="none" stroke="url(#'+id+')" stroke-width="3"/><text x="200" y="225" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="90" font-weight="600" fill="url(#'+id+')">AX</text></svg>'; })(),
-
-      (function(){ var id='g'+ts+'_1'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FFB347"/><stop offset="100%" stop-color="#FF6B00"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><polygon points="200,40 360,160 360,300 200,370 40,300 40,160" fill="none" stroke="url(#'+id+')" stroke-width="3"/><text x="200" y="225" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="64" font-weight="600" fill="url(#'+id+')">BOLT</text></svg>'; })(),
-
-      (function(){ var id='g'+ts+'_2'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#08C4D1"/><stop offset="100%" stop-color="#29539E"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><rect x="60" y="60" width="280" height="280" rx="48" fill="url(#'+id+')"/><text x="200" y="238" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="120" font-weight="600" fill="white">V</text></svg>'; })(),
-
-      '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><rect width="400" height="400" fill="#0A0A0A"/><path d="M200 40 L360 340 L40 340 Z" fill="none" stroke="#08C4D1" stroke-width="3"/><path d="M200 100 L320 320 L80 320 Z" fill="rgba(8,196,209,0.1)"/><text x="200" y="370" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="32" font-weight="600" fill="rgba(255,255,255,0.6)" letter-spacing="8">APEX</text></svg>',
-
-      (function(){ var id='g'+ts+'_4'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#08C4D1"/><stop offset="100%" stop-color="#29539E"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><circle cx="160" cy="200" r="90" fill="none" stroke="url(#'+id+')" stroke-width="3"/><circle cx="240" cy="200" r="90" fill="none" stroke="url(#'+id+')" stroke-width="3"/><text x="200" y="340" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="28" font-weight="600" fill="url(#'+id+')" letter-spacing="6">MERGE</text></svg>'; })(),
-
-      (function(){ var id='g'+ts+'_5'; return '<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:min(80vw,480px);height:min(80vw,480px)"><defs><linearGradient id="'+id+'" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFB347"/><stop offset="100%" stop-color="#08C4D1"/></linearGradient></defs><rect width="400" height="400" fill="#0A0A0A"/><rect x="80" y="80" width="105" height="105" rx="8" fill="url(#'+id+')" opacity="0.9"/><rect x="215" y="80" width="105" height="105" rx="8" fill="none" stroke="url(#'+id+')" stroke-width="3"/><rect x="80" y="215" width="105" height="105" rx="8" fill="none" stroke="url(#'+id+')" stroke-width="3"/><rect x="215" y="215" width="105" height="105" rx="8" fill="url(#'+id+')" opacity="0.4"/></svg>'; })()
-    ];
-    return svgs[index];
-  }
-
   function openLightbox(content) {
     lightboxContent.innerHTML = content;
     lightbox.classList.add('active');
@@ -1780,9 +1920,6 @@ footer {
   lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeLightbox(); closeMenu(); } });
 
-  document.querySelectorAll('.logo-item').forEach(function(item) {
-    item.addEventListener('click', function() { openLightbox(getLogoSVG(+item.dataset.lightboxIndex)); });
-  });
   document.querySelectorAll('.flyer-item').forEach(function(item) {
     item.addEventListener('click', function() {
       var img = item.querySelector('img');
@@ -1843,7 +1980,10 @@ var html = '<img src="' + img.src + '" style="max-width:90vw;max-height:85vh;wid
     });
   });
 
+  let closingFromButton = false;
+
   document.addEventListener('DOMContentLoaded', () => {
+
     document.querySelectorAll('.open-overlay').forEach(btn => {
       btn.addEventListener('click', () => {
         const targetId = btn.getAttribute('data-overlay');
@@ -1852,14 +1992,29 @@ var html = '<img src="' + img.src + '" style="max-width:90vw;max-height:85vh;wid
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
         overlay.scrollTop = 0;
+        history.pushState({ overlay: targetId }, '');
       });
     });
 
     document.querySelectorAll('.fs-close').forEach(btn => {
       btn.addEventListener('click', () => {
+        closingFromButton = true;
         btn.closest('.fs-overlay').classList.remove('active');
         document.body.style.overflow = '';
+        history.back();
       });
+    });
+
+    window.addEventListener('popstate', () => {
+      if (closingFromButton) {
+        closingFromButton = false;
+        return;
+      }
+      const activeOverlay = document.querySelector('.fs-overlay.active');
+      if (activeOverlay) {
+        activeOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
 
     document.addEventListener('keydown', (e) => {
@@ -1870,26 +2025,27 @@ var html = '<img src="' + img.src + '" style="max-width:90vw;max-height:85vh;wid
         });
       }
     });
-  });
-  
-  document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    const isActive = item.classList.contains('active');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-    if (!isActive) item.classList.add('active');
-  });
-});
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+
+  }); // closes DOMContentLoaded
 
 /* ===== TIPS TICKER ===== */
 const tips = [
-  "Use the tabs to switch between Brand Identity, Logo Design and Print & Digital Design.",
+  "Use the tabs to switch between Brand Identity and Print & Digital Design.",
   "Experiencing lag? Switch to mobile mode for smoother performance.",
   "Use the navbar links — About, Works, Services — to jump to any section quickly.",
   "Tap the menu icon (☰) to access all sections from anywhere on the page.",
   "Dark theme is recommended for better view.",
-  "Chrome browser is highly recommended for overall website's responsive behavior.",
   "Click 'View Full Project' on any brand card to see the full case study.",
+  "Images doesn't load? Probably due to poor network quality. Reload the site or wait for the images to load.",
   "Website's theme will not work effectively if 'forced dark theme' or 'night mode' is turned on in your browser."
 ];
 
@@ -1909,15 +2065,183 @@ if (tipsEl) {
 }
 
 })();
+
+// Overlay Section Progress Tracker
+window.addEventListener('DOMContentLoaded', () => {
+document.querySelectorAll('.fs-overlay').forEach(overlay => {
+  const overlayId = overlay.id.split('-').pop();
+  const progressEl = document.getElementById('fs-progress-' + overlayId);
+  if (!progressEl) return;
+
+  const sections = overlay.querySelectorAll('[data-sec]');
+  const dots = progressEl.querySelectorAll('.fs-progress-dot');
+
+  // Scroll tracking
+  overlay.addEventListener('scroll', () => {
+    const scrollY = overlay.scrollTop;
+    const overlayH = overlay.clientHeight;
+    let current = 0;
+
+    sections.forEach((sec, i) => {
+      const top = sec.offsetTop - overlayH / 2;
+      if (scrollY >= top) current = i;
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === current);
+    });
+  });
+
+  // Click dot to jump to section
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.section);
+      sections[idx].scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+});
+}); // closes DOMContentLoaded
 </script>
-<!-- OVERLAY 1 -->
+
+<!-- OVERLAY 1 — NovuKraft Finance -->
 <div class="fs-overlay" id="fs-overlay-1">
   <button class="fs-close"><i class="ph ph-x"></i></button>
+
+  <!-- Section Progress Dots -->
+  <div class="fs-progress" id="fs-progress-1">
+    <div class="fs-progress-dot active" data-section="0"></div>
+    <div class="fs-progress-dot" data-section="1"></div>
+    <div class="fs-progress-dot" data-section="2"></div>
+    <div class="fs-progress-dot" data-section="3"></div>
+    <div class="fs-progress-dot" data-section="4"></div>
+    <div class="fs-progress-dot" data-section="5"></div>
+  </div>
+
   <div class="fs-slides">
-       <!-- Your 10 slides go here -->
-    <div class="fs-slide" style="background: linear-gradient(135deg, #0A1628, #162A50);"></div>
-    <div class="fs-slide" style="background: linear-gradient(135deg, #08C4D1, #29539E);"></div>
-    <!-- ...repeat for all 10 slides -->
+
+    <!-- SECTION 1: HEAD IMAGE -->
+    <div class="fs-section-head" data-sec="0">
+      <img class="fs-head-img" src="https://placehold.co/800x1000/0A1628/162A50" alt="NovuKraft Finance Brand">
+      <div class="fs-head-overlay">
+        <p class="fs-head-tag">Brand Identity — 2024</p>
+        <h1 class="fs-head-title">NovuKraft Finance</h1>
+        <p class="fs-head-sub">Modern fintech branding for the next generation of banking.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2: BRAND OVERVIEW -->
+    <div class="fs-section" data-sec="1" style="background: #efefef;">
+      <p class="fs-section-label">02 — Brand Overview</p>
+      <h2 class="fs-section-title">About the Brand</h2>
+      <p class="fs-section-text">NovuKraft Finance is a digital-first financial platform built for young professionals across Africa. The brand identity reflects trust, clarity, and bold ambition — designed to feel both premium and approachable.</p>
+      <div class="fs-mv-grid">
+        <div class="fs-mv-card">
+          <h4>Mission</h4>
+          <p>To simplify financial access for every African through smart, human-centred design.</p>
+        </div>
+        <div class="fs-mv-card">
+          <h4>Vision</h4>
+          <p>A continent where financial freedom is not a privilege but a standard.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: LOGO CONCEPTS -->
+    <div class="fs-section" data-sec="2" style="background: #f5f5f5;">
+      <p class="fs-section-label">03 — Logo Concepts</p>
+      <h2 class="fs-section-title">Logo System</h2>
+      <p class="fs-section-text">Three logo variants built for flexibility across digital and print applications.</p>
+      <div class="fs-logo-grid">
+        <div class="fs-logo-card wide">
+          <img src="https://placehold.co/600x300/0A1628/08C4D1?text=Primary+Logo" alt="Primary Logo">
+        </div>
+        <div class="fs-logo-card">
+          <img src="https://placehold.co/300x300/162A50/08C4D1?text=Icon+Mark" alt="Icon Mark">
+        </div>
+        <div class="fs-logo-card">
+          <img src="https://placehold.co/300x300/08C4D1/0A1628?text=Wordmark" alt="Wordmark">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: COLOR PALETTE -->
+    <div class="fs-section" data-sec="3" style="background: #efefef;">
+      <p class="fs-section-label">04 — Color Palette</p>
+      <h2 class="fs-section-title">Brand Colors</h2>
+      <p class="fs-section-text">A bold palette anchored in deep navy and electric teal — communicating trust and innovation.</p>
+      <div class="fs-palette">
+        <div class="fs-color-row">
+          <div class="fs-color-swatch" style="background: #0A1628;"></div>
+          <div class="fs-color-info">
+            <h4>Deep Navy</h4>
+            <span>#0A1628 — Primary</span>
+          </div>
+        </div>
+        <div class="fs-color-row">
+          <div class="fs-color-swatch" style="background: #08C4D1;"></div>
+          <div class="fs-color-info">
+            <h4>Electric Teal</h4>
+            <span>#08C4D1 — Accent</span>
+          </div>
+        </div>
+        <div class="fs-color-row">
+          <div class="fs-color-swatch" style="background: #29539E;"></div>
+          <div class="fs-color-info">
+            <h4>Royal Blue</h4>
+            <span>#29539E — Secondary</span>
+          </div>
+        </div>
+        <div class="fs-color-row">
+          <div class="fs-color-swatch" style="background: #F5F5F0;"></div>
+          <div class="fs-color-info">
+            <h4>Off White</h4>
+            <span>#F5F5F0 — Background</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: TYPOGRAPHY -->
+    <div class="fs-section" data-sec="4" style="background: #f5f5f5;">
+      <p class="fs-section-label">05 — Typography</p>
+      <h2 class="fs-section-title">Brand Fonts</h2>
+      <p class="fs-section-text">A pairing built for clarity and authority across all brand touchpoints.</p>
+      <div class="fs-font-display">
+        <p class="fs-font-name">Primary — DM Sans</p>
+        <p class="fs-font-sample-lg">Financial freedom starts here.</p>
+        <p class="fs-font-sample-sm">DM Sans is a geometric sans-serif typeface designed for digital interfaces. Clean, modern, and highly legible at every size.</p>
+        <div class="fs-font-weights">
+          <span class="fs-font-weight-tag">Regular 400</span>
+          <span class="fs-font-weight-tag">Medium 500</span>
+          <span class="fs-font-weight-tag">Bold 700</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: MOCKUPS -->
+    <div class="fs-section" data-sec="5" style="background: #efefef; padding-bottom: 80px;">
+      <p class="fs-section-label">06 — Mockup Guidelines</p>
+      <h2 class="fs-section-title">Brand in Context</h2>
+      <p class="fs-section-text">How the NovuKraft identity lives across real-world applications.</p>
+      <div class="fs-mockup-grid">
+        <div class="fs-mockup-card tall">
+          <img src="https://placehold.co/800x450/0A1628/08C4D1?text=Hero+Mockup" alt="Hero Mockup" loading="lazy">
+        </div>
+        <div class="fs-mockup-card">
+          <img src="https://placehold.co/400x533/162A50/ffffff?text=Card+Mockup" alt="Card Mockup" loading="lazy">
+        </div>
+        <div class="fs-mockup-card">
+          <img src="https://placehold.co/400x533/08C4D1/0A1628?text=Phone+Mockup" alt="Phone Mockup" loading="lazy">
+        </div>
+        <div class="fs-mockup-card">
+          <img src="https://placehold.co/400x533/29539E/ffffff?text=Tshirt+Mockup" alt="Tshirt Mockup" loading="lazy">
+        </div>
+        <div class="fs-mockup-card">
+          <img src="https://placehold.co/400x533/0A1628/08C4D1?text=Stationery" alt="Stationery Mockup" loading="lazy">
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
