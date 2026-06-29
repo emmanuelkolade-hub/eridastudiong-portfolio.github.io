@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERIDA STUDIO NG— Brand Identity Designer</title>
+<title>ERIDA STUDIO NG— Brand Identity Design Studio</title>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -126,7 +126,7 @@ ul { list-style: none; }
 ::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 2px; }
 
 /* ===== TYPOGRAPHY ===== */
-.t-hero { font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
+.t-hero { font-size: clamp(2.8rem, 7vw, 3rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
 .t-display { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; }
 .t-title { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 600; letter-spacing: -0.02em; }
 .t-body { font-size: 0.95rem; font-weight: 300; color: var(--text-2); line-height: 1.75; }
@@ -182,14 +182,14 @@ section { padding: var(--sp-8) 0; }
   gap: 6px; cursor: pointer; z-index: 1001; position: relative;
 }
 .hamburger span {
-  display: block; width: 24px; height: 1.5px;
+  display: block; width: 19px; height: 1px;
   background: var(--text);
-  transition: all 0.5s var(--ease);
+  transition: all 0.6s var(--ease);
   transform-origin: center;
 }
-.hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(360deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-360deg); }
 
 .nav-links {
   display: flex;
@@ -198,7 +198,7 @@ section { padding: var(--sp-8) 0; }
 }
 
 .nav-links a {
-  font-size: 0.38rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -315,88 +315,132 @@ section { padding: var(--sp-8) 0; }
 
 /* ===== HERO ===== */
 .hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
+  min-height: 85vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
   padding-top: 72px;
-  position: relative; overflow: hidden;
+  padding-bottom: 100px;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
 }
+
+[data-theme="light"] .hero { color: #0a0a0a; }
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  margin-left: 0;
+  padding-left: 60px;
+}
+
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(8,196,209,0.06) 0%, transparent 70%),
-              radial-gradient(ellipse 50% 50% at 20% 80%, rgba(41,83,158,0.06) 0%, transparent 60%);
+  background-image: url('hero.jpg');
+  background-size: cover;
 }
-.hero-bg-line {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 80px 80px;
-  z-index: 0;
-}
-[data-theme="light"] .hero-bg-line {
-  background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .hero-bg-line {
-    background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-  }
-}
-.hero .container { position: relative; z-index: 1; }
 
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  margin-bottom: var(--sp-5);
-  padding: var(--sp-2) var(--sp-3);
-  background: rgba(8,196,209,0.08);
-  border: 1px solid rgba(8,196,209,0.2);
-  border-radius: 100px;
+[data-theme="light"] .hero-bg {
+  background-position: center center;
 }
-.hero-eyebrow .dot { width: 6px; height: 6px; background: var(--highlight); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)} }
+
+[data-theme="dark"] .hero-bg {
+  background-position: center top;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to left bottom, rgba(10,10,10,0.0) 0%, rgba(10,10,10,1.0) 100%);
+}
+
+[data-theme="light"] .hero-bg::after {
+  background: linear-gradient(to left bottom, rgba(255,255,255,0.0) 0%, rgba(255,255,255,1.0) 90%);
+}
 
 .hero-headline {
-  margin-bottom: var(--sp-5);
+  margin-bottom: 35px;
   max-width: 800px;
 }
-.hero-headline .t-hero { display: block; }
-.hero-headline .gradient-text {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.hero-headline .t-hero { display: inline; }
 
 .hero-sub {
-  max-width: 520px;
-  margin-bottom: var(--sp-6);
-  font-size: 1.05rem;
-  font-weight: 300;
+  max-width: 800px;
+  margin-bottom: 48px;
+  font-size: 1.35rem;
+  font-weight: 400;
   color: var(--text-2);
   line-height: 1.75;
 }
 
-.hero-cta { display: flex; gap: var(--sp-3); flex-wrap: wrap; align-items: center; }
+.hero-cta {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .btn-primary {
   display: inline-flex; align-items: center; gap: var(--sp-2);
-  padding: 16px 36px;
+  padding: 12px 28px;
   background: var(--gradient);
-  color: #fff; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.06em;
+  color: #fff; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em;
   border-radius: 4px;
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), opacity 0.4s var(--ease);
   text-transform: uppercase;
   box-shadow: 0 8px 32px rgba(8,196,209,0.25);
 }
 .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 48px rgba(8,196,209,0.35); }
+
 .btn-secondary {
   display: inline-flex; align-items: center; gap: var(--sp-2);
-  padding: 15px 36px;
+  padding: 12px 28px;
   border: 1px solid var(--border-strong);
-  color: var(--text); font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em;
+  color: var(--text); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em;
   border-radius: 4px;
   transition: all 0.4s var(--ease);
   text-transform: uppercase;
 }
 .btn-secondary:hover { border-color: var(--highlight); color: var(--highlight); background: rgba(8,196,209,0.05); transform: translateY(-2px); }
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+  }
+  .hero .container {
+    padding: 0 var(--sp-4);
+    margin-left: 0;
+  }
+  .hero-headline {
+    max-width: 100%;
+  }
+  .hero-headline .t-hero {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+  .hero-sub {
+    max-width: 90%;
+    font-size: 0.9rem;
+  }
+  .hero-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btn-primary,
+  .btn-secondary {
+    width: auto;
+    min-width: unset;
+    padding: 12px 24px;
+  }
+}
+
+@media (min-width: 769px) {
+  .hero-bg {
+    background-position: center top;
+    background-size: cover;
+  }
+}
+
 
 .hero-scroll {
   position: absolute; bottom: var(--sp-6); left: 50%; transform: translateX(-50%);
@@ -456,13 +500,6 @@ section { padding: var(--sp-8) 0; }
   background-clip: text;
 }
 .about-role {
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--highlight);
-  margin-bottom: var(--sp-4);
-}
-.about-desc { margin-bottom: var(--sp-6); max-width: 520px; }
-
-.about-role {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -477,6 +514,7 @@ section { padding: var(--sp-8) 0; }
   margin-bottom: var(--sp-4);
   width: fit-content;
 }
+.about-desc { margin-bottom: var(--sp-6); max-width: 520px; }
 [data-theme="light"] .about-role {
   background: rgba(0, 0, 0, 0.04);
   border-color: rgba(0, 0, 0, 0.1);
@@ -1175,8 +1213,8 @@ footer {
 }
 
 .fs-logo-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 12px;
   aspect-ratio: 1;
   display: flex;
@@ -1222,13 +1260,13 @@ footer {
 .fs-color-info h4 {
   font-size: 0.88rem;
   font-weight: 600;
-  color: #fff;
+  color: #111;
   margin-bottom: 2px;
 }
 
 .fs-color-info span {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.4);
+  color: rgba(0,0,0,0.5);
   font-family: monospace;
 }
 
@@ -1236,8 +1274,8 @@ footer {
 .fs-font-display {
   margin-top: 24px;
   padding: 28px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 16px;
 }
 
@@ -1245,21 +1283,21 @@ footer {
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: rgba(0,0,0,0.35);
   margin-bottom: 16px;
 }
 
 .fs-font-sample-lg {
   font-size: 2.4rem;
   font-weight: 700;
-  color: #fff;
+  color: #111;
   line-height: 1.1;
   margin-bottom: 12px;
 }
 
 .fs-font-sample-sm {
   font-size: 0.88rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(0,0,0,0.55);
   line-height: 1.7;
 }
 
@@ -1273,9 +1311,9 @@ footer {
 .fs-font-weight-tag {
   padding: 6px 14px;
   border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(0,0,0,0.12);
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(0,0,0,0.5);
 }
 
 /* Mockup Section */
@@ -1290,14 +1328,13 @@ footer {
   border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 3/4;
-  background: rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.05);
 }
 
 .fs-mockup-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  loading: lazy;
 }
 
 .fs-mockup-card.tall {
@@ -1312,9 +1349,9 @@ footer {
 <!-- NAVBAR -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="container">
-    <a href="#" class="nav-logo" aria-label="ERIDA STUDIO NG Home">
-      <img src="LOGO_LIGHT_PLACEHOLDER" alt="ERIDA STUDIO NG" class="logo-light">
-      <img src="LOGO_DARK_PLACEHOLDER" alt="ERIDA STUDIO NG" class="logo-dark">
+    <a href="#" class="nav-logo" aria-label="Erida Studio NG Home">
+      <img src="LOGO_LIGHT_PLACEHOLDER" alt="Erida Studio NG" class="logo-light">
+      <img src="LOGO_DARK_PLACEHOLDER" alt="Erida Studio NG" class="logo-dark">
     </a>
 
     <div class="nav-links">
@@ -1330,7 +1367,7 @@ footer {
       <a href="https://www.facebook.com/eridastudiong" target="_blank" aria-label="Facebook">
         <i class="ph ph-facebook-logo"></i>
       </a>
-      <a href="https://wa.me/09138037377" target="_blank" aria-label="WhatsApp">
+      <a href="https://wa.me/2349138037377" target="_blank" aria-label="WhatsApp">
         <i class="ph ph-whatsapp-logo"></i>
       </a>
     </div>
@@ -1366,20 +1403,12 @@ footer {
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
-  <div class="hero-bg-line"></div>
   <div class="container">
-    <div class="hero-eyebrow fade-up">
-      <span class="dot"></span>
-      <span class="t-label" style="color: var(--highlight); letter-spacing: 0.1em;">Brand Identity Studio — Nigeria</span>
-    </div>
     <div class="hero-headline">
-      <span class="t-hero fade-up fade-up-1">Crafting brands that</span>
-      <span class="t-hero gradient-text fade-up fade-up-2"> command</span>
-      <span class="t-hero fade-up fade-up-3">attention.</span>
+<span class="t-hero fade-up fade-up-1">We don't just design brand identities — we build legacies.</span>
     </div>
     <p class="hero-sub fade-up fade-up-3">
-      We design bold, strategic brand identities that make businesses unforgettable — from mark to message, from concept to culture.
-    </p>
+Every great brand begins with intention. We craft identities that are strategic, timeless, and built to grow with your business.    </p>
     <div class="hero-cta fade-up fade-up-4">
       <a href="#work" class="btn-primary">
         View Work
@@ -1410,7 +1439,9 @@ footer {
       <div class="about-image-wrap reveal">
         <div class="about-accent-bar"></div>
         <div class="about-image-frame">
-          <img src="PORTRAIT_PLACEHOLDER" alt="Emmanuel Kolade — brand identity designer" loading="eager">
+          <img src="PORTRAIT_PLACEHOLDER" alt="Emmanuel Kolade — brand identity designer" loading="eager" fetchpriority="high"
+  width="800"
+  height="600">
         </div>
       </div>
       <div class="about-content">
@@ -1466,71 +1497,71 @@ footer {
       <div class="brand-cases">
 
         <!-- Case 1 -->
-<div class="brand-card reveal">
-  <div class="brand-card-header">
-      <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async">
-  <div class="brand-card-info">
-       <div>
-  <span class="brand-badge">Brand Identity</span>
-  <h3>NovuKraft Finance</h3>
-  <div class="brand-case-items">
-          <div class="brand-case-item">
-            <p class="t-label">The Problem</p>
-            <p>A fintech startup launching into a saturated market with no visual identity. Their offering was sophisticated but they appeared indistinguishable from competitors.</p>
-          </div>
-          <div class="brand-case-item">
-            <p class="t-label">The Solution</p>
-            <p>Developed a sharp, trust-forward identity — a monogram mark combining stability with forward motion, paired with a precise sans-serif and a deep teal-navy palette.</p>
-          </div>
-          <div class="brand-case-item">
-            <p class="t-label">The Result</p>
-            <p>A complete brand system across digital and print. Client secured seed funding within two months of launch, citing brand confidence as a key factor.</p>
+        <div class="brand-card reveal">
+          <div class="brand-card-header">
+            <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async" alt="NovuKraft Finance Brand Identity">
+            <div class="brand-card-info">
+              <div>
+                <span class="brand-badge">Brand Identity</span>
+                <h3>NovuKraft Finance</h3>
+                <div class="brand-case-items">
+                  <div class="brand-case-item">
+                    <p class="t-label">The Problem</p>
+                    <p>A fintech startup launching into a saturated market with no visual identity. Their offering was sophisticated but they appeared indistinguishable from competitors.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Solution</p>
+                    <p>Developed a sharp, trust-forward identity — a monogram mark combining stability with forward motion, paired with a precise sans-serif and a deep teal-navy palette.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Result</p>
+                    <p>A complete brand system across digital and print. Client secured seed funding within two months of launch, citing brand confidence as a key factor.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-expand open-overlay" data-overlay="fs-overlay-1">
+                View Full Project
+                <i class="ph ph-arrow-circle-right"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <button class="btn-expand open-overlay" data-overlay="fs-overlay-1">
-        View Full Project
-        <i class="ph ph-arrow-circle-right"></i>
-      </button>
-    </div>
-  </div>
-</div>
 
         <!-- Case 2 -->
-<div class="brand-card reveal reveal-d1">
-  <div class="brand-card-header">
-    <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async">
-    <div class="brand-card-info">
-      <div>
-        <span class="brand-badge">Brand Identity</span>
-        <h3>Amara Artisan Foods</h3>
-        <div class="brand-case-items">
-          <div class="brand-case-item">
-            <p class="t-label">The Problem</p>
-            <p>An artisan food brand relaunching with premium products but carrying outdated packaging and a visual identity that no longer reflected their elevated quality.</p>
-          </div>
-          <div class="brand-case-item">
-            <p class="t-label">The Solution</p>
-            <p>A warm, handcrafted identity rooted in Nigerian heritage — earthy gold tones, a custom wordmark with organic letterforms, and a brand story woven into every touchpoint.</p>
-          </div>
-          <div class="brand-case-item">
-            <p class="t-label">The Result</p>
-            <p>Successful relaunch into premium retail channels. 3x engagement increase on social media within the first quarter post-rebrand.</p>
+        <div class="brand-card reveal reveal-d1">
+          <div class="brand-card-header">
+            <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async" alt="Amara Artisan Foods Brand Identity">
+            <div class="brand-card-info">
+              <div>
+                <span class="brand-badge">Brand Identity</span>
+                <h3>Amara Artisan Foods</h3>
+                <div class="brand-case-items">
+                  <div class="brand-case-item">
+                    <p class="t-label">The Problem</p>
+                    <p>An artisan food brand relaunching with premium products but carrying outdated packaging and a visual identity that no longer reflected their elevated quality.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Solution</p>
+                    <p>A warm, handcrafted identity rooted in Nigerian heritage — earthy gold tones, a custom wordmark with organic letterforms, and a brand story woven into every touchpoint.</p>
+                  </div>
+                  <div class="brand-case-item">
+                    <p class="t-label">The Result</p>
+                    <p>Successful relaunch into premium retail channels. 3x engagement increase on social media within the first quarter post-rebrand.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-expand open-overlay" data-overlay="fs-overlay-2">
+                View Full Project
+                <i class="ph ph-arrow-circle-right"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <button class="btn-expand open-overlay" data-overlay="fs-overlay-2">
-        View Full Project
-        <i class="ph ph-arrow-circle-right"></i>
-      </button>
-    </div>
-  </div>
-</div>
 
         <!-- Case 3 -->
         <div class="brand-card reveal reveal-d2">
-          <div class="brand-card-header">            
-            <img src="https://i.postimg.cc/y8BL5PRk/zenith.jpg" decoding="async"></a>            
+          <div class="brand-card-header">
+            <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1782548992/Canvas_xo7qdz.webp" decoding="async" alt="ZENITH CREATIVE AGENCY" loading="lazy" width="800" height="600">
             <div class="brand-card-info">
               <div>
                 <span class="brand-badge">Brand Identity</span>
@@ -1542,7 +1573,7 @@ footer {
                   </div>
                   <div class="brand-case-item">
                     <p class="t-label">The Solution</p>
-                    <p>A geometric, forward-pointing diamond mark symbolising peak performance and precision. Midnight palette with electric teal accents — distinctive, modern, memorable.</p>
+                    <p>A bold, square-framed Z mark with a flowing diagonal sweep — symbolising momentum, creative direction, and upward reach. Midnight palette with electric teal accents — distinctive, modern, memorable.</p>
                   </div>
                   <div class="brand-case-item">
                     <p class="t-label">The Result</p>
@@ -1555,7 +1586,6 @@ footer {
                 <i class="ph ph-arrow-circle-right"></i>
               </button>
             </div>
-          </div>        
           </div>
         </div>
 
@@ -1635,7 +1665,7 @@ footer {
 <section class="services" id="services">
   <div class="container">
     <div class="section-header reveal">
-      <p class="t-label">What I Offer</p>
+      <p class="t-label">What we Offer</p>
       <h2 class="t-display">Design services</h2>
       <div class="divider"></div>
     </div>
@@ -1658,7 +1688,7 @@ footer {
         <p>Compelling print materials — event flyers, posters, banners, thumbnails, carousels and marketing collateral designed to capture attention and drive action.</p>
       </div>
       <div class="service-card reveal reveal-d2">
-        <span class="service-num">04</span>
+        <span class="service-num">03</span>
         <div class="service-icon">
           <i class="ph ph-book-open"></i>
         </div>
@@ -1680,7 +1710,7 @@ footer {
       <div class="divider"></div>
     </div>
     <p class="t-body contact-desc reveal reveal-d1" style="margin-bottom: var(--sp-6);">
-      Have a project in mind? I'd love to hear about it. Let's talk about how great design can transform your brand.
+      Have a project in mind? we'd love to hear about it. Let's talk about how great design can transform your brand.
     </p>
     <!-- Contact links + form side by side below the heading -->
     <div class="contact-grid">
@@ -1704,7 +1734,7 @@ footer {
             </span>
             @eridastudiong
           </a>
-          <a href="https://wa.me/09138037377" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://wa.me/2349138037377" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-link-icon">
               <i class="ph ph-whatsapp-logo"></i>
             </span>
@@ -1805,7 +1835,7 @@ footer {
           <i class="ph ph-plus faq-icon"></i>
         </button>
         <div class="faq-answer">
-          <p>Fill out the contact form with your project details or send us a message via Email/WhatsApp/Instagram/Facebook. We'll schedule a discovery call to understand your brand and goals.</p>
+          <p>Fill out the contact form with your project details or send us a message via Email/WhatsApp/Instagram/Facebook. We'll schedule a discovery chat to understand your brand and goals.</p>
         </div>
       </div>
 
