@@ -187,9 +187,9 @@ section { padding: var(--sp-8) 0; }
   transition: all 0.6s var(--ease);
   transform-origin: center;
 }
-.hamburger.active span:nth-child(1) { transform: translateY(10px) rotate(360deg); }
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.active span:nth-child(3) { transform: translateY(-10px) rotate(-360deg); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 .nav-links {
   display: flex;
@@ -200,8 +200,8 @@ section { padding: var(--sp-8) 0; }
 .nav-links a {
   font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--text-2);
   transition: color 0.3s var(--ease);
 }
@@ -228,49 +228,37 @@ section { padding: var(--sp-8) 0; }
   color: var(--highlight);
 }
 /* ===== MENU OVERLAY ===== */
-.menu-overlay {
-  position: fixed; inset: 0; z-index: 950;
-  background: var(--overlay);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.5s var(--ease);
-}
-.menu-overlay.active { opacity: 1; pointer-events: all; }
-
 .menu-panel {
-  position: fixed; top: 0; right: 0; bottom: 0; z-index: 960;
-  width: min(420px, 90vw);
+  position: fixed; top: 76px; right: 8px; z-index: 960;
+  width: min(230px, 62vw);
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
   background: var(--bg-2);
-  border-left: 1px solid var(--border);
-  display: flex; flex-direction: column; justify-content: center;
-  padding: var(--sp-8) var(--sp-7);
-  transform: translateX(100%);
-  transition: transform 0.65s var(--ease);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.16);
+  display: flex; flex-direction: column;
+  padding: var(--sp-4);
+  transform: translateY(-8px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: top right;
+  transition: transform 0.35s var(--ease), opacity 0.3s var(--ease);
 }
-.menu-panel.active { transform: translateX(0); }
+.menu-panel.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+[data-theme="light"] .menu-panel { box-shadow: 0 12px 28px rgba(0,0,0,0.10); }
 
-.menu-close {
-  position: absolute; top: 24px; right: 24px;
-  width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-2); font-size: 1.3rem;
-  transition: color 0.3s var(--ease);
-  cursor: pointer;
-}
-.menu-close:hover { color: var(--highlight); }
-
-.menu-nav { margin-bottom: var(--sp-7); }
+.menu-nav { margin-bottom: var(--sp-3); margin-top: var(--sp-1); }
 .menu-nav a {
   display: block;
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: var(--text);
-  padding: var(--sp-2) 0;
+  padding: var(--sp-1) 0;
   opacity: 0;
-  transform: translateX(32px);
-  transition: color 0.3s var(--ease), opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transform: translateX(16px);
+  transition: color 0.3s var(--ease), opacity 0.4s var(--ease), transform 0.4s var(--ease);
   position: relative;
   overflow: hidden;
 }
@@ -284,34 +272,59 @@ section { padding: var(--sp-8) 0; }
 .menu-nav a:hover { color: var(--highlight); }
 .menu-nav a:hover::after { width: 100%; }
 .menu-panel.active .menu-nav a { opacity: 1; transform: translateX(0); }
-.menu-panel.active .menu-nav a:nth-child(1) { transition-delay: 0.1s; }
-.menu-panel.active .menu-nav a:nth-child(2) { transition-delay: 0.18s; }
-.menu-panel.active .menu-nav a:nth-child(3) { transition-delay: 0.26s; }
-.menu-panel.active .menu-nav a:nth-child(4) { transition-delay: 0.34s; }
+.menu-panel.active .menu-nav a:nth-child(1) { transition-delay: 0.08s; }
+.menu-panel.active .menu-nav a:nth-child(2) { transition-delay: 0.13s; }
+.menu-panel.active .menu-nav a:nth-child(3) { transition-delay: 0.18s; }
+.menu-panel.active .menu-nav a:nth-child(4) { transition-delay: 0.23s; }
+.menu-panel.active .menu-nav a:nth-child(5) { transition-delay: 0.28s; }
+.menu-panel.active .menu-nav a:nth-child(6) { transition-delay: 0.33s; }
 
 .menu-theme {
-  opacity: 0; transform: translateX(32px);
-  transition: opacity 0.5s 0.42s var(--ease), transform 0.5s 0.42s var(--ease);
+  opacity: 0; transform: translateX(16px);
+  transition: opacity 0.4s 0.3s var(--ease), transform 0.4s 0.3s var(--ease);
 }
 .menu-panel.active .menu-theme { opacity: 1; transform: translateX(0); }
-.menu-theme .t-label { margin-bottom: var(--sp-3); }
-.theme-btns { display: flex; gap: var(--sp-2); }
-.theme-btn {
-  padding: var(--sp-2) var(--sp-3);
-  border: 1px solid var(--border-strong);
-  border-radius: 6px;
-  font-family: inherit; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+.appearance-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
+  background: none; border: none; padding: 0;
+  font-family: inherit; font-size: 0.9rem; font-weight: 400; letter-spacing: 0.04em;
   color: var(--text-2);
-  background: var(--input-bg);
   cursor: pointer;
-  transition: all 0.3s var(--ease);
-  text-transform: uppercase;
+  transition: color 0.3s var(--ease);
 }
-.theme-btn:hover, .theme-btn.active {
-  border-color: var(--highlight);
-  color: var(--highlight);
-  background: rgba(8,196,209,0.08);
+.appearance-toggle:hover { color: var(--highlight); }
+.appearance-chevron { font-size: 0.95rem; transition: transform 0.3s var(--ease); }
+.appearance-toggle[aria-expanded="true"] .appearance-chevron { transform: rotate(180deg); }
+.theme-btns {
+  display: flex; flex-direction: column; gap: var(--sp-1);
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 0.35s var(--ease), opacity 0.3s var(--ease), margin-top 0.3s var(--ease);
 }
+.theme-btns.open { max-height: 140px; opacity: 1; margin-top: var(--sp-2); }
+.theme-btn {
+  display: flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-1) 0;
+  border: none;
+  border-radius: 0;
+  font-family: inherit; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em;
+  color: var(--text-2);
+  background: none;
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+  text-transform: none;
+  text-align: left;
+}
+.theme-btn::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: transparent;
+  transition: background 0.3s var(--ease);
+  flex-shrink: 0;
+}
+.theme-btn:hover { color: var(--highlight); }
+.theme-btn.active { color: var(--highlight); font-weight: 700; }
+.theme-btn.active::before { background: var(--highlight); }
 
 /* ===== HERO ===== */
 .hero {
@@ -363,6 +376,24 @@ section { padding: var(--sp-8) 0; }
   max-width: 1500px;
 }
 .hero-headline .t-hero { display: inline; }
+.hero-headline .t-hero span {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+[data-theme="light"] .hero-headline .t-hero span {
+  background: linear-gradient(135deg, #058A94, #1D3F7A);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hero-headline .t-hero span {
+    background: linear-gradient(135deg, #058A94, #1D3F7A);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
 
 .hero-sub {
   max-width: 1000px;
@@ -409,30 +440,46 @@ section { padding: var(--sp-8) 0; }
 @media (max-width: 768px) {
   .hero {
     min-height: calc(var(--vh, 1vh) * 100);
+    padding-bottom: 56px;
   }
   .hero .container {
     padding: 0 var(--sp-4);
     margin-left: 0;
   }
+  /* Stronger, earlier-starting dark gradient so the text block sits
+     entirely over high-contrast area, regardless of copy length */
+  .hero-overlay {
+    background: linear-gradient(to bottom, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.55) 30%, rgba(10,10,10,0.92) 55%, rgba(10,10,10,1.0) 100%);
+  }
+  [data-theme="light"] .hero-overlay {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.95) 55%, rgba(255,255,255,1.0) 100%);
+  }
   .hero-headline {
     max-width: 100%;
+    margin-bottom: 12px;
   }
   .hero-headline .t-hero {
-    font-size: clamp(1.8rem, 8vw, 2.4rem);
+    font-size: clamp(1.5rem, 6.5vw, 1.9rem);
+    line-height: 1.15;
   }
   .hero-sub {
-    max-width: 90%;
-    font-size: 0.9rem;
+    max-width: 100%;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
   }
   .hero-cta {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
+    gap: 10px;
   }
   .btn-primary,
   .btn-secondary {
     width: auto;
     min-width: unset;
-    padding: 12px 24px;
+    padding: 10px 18px;
+    font-size: 0.72rem;
   }
 }
 
@@ -446,11 +493,11 @@ section { padding: var(--sp-8) 0; }
 
 .hero-scroll {
   position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
   opacity: 0.4;
 }
-.hero-scroll span { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); }
-.scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-3), transparent); animation: scrollLine 1.8s ease-in-out infinite; }
+.hero-scroll span { font-size: 0.4rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); }
+.scroll-line { width: 1px; height: 25px; background: linear-gradient(to bottom, var(--text-3), transparent); animation: scrollLine 1.8s ease-in-out infinite; }
 @keyframes scrollLine { 0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1}100%{opacity:0;transform:scaleY(1);transform-origin:bottom} }
 
 /* ===== ABOUT ===== */
@@ -1044,6 +1091,12 @@ footer {
   .footer-inner { flex-direction: column; text-align: center; }
   .brand-slides { grid-template-columns: 1fr; }
   .about-metrics { grid-template-columns: repeat(3,1fr); }
+
+  /* Navbar: rebalance sizes so logo/icons aren't dwarfed by the hamburger/links */
+  .nav-logo, .nav-logo img { height: 40px; }
+  .nav-links a { font-size: 0.64rem; letter-spacing: 0.01em; }
+  .nav-socials { gap: 14px; }
+  .nav-socials a { font-size: 0.70rem; }
 }
 @media (max-width: 480px) {
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1415,21 +1468,22 @@ footer {
   </div>
 </nav>
 
-<!-- MENU OVERLAY -->
-<div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
-
 <!-- MENU PANEL -->
 <div class="menu-panel" id="menuPanel" role="dialog" aria-label="Navigation menu">
-  <button class="menu-close" id="menuClose" aria-label="Close menu">&#x2715;</button>
   <nav class="menu-nav">
     <a href="#about" class="menu-link">About</a>
     <a href="#work" class="menu-link">My Work</a>
     <a href="#services" class="menu-link">Services</a>
     <a href="#contact" class="menu-link">Contact</a>
+    <a href="#faq" class="menu-link">FAQ</a>
+    <a href="#tips" class="menu-link">Tips</a>
   </nav>
   <div class="menu-theme">
-    <span class="t-label">Appearance</span>
-    <div class="theme-btns">
+    <button class="appearance-toggle" id="appearanceToggle" type="button" aria-expanded="false" aria-controls="appearanceSubmenu">
+      <span>Appearance</span>
+      <i class="ph ph-caret-down appearance-chevron"></i>
+    </button>
+    <div class="theme-btns" id="appearanceSubmenu">
       <button class="theme-btn" data-theme-val="light">Light</button>
       <button class="theme-btn" data-theme-val="dark">Dark</button>
       <button class="theme-btn active" data-theme-val="system">System</button>
@@ -1443,7 +1497,7 @@ footer {
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-headline">
-<span class="t-hero fade-up fade-up-1">We don't just design brand identities — we build legacies.</span>
+<span class="t-hero fade-up fade-up-1">We don't just design brand identities — <span>we build legacies.</span></span>
     </div>
     <p class="hero-sub fade-up fade-up-3">
 Every great brand begins with intention. We craft identities that are strategic, timeless, and built to grow with your business.    </p>
@@ -1462,7 +1516,7 @@ Every great brand begins with intention. We craft identities that are strategic,
 </section>
 
 <!-- TIPS TICKER -->
-<div class="tips-ticker">
+<div class="tips-ticker" id="tips">
   <div class="tips-inner">
     <span class="tips-icon"><i class="ph ph-lightbulb"></i></span>
     <p class="tips-text"></p>
@@ -1931,8 +1985,8 @@ Every great brand begins with intention. We craft identities that are strategic,
     if (heroSub) heroSub.style.color = isLight ? 'rgba(0,0,0,0.75)' : '#9AA3AE';
     if (btnSecondary) btnSecondary.style.color = isLight ? '#0D0F12' : '#F0F2F5';
     if (overlay) overlay.style.background = isLight
-      ? 'linear-gradient(to bottom, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,1.0) 100%)'
-      : 'linear-gradient(to bottom, rgba(10,10,10,0.0) 0%, rgba(10,10,10,0.85) 50%, rgba(10,10,10,1.0) 100%)';
+      ? 'linear-gradient(to bottom, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.85) 80%, rgba(255,255,255,1.0) 100%)'
+      : 'linear-gradient(to bottom, rgba(10,10,10,0.0) 0%, rgba(10,10,10,0.85) 70%, rgba(10,10,10,1.0) 100%)';
   }
 
   function applyTheme(val) {
@@ -1955,29 +2009,60 @@ Every great brand begins with intention. We craft identities that are strategic,
 
   /* ===== MENU ===== */
   const hamburger   = document.getElementById('hamburger');
-  const menuOverlay = document.getElementById('menuOverlay');
   const menuPanel   = document.getElementById('menuPanel');
-  const menuClose   = document.getElementById('menuClose');
   const menuLinks   = document.querySelectorAll('.menu-link');
 
   function openMenu() {
     hamburger.classList.add('active');
-    menuOverlay.classList.add('active');
     menuPanel.classList.add('active');
-    document.body.style.overflow = 'hidden';
     hamburger.setAttribute('aria-expanded', 'true');
   }
   function closeMenu() {
     hamburger.classList.remove('active');
-    menuOverlay.classList.remove('active');
     menuPanel.classList.remove('active');
-    document.body.style.overflow = '';
     hamburger.setAttribute('aria-expanded', 'false');
   }
   hamburger.addEventListener('click', () => hamburger.classList.contains('active') ? closeMenu() : openMenu());
-  menuClose.addEventListener('click', closeMenu);
-  menuOverlay.addEventListener('click', closeMenu);
   menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+  // "Tips" should land centered in the space below the fixed navbar,
+  // not centered in the full viewport (which would let the navbar eat
+  // into the top of the "centered" element).
+  const tipsLink = document.querySelector('.menu-link[href="#tips"]');
+  const tipsSection = document.getElementById('tips');
+  const navbarEl = document.querySelector('.navbar');
+  if (tipsLink && tipsSection) {
+    tipsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Wait a tick for the menu-close reflow to settle before measuring
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const navH = navbarEl ? navbarEl.offsetHeight : 0;
+        const rect = tipsSection.getBoundingClientRect();
+        const elCenter = rect.top + window.scrollY + rect.height / 2;
+        const availableH = window.innerHeight - navH;
+        const targetTop = elCenter - navH - availableH / 2;
+        window.scrollTo({ top: Math.max(targetTop, 0), behavior: 'smooth' });
+      }));
+    });
+  }
+
+  // Click outside the open menu closes it. This listens for genuine
+  // "click" events only, so scrolling/dragging the page never triggers it —
+  // a click only fires on an actual tap/press without movement.
+  document.addEventListener('click', (e) => {
+    if (!menuPanel.classList.contains('active')) return;
+    if (menuPanel.contains(e.target) || hamburger.contains(e.target)) return;
+    closeMenu();
+  });
+
+  const appearanceToggle  = document.getElementById('appearanceToggle');
+  const appearanceSubmenu = document.getElementById('appearanceSubmenu');
+  if (appearanceToggle && appearanceSubmenu) {
+    appearanceToggle.addEventListener('click', () => {
+      const isOpen = appearanceSubmenu.classList.toggle('open');
+      appearanceToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  }
 
   /* ===== WORK TABS ===== */
   const tabs   = document.querySelectorAll('.work-tab');
