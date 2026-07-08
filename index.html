@@ -718,6 +718,7 @@ section { padding: var(--sp-8) 0; }
   -webkit-backdrop-filter: blur(12px);
 }
 .lightbox.active { opacity: 1; pointer-events: all; }
+#lightboxContent { width: 100%; height: 100%; }
 .lightbox img, .lightbox svg {
   max-width: 90vw; max-height: 85vh;
   object-fit: contain;
@@ -736,11 +737,41 @@ section { padding: var(--sp-8) 0; }
   color: var(--lightbox-close-color); font-size: 1.3rem; cursor: pointer;
   transition: all 0.3s var(--ease);
   background: transparent;
+  z-index: 20;
 }
+.lightbox-nav-zone {
+  position: absolute; top: 0; bottom: 0; width: 30%;
+  z-index: 10;
+}
+.lightbox-nav-left { left: 0; }
+.lightbox-nav-right { right: 0; }
 .lightbox-close:hover {
   border-color: var(--lightbox-close-hover-border);
   color: var(--lightbox-close-hover-color);
   background: var(--lightbox-close-hover-bg);
+}
+.lightbox-track {
+  display: flex;
+  width: 100vw; height: 100vh;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  scrollbar-width: none;
+}
+.lightbox-track::-webkit-scrollbar { display: none; }
+.lightbox-slide {
+  flex: 0 0 100%;
+  width: 100%; height: 100%;
+  scroll-snap-align: center;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox-slide img {
+  max-width: 90vw; max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: var(--lightbox-frame-shadow);
 }
 
 /* ===== SERVICES ===== */
@@ -912,14 +943,14 @@ section { padding: var(--sp-8) 0; }
 /* ===== TIPS TICKER ===== */
 .tips-ticker {
   width: 100%;
-  min-height: 72px;
+  height: 128px;
   background: rgba(8,196,209,0.06);
   border-top: 1px solid rgba(8,196,209,0.2);
   border-bottom: 1px solid rgba(8,196,209,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--sp-5) var(--sp-4);
+  padding: var(--sp-4);
   overflow: hidden;
   margin: var(--sp-8) 0;
 }
@@ -945,6 +976,10 @@ section { padding: var(--sp-8) 0; }
   line-height: 1.6;
   text-align: center;
   animation: tipsFade 0.6s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @keyframes tipsFade {
@@ -1866,6 +1901,8 @@ Every great brand begins with intention. We craft identities that are strategic,
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&#x2715;</button>
+  <div class="lightbox-nav-zone lightbox-nav-left" id="lightboxPrev" aria-label="Previous flyer"></div>
+  <div class="lightbox-nav-zone lightbox-nav-right" id="lightboxNext" aria-label="Next flyer"></div>
   <div id="lightboxContent"></div>
 </div>
 
@@ -1959,7 +1996,9 @@ Every great brand begins with intention. We craft identities that are strategic,
   const lightboxContent = document.getElementById('lightboxContent');
   const lightboxClose   = document.getElementById('lightboxClose');
 
+  var closeTimer = null;
   function openLightbox(content) {
+    clearTimeout(closeTimer);
     lightboxContent.innerHTML = content;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -1967,18 +2006,68 @@ Every great brand begins with intention. We craft identities that are strategic,
   function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
-    setTimeout(function() { lightboxContent.innerHTML = ''; }, 400);
+    closeTimer = setTimeout(function() { lightboxContent.innerHTML = ''; }, 400);
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeLightbox(); closeMenu(); } });
 
-  document.querySelectorAll('.flyer-item').forEach(function(item) {
+  // Tapping anywhere in the content area that ISN'T the image itself closes the overlay.
+  // (The image is the only element inside lightboxContent that can be the click target,
+  // since it now receives pointer events normally.)
+  lightboxContent.addEventListener('click', function(e) {
+    if (e.target.tagName !== 'IMG') closeLightbox();
+  });
+
+  var activeGoTo = null;
+  document.getElementById('lightboxPrev').addEventListener('click', function() { if (activeGoTo) activeGoTo(-1); });
+  document.getElementById('lightboxNext').addEventListener('click', function() { if (activeGoTo) activeGoTo(1); });
+
+  var flyerItems = Array.prototype.slice.call(document.querySelectorAll('.flyer-item'));
+  var flyerSrcs = flyerItems.map(function(item) { return item.querySelector('img').src; });
+  var totalFlyers = flyerSrcs.length;
+
+  flyerItems.forEach(function(item, i) {
     item.addEventListener('click', function() {
-      var img = item.querySelector('img');
-var html = '<img src="' + img.src + '" style="max-width:90vw;max-height:85vh;width:auto;height:auto;border-radius:4px;object-fit:contain;">';
-      openLightbox(html);
+      // Clone last slide at the start and first slide at the end, so swiping past
+      // either edge lands on a duplicate — giving the illusion of infinite scroll.
+      var extended = [flyerSrcs[totalFlyers - 1]].concat(flyerSrcs, [flyerSrcs[0]]);
+      var slidesHtml = extended.map(function(src) {
+        return '<div class="lightbox-slide"><img src="' + src + '"></div>';
+      }).join('');
+      openLightbox('<div class="lightbox-track" id="lightboxTrack">' + slidesHtml + '</div>');
+
+      var track = document.getElementById('lightboxTrack');
+      var current = i + 1; // +1 to account for the cloned slide at index 0
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = current * track.clientWidth;
+      setTimeout(function() { track.style.scrollBehavior = 'smooth'; }, 50);
+
+      function goTo(index) {
+        current = index;
+        track.scrollLeft = current * track.clientWidth;
+      }
+
+      // After scrolling settles, silently snap clones back to their real counterpart.
+      function checkWrap() {
+        var w = track.clientWidth;
+        var pos = Math.round(track.scrollLeft / w);
+        if (pos === 0 || pos === totalFlyers + 1) {
+          track.style.scrollBehavior = 'auto';
+          current = (pos === 0) ? totalFlyers : 1;
+          track.scrollLeft = current * w;
+          setTimeout(function() { track.style.scrollBehavior = 'smooth'; }, 50);
+        } else {
+          current = pos;
+        }
+      }
+      var scrollTimer;
+      track.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(checkWrap, 120);
+      });
+
+      activeGoTo = function(direction) { goTo(current + direction); };
     });
   });
   
