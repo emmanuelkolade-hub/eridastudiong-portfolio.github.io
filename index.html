@@ -2296,29 +2296,47 @@ window.addEventListener('online', retryAllPending);
     var myGeneration = ++heroBgGeneration;
     function stale() { return myGeneration !== heroBgGeneration; }
 
+    if (window.heroDebugLog) window.heroDebugLog('watchHeroBg #' + myGeneration + ' started, theme=' + (html.getAttribute('data-theme') || 'system') + ', width=' + window.innerWidth);
+
     el.style.backgroundImage = ''; // clear any earlier inline override so computed style reflects the CSS variable for the CURRENT theme/breakpoint
     var cssBg = getComputedStyle(el).backgroundImage;
     var match = cssBg.match(/url\(["']?([^"')]+)["']?\)/);
-    if (!match) return;
+    if (!match) {
+      if (window.heroDebugLog) window.heroDebugLog('#' + myGeneration + ' NO URL FOUND in computed style: "' + cssBg + '"');
+      return;
+    }
     var baseUrl = match[1].split('?')[0];
     var ok = false;
 
+    if (window.heroDebugLog) window.heroDebugLog('#' + myGeneration + ' target url: ' + baseUrl);
+
     function attempt(url) {
-      if (stale()) return;
+      if (stale()) {
+        if (window.heroDebugLog) window.heroDebugLog('#' + myGeneration + ' attempt skipped (stale) for ' + url);
+        return;
+      }
+      if (window.heroDebugLog) window.heroDebugLog('#' + myGeneration + ' attempting: ' + url);
       var probe = new Image();
       probe.addEventListener('load', function() {
+        if (window.heroDebugLog) window.heroDebugLog('#' + myGeneration + ' LOAD OK: ' + url + (stale() ? ' (but stale, ignored)' : ''));
         if (stale()) return; // a newer theme/breakpoint switch already superseded this
         ok = true;
         el.style.backgroundImage = 'url("' + url + '")';
       });
-      probe.addEventListener('error', function() { ok = false; });
+      probe.addEventListener('error', function() {
+        if (window.heroDebugLog) window.heroDebugLog('#' + myGeneration + ' LOAD FAILED: ' + url);
+        ok = false;
+      });
       probe.src = url;
     }
     attempt(baseUrl);
 
     trackPending(
       function() { return ok || stale(); }, // stale probes count as "done" so they get pruned instead of retried forever
-      function() { attempt(baseUrl + '?retry=' + Date.now()); }
+      function() {
+        if (window.heroDebugLog) window.heroDebugLog('#' + myGeneration + ' RETRY firing for: ' + baseUrl);
+        attempt(baseUrl + '?retry=' + Date.now());
+      }
     );
   }
   applyTheme(stored);
@@ -2826,6 +2844,19 @@ document.querySelectorAll('.fs-overlay').forEach(overlay => {
   });
 });
 }); // closes DOMContentLoaded
+</script>
+
+<!-- TEMPORARY DEBUG PANEL — logs hero background load attempts/results on screen.
+     Safe to delete once the blank-background bug is diagnosed. -->
+<div id="heroDebugPanel" style="position:fixed; bottom:8px; left:8px; right:8px; max-height:38vh; overflow-y:auto; background:rgba(0,0,0,0.85); color:#0f0; font:10px/1.4 monospace; padding:8px; border-radius:6px; z-index:99999; white-space:pre-wrap;"></div>
+<script>
+  window.heroDebugLog = function(msg) {
+    var panel = document.getElementById('heroDebugPanel');
+    if (!panel) return;
+    var t = new Date().toLocaleTimeString();
+    panel.textContent += '[' + t + '] ' + msg + '\n';
+    panel.scrollTop = panel.scrollHeight;
+  };
 </script>
 
 </body>
