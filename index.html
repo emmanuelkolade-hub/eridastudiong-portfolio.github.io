@@ -890,7 +890,7 @@ section { padding: var(--sp-8) 0; }
   background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 60%, transparent 100%);
   filter: blur(24px);
   transform: translateX(-70%);
-  animation: img-shimmer 1.8s ease-in-out infinite;
+  animation: img-shimmer 1.8s linear infinite;
   pointer-events: none;
   will-change: transform;
 }
@@ -2846,9 +2846,10 @@ document.querySelectorAll('.fs-overlay').forEach(overlay => {
 }); // closes DOMContentLoaded
 </script>
 
-<!-- TEMPORARY DEBUG PANEL — logs hero background load attempts/results on screen.
-     Safe to delete once the blank-background bug is diagnosed. -->
-<div id="heroDebugPanel" style="position:fixed; bottom:8px; left:8px; right:8px; max-height:38vh; overflow-y:auto; background:rgba(0,0,0,0.85); color:#0f0; font:10px/1.4 monospace; padding:8px; border-radius:6px; z-index:99999; white-space:pre-wrap;"></div>
+<!-- DEBUG PANEL — hidden by default. Reveal by visiting the site with
+     ?debug=1 anywhere in the URL, e.g. https://eridastudiong.pages.dev/?debug=1
+     Logs hero background load attempts/results, plus any JS error on the page. -->
+<div id="heroDebugPanel" style="display:none; position:fixed; bottom:8px; left:8px; right:8px; max-height:38vh; overflow-y:auto; background:rgba(0,0,0,0.85); color:#0f0; font:10px/1.4 monospace; padding:8px; border-radius:6px; z-index:99999; white-space:pre-wrap;"></div>
 <script>
   window.heroDebugLog = function(msg) {
     var panel = document.getElementById('heroDebugPanel');
@@ -2857,6 +2858,14 @@ document.querySelectorAll('.fs-overlay').forEach(overlay => {
     panel.textContent += '[' + t + '] ' + msg + '\n';
     panel.scrollTop = panel.scrollHeight;
   };
+
+  window.addEventListener('error', function(e) {
+    window.heroDebugLog('JS ERROR: ' + e.message + ' (' + e.filename + ':' + e.lineno + ')');
+  });
+
+  if (location.search.indexOf('debug=1') !== -1) {
+    document.getElementById('heroDebugPanel').style.display = 'block';
+  }
 </script>
 
 </body>
