@@ -10,10 +10,10 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer onerror="(window.__failedResources=window.__failedResources||[]).push(this)"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">
 <style>
 /* ===== CSS VARIABLES ===== */
 :root {
@@ -26,6 +26,33 @@
 
   --sp-1: 4px; --sp-2: 8px; --sp-3: 16px; --sp-4: 24px;
   --sp-5: 32px; --sp-6: 48px; --sp-7: 64px; --sp-8: 96px;
+}
+
+/* =====================================================================
+   HERO BACKGROUND & OVERLAY CONTROLS — edit these, nothing else
+   =====================================================================
+   Everything that decides what photo shows in the hero and how dark/
+   light the gradient over it is lives here, split cleanly into DESKTOP
+   and MOBILE groups. Change a value in one group and it will NEVER
+   affect the other — that's the whole point of this block.
+
+   - "Image" = the photo used as the hero background.
+   - "Overlay" = the gradient painted over that photo so the headline
+     text stays readable. It's a standard CSS gradient, so you can
+     paste in any linear-gradient(...) you like.
+   ===================================================================== */
+:root {
+  /* ---- DESKTOP (769px and wider) ---- */
+  --hero-img-desktop-dark:      url('hero.jpg');
+  --hero-img-desktop-light:     url('hero.jpg');
+  --hero-overlay-desktop-dark:  linear-gradient(to bottom, rgba(10,10,10,0.0) 0%, rgba(10,10,10,0.85) 50%, rgba(10,10,10,1.0) 100%);
+  --hero-overlay-desktop-light: linear-gradient(to bottom, rgba(255,255,255,0.25) 10%, rgba(255,255,255,1.0) 100%);
+
+  /* ---- MOBILE (768px and narrower) ---- */
+  --hero-img-mobile-dark:       url('minimalist.png');
+  --hero-img-mobile-light:      url('hero.jpg');
+  --hero-overlay-mobile-dark:   linear-gradient(to bottom, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.55) 30%, rgba(10,10,10,0.92) 55%, rgba(10,10,10,1.0) 100%);
+  --hero-overlay-mobile-light:  linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.95) 95%, rgba(255,255,255,1.0) 100%);
 }
 
 /* DARK THEME (default) */
@@ -98,8 +125,8 @@
     --input-bg: rgba(0,0,0,0.04); --overlay: rgba(0,0,0,0.75);
     --shadow: 0 24px 64px rgba(0,0,0,0.12); --shadow-sm: 0 8px 32px rgba(0,0,0,0.08);
     --lightbox-bg: rgba(0,0,0,0.75);
-    --lightbox-close-border: rgba(255,255,255,0.2); --lightbox-close-color: rgba(0,0,0,0.6);
-    --lightbox-close-hover-border: rgba(0,0,0,0.6); --lightbox-close-hover-color: #0D0F12;
+    --lightbox-close-border: rgba(255,255,255,0.2); --lightbox-close-color: rgba(255,255,255,0.8);
+    --lightbox-close-hover-border: rgba(255,255,255,1); --lightbox-close-hover-color: #0D0F12;
     --lightbox-close-hover-bg: rgba(0,0,0,0.06); --lightbox-frame-shadow: 0 32px 80px rgba(0,0,0,0.25);
   }
 }
@@ -174,6 +201,7 @@ section { padding: var(--sp-8) 0; }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) .logo-light { display: none;  }
   :root:not([data-theme]) .logo-dark  { display: block; }
+  :root:not([data-theme]) .menu-panel { box-shadow: 0 12px 28px rgba(0,0,0,0.10); }
 }
 
 .hamburger {
@@ -329,6 +357,7 @@ section { padding: var(--sp-8) 0; }
 /* ===== HERO ===== */
 .hero {
   min-height: calc(var(--vh, 1vh) * 85);
+  min-height: 85svh;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -344,40 +373,48 @@ section { padding: var(--sp-8) 0; }
 .hero .container {
   position: relative;
   z-index: 1;
-  margin-left: 0;
-  padding-left: 100px;
 }
 
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  background-image: url('hero.jpg');
+  width: 100%; height: 100%;
+  background-image: var(--hero-img-desktop-dark);
   background-size: cover;
+  background-repeat: no-repeat;
+	transform: translateZ(0);
+  background-color: var(--bg-2); /* fallback if the photo never loads */
 }
 
 [data-theme="light"] .hero-bg {
+  background-image: var(--hero-img-desktop-light);
   background-position: center center;
+  background-color: var(--bg-2);
 }
 
 [data-theme="dark"] .hero-bg {
+  background-image: var(--hero-img-desktop-dark);
   background-position: center top;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hero-bg { background-image: var(--hero-img-desktop-light); }
 }
 
 .hero-overlay {
   position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(to bottom, rgba(10,10,10,0.0) 0%, rgba(10,10,10,0.85) 50%, rgba(10,10,10,1.0) 100%);
+  background: var(--hero-overlay-desktop-dark);
 }
 
 [data-theme="light"] .hero-overlay {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.0) 0%, rgba(255,255,255,1.0) 100%);
+  background: var(--hero-overlay-desktop-light);
 }
 
 .hero-headline {
   margin-bottom: 35px;
-  max-width: 1500px;
+  max-width: 800px;
 }
 .hero-headline .t-hero { display: inline; }
 .hero-headline .t-hero span {
-  background: var(--gradient);
+  background: linear-gradient(135deg, #08C4D1, #3498DB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -388,20 +425,25 @@ section { padding: var(--sp-8) 0; }
   background-clip: text;
 }
 @media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hero { color: #0a0a0a; }
+  :root:not([data-theme]) .hero-overlay {
+    background: var(--hero-overlay-desktop-light);
+  }
   :root:not([data-theme]) .hero-headline .t-hero span {
     background: linear-gradient(135deg, #058A94, #1D3F7A);
     -webkit-background-clip: text;
     background-clip: text;
   }
+  :root:not([data-theme]) .btn-secondary { border-color: rgba(10,10,10,0.4); }
 }
 
 .hero-sub {
-  max-width: 1000px;
+  max-width: 600px;
   margin-bottom: 60px;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 300;
   color: var(--text-2);
-  line-height: 1.75;
+  line-height: 1.35;
 }
 
 .hero-cta {
@@ -416,7 +458,7 @@ section { padding: var(--sp-8) 0; }
   padding: 12px 28px;
   background: var(--gradient);
   color: #fff; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em;
-  border-radius: 4px;
+  border-radius: 50px;
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), opacity 0.4s var(--ease);
   text-transform: uppercase;
   box-shadow: 0 8px 32px rgba(8,196,209,0.25);
@@ -428,7 +470,7 @@ section { padding: var(--sp-8) 0; }
   padding: 12px 28px;
   border: 1.0px solid var(--border-strong); border-color: rgba(255,255,255,0.4);
   color: var(--text); font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em;
-  border-radius: 4px;
+  border-radius: 50px;
   transition: all 0.4s var(--ease);
   text-transform: uppercase;
 }
@@ -440,6 +482,7 @@ section { padding: var(--sp-8) 0; }
 @media (max-width: 768px) {
   .hero {
     min-height: calc(var(--vh, 1vh) * 100);
+    min-height: 100svh;
     padding-bottom: 56px;
   }
   .hero .container {
@@ -449,10 +492,22 @@ section { padding: var(--sp-8) 0; }
   /* Stronger, earlier-starting dark gradient so the text block sits
      entirely over high-contrast area, regardless of copy length */
   .hero-overlay {
-    background: linear-gradient(to bottom, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.55) 30%, rgba(10,10,10,0.92) 55%, rgba(10,10,10,1.0) 100%);
+    background: var(--hero-overlay-mobile-dark);
   }
   [data-theme="light"] .hero-overlay {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.95) 55%, rgba(255,255,255,1.0) 100%);
+    background: var(--hero-overlay-mobile-light);
+  }
+  /* Mobile gets its own background photo per theme — swapped in via
+     the variables defined at the top of the stylesheet, independent
+     of whatever the desktop image variables are set to. */
+  .hero-bg {
+    background-image: var(--hero-img-mobile-dark);
+  }
+  [data-theme="light"] .hero-bg {
+    background-image: var(--hero-img-mobile-light);
+  }
+  [data-theme="dark"] .hero-bg {
+    background-image: var(--hero-img-mobile-dark);
   }
   .hero-headline {
     max-width: 100%;
@@ -478,16 +533,29 @@ section { padding: var(--sp-8) 0; }
   .btn-secondary {
     width: auto;
     min-width: unset;
-    padding: 10px 18px;
-    font-size: 0.72rem;
+    padding: 8px 14px;
+    font-size: 0.55rem;
   }
 }
+	
 
 @media (min-width: 769px) {
   .hero-bg {
     background-position: center top;
     background-size: cover;
   }
+}
+
+/* System theme (no explicit light/dark chosen) on mobile — same
+   mobile-specific image/overlay variables as above, just triggered by
+   OS preference instead of the in-page toggle. */
+@media (max-width: 768px) and (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hero-overlay { background: var(--hero-overlay-mobile-light); }
+  :root:not([data-theme]) .hero-bg { background-image: var(--hero-img-mobile-light); }
+}
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .hero-overlay { background: var(--hero-overlay-mobile-dark); }
+  :root:not([data-theme]) .hero-bg { background-image: var(--hero-img-mobile-dark); }
 }
 
 
@@ -569,6 +637,13 @@ section { padding: var(--sp-8) 0; }
   border-color: rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.5);
 }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .about-role {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
 .role-dot {
   width: 8px;
   height: 8px;
@@ -629,6 +704,40 @@ section { padding: var(--sp-8) 0; }
   opacity: 1;
   transform: none;
 }
+
+/* Flyer sub-category tabs */
+.flyer-tabs {
+  scroll-margin-top: 88px; /* keeps tabs clear of the fixed navbar when scrolled into view */
+  display: flex; gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--sp-5);
+  overflow-x: auto;
+  position: sticky;
+  top: 72px;
+  z-index: 50;
+  background: var(--bg);
+}
+.flyer-tab {
+  padding: var(--sp-2) var(--sp-4);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-3);
+  background: none; border: none; cursor: pointer;
+  position: relative;
+  transition: color 0.3s var(--ease);
+  white-space: nowrap;
+}
+.flyer-tab::after {
+  content: '';
+  position: absolute; bottom: -1px; left: 0; right: 0;
+  height: 2px; background: var(--gradient);
+  transform: scaleX(0); transition: transform 0.4s var(--ease);
+}
+.flyer-tab.active { color: var(--text); }
+.flyer-tab.active::after { transform: scaleX(1); }
+.flyer-tab:hover { color: var(--text-2); }
+
+.flyer-panel { display: none; }
+.flyer-panel.active { display: block; }
 
 /* Brand Identity */
 .brand-cases { display: flex; flex-direction: column; gap: var(--sp-6); }
@@ -753,6 +862,71 @@ section { padding: var(--sp-8) 0; }
 }
 .flyer-item:hover .view-icon { transform: scale(1); }
 
+/* ===== IMAGE LOADING PLACEHOLDER =====
+   Applied to any image wrapper (.flyer-item, .about-image-frame,
+   .coverflow-slide) whenever its <img> has no picture showing yet —
+   still fetching, or failed outright. Design choices below are based
+   on how skeleton loaders are actually built in practice (Facebook,
+   LinkedIn, YouTube, Slack, and most documented implementations):
+     - Neutral gray base, not brand color — keeps attention on the
+       page structure rather than the loading indicator itself, and
+       avoids a jarring color-swap once the real (differently-colored)
+       image pops in.
+     - Left-to-right sweep — the near-universal convention, since it
+       mirrors reading direction rather than an arbitrary vertical move.
+     - Animated via `transform`, not `background-position` — transform
+       is GPU-composited, which keeps the animation smooth even if the
+       main thread is busy loading other things (background-position
+       animation is measurably choppier in practice).
+     - ~1.6s cycle — the commonly recommended 1–2s window: fast enough
+       to read as "actively working", slow enough not to feel frantic.*/
+.img-loading { background: var(--bg-3); }
+.img-loading img { opacity: 0; }
+.img-loaded img { opacity: 1; transition: opacity 0.5s var(--ease); }
+.img-loading::after {
+  content: '';
+  position: absolute; inset: -20%;
+  z-index: 2;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.06) 60%, transparent 100%);
+  filter: blur(24px);
+  transform: translateX(-70%);
+  animation: img-shimmer 1.8s ease-in-out infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+[data-theme="light"] .img-loading::after {
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 60%, transparent 100%);
+}
+@keyframes img-shimmer {
+  100% { transform: translateX(70%); }
+}
+/* The flyer grid sits completely hidden behind the lightbox's opaque
+   overlay once it's open — but a paused/hidden CSS animation still
+   costs nothing, while a *running* one keeps forcing the browser to
+   repaint/recomposite dozens of blurred, transformed layers every
+   frame for something nobody can see. Combined with the coverflow's
+   own 3D transforms running at the same time, that's what caused the
+   lag when opening the overlay. Simplest fix: stop animating what's
+   invisible. */
+body.lightbox-open .flyer-grid .img-loading::after {
+  animation-play-state: paused;
+  display: none;
+}
+/* The coverflow slides ARE visible and already mid 3D-transform
+   (rotateY/scale/translateX) while cycling — a full 24px blur on top
+   of that is the expensive combination. Keep the same soft look with
+   a lighter, cheaper blur here specifically. */
+.coverflow-slide .img-loading::after {
+  filter: blur(14px);
+}
+/* Only the centered slide needs the actively-moving shimmer — side
+   slides are already faded/scaled/rotated and don't need their own
+   independent animation running too. Testing showed this alone nearly
+   doubled the frame rate while the overlay is open. */
+.coverflow-slide:not(.is-center) .img-loading::after {
+  animation-play-state: paused;
+}
+
 
 /* ===== LIGHTBOX ===== */
 .lightbox {
@@ -786,39 +960,66 @@ section { padding: var(--sp-8) 0; }
   background: transparent;
   z-index: 20;
 }
-.lightbox-nav-zone {
-  position: absolute; top: 0; bottom: 0; width: 30%;
-  z-index: 10;
-}
-.lightbox-nav-left { left: 0; }
-.lightbox-nav-right { right: 0; }
 .lightbox-close:hover {
   border-color: var(--lightbox-close-hover-border);
   color: var(--lightbox-close-hover-color);
   background: var(--lightbox-close-hover-bg);
 }
-.lightbox-track {
-  display: flex;
-  width: 100vw; height: 100vh;
-  overflow-x: auto; overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
-  scrollbar-width: none;
-}
-.lightbox-track::-webkit-scrollbar { display: none; }
-.lightbox-slide {
-  flex: 0 0 100%;
-  width: 100%; height: 100%;
-  scroll-snap-align: center;
+.coverflow-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.85);
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 25;
+  transition: all 0.3s var(--ease);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
-.lightbox-slide img {
-  max-width: 90vw; max-height: 85vh;
-  object-fit: contain;
-  border-radius: 8px;
+.coverflow-arrow:hover {
+  border-color: rgba(255,255,255,0.9);
+  color: #fff;
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-50%) scale(1.08);
+}
+.coverflow-prev { left: 20px; }
+.coverflow-next { right: 20px; }
+@media (max-width: 768px) {
+  .coverflow-arrow { width: 42px; height: 42px; font-size: 1.1rem; }
+  .coverflow-prev { left: 8px; }
+  .coverflow-next { right: 8px; }
+}
+
+.coverflow-stage {
+  position: relative;
+  width: 100%; height: 100%;
+  perspective: 1600px;
+}
+.coverflow-slide {
+  position: absolute; top: 50%; left: 50%;
+  width: min(52vw, 460px);
+  aspect-ratio: 3 / 4;
+  border-radius: 10px;
+  overflow: hidden;
   box-shadow: var(--lightbox-frame-shadow);
+  cursor: pointer;
+  transition: transform 0.55s var(--ease), opacity 0.55s var(--ease);
+  will-change: transform, opacity;
+}
+.coverflow-slide.is-center { cursor: default; }
+.coverflow-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 768px) {
+  .coverflow-slide { width: min(72vw, 340px); }
+}
+.coverflow-counter {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,0.65);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  z-index: 20;
 }
 
 /* ===== SERVICES ===== */
@@ -1102,7 +1303,7 @@ footer {
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .flyer-grid { grid-template-columns: repeat(2, 1fr); }
   .about-metrics { grid-template-columns: 1fr 1fr; }
-  .hero-cta { flex-direction: column; align-items: flex-start; }
+  .hero-cta { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
 }
 
 .fs-overlay {
@@ -1497,10 +1698,10 @@ footer {
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-headline">
-<span class="t-hero fade-up fade-up-1">We don't just create designs— <span>we make brands impossible to ignore.</span></span>
+<span class="t-hero fade-up fade-up-1">We don't just create designs— <span>we elevate brands.</span></span>
     </div>
     <p class="hero-sub fade-up fade-up-3">
-In a crowded market, the biggest risk is being ignored. We craft bold, high-impact designs that cut through the noise and get you seen.
+We craft bold, high-impact designs that cut through noises and get you seen.
 </p>
     <div class="hero-cta fade-up fade-up-4">
       <a href="#work" class="btn-primary">
@@ -1583,70 +1784,209 @@ In a crowded market, the biggest risk is being ignored. We craft bold, high-impa
 
     <!-- PRINT & DIGITAL DESIGN -->
     <div class="work-panel active" id="panel-flyer">
-      <div class="flyer-grid">
-<!-- Flyer 1 -->
-<div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="0">
-  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" decoding="async">
+<div class="flyer-tabs" id="flyerTabs">
+  <button class="flyer-tab active" data-cat="business" type="button">Business</button>
+  <button class="flyer-tab" data-cat="events" type="button">Events</button>
+  <button class="flyer-tab" data-cat="realestate" type="button">Real Estate</button>
+  <button class="flyer-tab" data-cat="food" type="button">Food</button>
+  <button class="flyer-tab" data-cat="health" type="button">Health</button>
+  <button class="flyer-tab" data-cat="retail" type="button">Retail</button>
+  <button class="flyer-tab" data-cat="education" type="button">Education</button>
+  <button class="flyer-tab" data-cat="church" type="button">Church</button>
+</div>
+
+<div class="flyer-panel active" id="flyer-panel-business">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Business flyer design 1" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 2 -->
-<div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="0">
-  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Business flyer design 2" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 3 -->
-<div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="1">
-  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" alt="Business flyer design 3" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 4 -->
-<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
-  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="children" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="Business flyer design 4" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 5 -->
-<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
-  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" alt="Business flyer design 5" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 6 -->
-<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="2">
-  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" alt="Business flyer design 6" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 7 -->
-<div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="3">
-  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" alt="Business flyer design 7" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 8 -->
-<div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="4">
-  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" alt="Business flyer design 8" decoding="async">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<!-- Flyer 9 -->
-<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="5">
-  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<!-- Flyer 10 -->
-<div class="flyer-item reveal" data-lightbox-type="flyer" data-lightbox-index="6">
-  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<!-- Flyer 11 -->
-<div class="flyer-item reveal reveal-d1" data-lightbox-type="flyer" data-lightbox-index="7">
-  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<!-- Flyer 12 -->
-<div class="flyer-item reveal reveal-d2" data-lightbox-type="flyer" data-lightbox-index="8">
-  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-      </div>
-    </div>
   </div>
+</div>
+
+<div class="flyer-panel" id="flyer-panel-events">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" alt="Events flyer design 1" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" alt="Events flyer design 2" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" alt="Events flyer design 3" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" alt="Events flyer design 4" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Events flyer design 5" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Events flyer design 6" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+  </div>
+</div>
+
+<div class="flyer-panel" id="flyer-panel-realestate">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" alt="Real Estate flyer design 1" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="Real Estate flyer design 2" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" alt="Real Estate flyer design 3" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" alt="Real Estate flyer design 4" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+  </div>
+</div>
+
+<div class="flyer-panel" id="flyer-panel-food">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" alt="Food & Restaurant flyer design 1" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" alt="Food & Restaurant flyer design 2" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" alt="Food & Restaurant flyer design 3" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" alt="Food & Restaurant flyer design 4" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" alt="Food & Restaurant flyer design 5" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+  </div>
+</div>
+
+<div class="flyer-panel" id="flyer-panel-health">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" alt="Health flyer design 1" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Health flyer design 2" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Health flyer design 3" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+  </div>
+</div>
+
+<div class="flyer-panel" id="flyer-panel-retail">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" alt="Retail flyer design 1" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="Retail flyer design 2" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" alt="Retail flyer design 3" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" alt="Retail flyer design 4" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+  </div>
+</div>
+
+<div class="flyer-panel" id="flyer-panel-education">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" alt="Education flyer design 1" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" alt="Education flyer design 2" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" alt="Education flyer design 3" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+  </div>
+</div>
+
+<div class="flyer-panel" id="flyer-panel-church">
+  <div class="flyer-grid">
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" alt="Church flyer design 1" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" alt="Church flyer design 2" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" alt="Church flyer design 3" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Church flyer design 4" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Church flyer design 5" decoding="async">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+  </div>
+</div>
+    </div>
 </section>
 
 <!-- SERVICES -->
@@ -1851,8 +2191,8 @@ In a crowded market, the biggest risk is being ignored. We craft bold, high-impa
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&#x2715;</button>
-  <div class="lightbox-nav-zone lightbox-nav-left" id="lightboxPrev" aria-label="Previous flyer"></div>
-  <div class="lightbox-nav-zone lightbox-nav-right" id="lightboxNext" aria-label="Next flyer"></div>
+  <button class="coverflow-arrow coverflow-prev" id="lightboxPrev" type="button" aria-label="Previous flyer"><i class="ti ti-chevron-left"></i></button>
+  <button class="coverflow-arrow coverflow-next" id="lightboxNext" type="button" aria-label="Next flyer"><i class="ti ti-chevron-right"></i></button>
   <div id="lightboxContent"></div>
 </div>
 
@@ -1868,6 +2208,44 @@ In a crowded market, the biggest risk is being ignored. We craft bold, high-impa
   document.querySelectorAll('img[src="LOGO_DARK_PLACEHOLDER"]').forEach(el => el.src = LOGO_DARK_SRC);
   document.querySelectorAll('img[src="PORTRAIT_PLACEHOLDER"]').forEach(el => el.src = PORTRAIT_SRC);
 
+  /* ===== RETRY-ON-RECONNECT (generic) =====
+     Browsers never automatically retry a failed resource request just
+     because the connection comes back — a failed <img>, <link
+     rel="stylesheet">, or <script> just sits broken until the page is
+     reloaded. This tracks any resource that hasn't loaded yet
+     (images, Google Fonts, icon fonts/scripts, and now the hero
+     background) and retries it when we're back online, with a
+     periodic fallback for connections that don't fire that event
+     reliably — capped so a permanently broken resource doesn't retry
+     forever. Defined here, before THEME, since applyTheme()'s very
+     first call already needs trackPending() to exist and be ready. */
+  var pendingResources = [];
+var retryInterval = null;
+var retryAttempts = 0;
+function trackPending(isDone, retry) {
+  pendingResources.push({ isDone: isDone, retry: retry });
+  startRetryLoop();
+}
+function retryAllPending() {
+  pendingResources = pendingResources.filter(function(r) { return !r.isDone(); });
+  pendingResources.forEach(function(r) { r.retry(); });
+}
+function startRetryLoop() {
+  if (retryInterval) return; // already running, don't stack a second one
+  retryAttempts = 0;
+  retryInterval = setInterval(function() {
+    retryAttempts++;
+    pendingResources = pendingResources.filter(function(r) { return !r.isDone(); });
+    if (pendingResources.length === 0 || retryAttempts > 20) {
+      clearInterval(retryInterval);
+      retryInterval = null; // lets a FUTURE failure start a fresh loop instead of staying dead forever
+      return;
+    }
+    retryAllPending();
+  }, 6000);
+}
+window.addEventListener('online', retryAllPending);
+
   /* ===== THEME ===== */
   const html = document.documentElement;
   const themeBtns = document.querySelectorAll('.theme-btn');
@@ -1877,12 +2255,8 @@ In a crowded market, the biggest risk is being ignored. We craft bold, high-impa
     var isLight = val === 'light' || (val === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
     var heroSub = document.querySelector('.hero-sub');
     var btnSecondary = document.querySelector('.hero-cta .btn-secondary');
-    var overlay = document.querySelector('.hero-overlay');
     if (heroSub) heroSub.style.color = isLight ? 'rgba(0,0,0,0.75)' : '#9AA3AE';
     if (btnSecondary) btnSecondary.style.color = isLight ? '#0D0F12' : '#F0F2F5';
-    if (overlay) overlay.style.background = isLight
-      ? 'linear-gradient(to bottom, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.85) 70%, rgba(255,255,255,1.0) 90%)'
-      : 'linear-gradient(to bottom, rgba(10,10,10,0.0) 0%, rgba(10,10,10,0.85) 50%, rgba(10,10,10,1.0) 80%)';
   }
 
   function applyTheme(val) {
@@ -1891,15 +2265,82 @@ In a crowded market, the biggest risk is being ignored. We craft bold, high-impa
     themeBtns.forEach(b => b.classList.toggle('active', b.dataset.themeVal === val));
     localStorage.setItem('erida-theme', val);
     syncHeroTheme(val);
+    watchHeroBg();
+  }
+
+  /* ===== HERO BACKGROUND IMAGE — LOAD + RETRY-ON-RECONNECT =====
+     .hero-bg is a CSS background-image, not an <img>, so it has no
+     native load/error event — a failed request just silently leaves
+     nothing painted, forever, with no way to detect or recover from
+     it. That's exactly what caused the hero sometimes staying blank:
+     every OTHER image on this site (flyer grid, about portrait,
+     coverflow) already retries on reconnect via trackPending(), but
+     the hero background was never wired into that system at all.
+
+     We detect success/failure with a throwaway Image() probe pointed
+     at the same URL the CSS is currently using (read via computed
+     style, so it automatically matches whatever the active theme／
+     breakpoint variable resolves to), then hook that into the same
+     retry system as everything else. Re-run on every theme switch too,
+     since light/dark/mobile/desktop can each point at a different file. */
+  var heroBgGeneration = 0;
+  function watchHeroBg() {
+    var el = document.querySelector('.hero-bg');
+    if (!el) return;
+    // Each call supersedes the previous one. Without this, switching
+    // theme twice in a row (or switching back and forth) could leave
+    // an old probe for the PREVIOUS theme's image still pending; if
+    // that stale probe happened to succeed later (e.g. after a
+    // reconnect), it would overwrite the correct current image with
+    // an outdated one.
+    var myGeneration = ++heroBgGeneration;
+    function stale() { return myGeneration !== heroBgGeneration; }
+
+    el.style.backgroundImage = ''; // clear any earlier inline override so computed style reflects the CSS variable for the CURRENT theme/breakpoint
+    var cssBg = getComputedStyle(el).backgroundImage;
+    var match = cssBg.match(/url\(["']?([^"')]+)["']?\)/);
+    if (!match) return;
+    var baseUrl = match[1].split('?')[0];
+    var ok = false;
+
+    function attempt(url) {
+      if (stale()) return;
+      var probe = new Image();
+      probe.addEventListener('load', function() {
+        if (stale()) return; // a newer theme/breakpoint switch already superseded this
+        ok = true;
+        el.style.backgroundImage = 'url("' + url + '")';
+      });
+      probe.addEventListener('error', function() { ok = false; });
+      probe.src = url;
+    }
+    attempt(baseUrl);
+
+    trackPending(
+      function() { return ok || stale(); }, // stale probes count as "done" so they get pruned instead of retried forever
+      function() { attempt(baseUrl + '?retry=' + Date.now()); }
+    );
   }
   applyTheme(stored);
 
-  /* ===== HERO VIEWPORT HEIGHT FIX (Google Go / Opera Mini / WebView) ===== */
+  /* ===== HERO VIEWPORT HEIGHT FIX (Google Go / Opera Mini / WebView) =====
+     Only recalculates on an actual width change (real resize/orientation
+     change), not on every 'resize' the browser fires as its address bar
+     hides/shows while scrolling — that was what made the hero appear to
+     stretch and shrink during scroll. */
+  var lastVhWidth = window.innerWidth;
   function setHeroVH() {
     document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
   }
   setHeroVH();
-  window.addEventListener('resize', setHeroVH);
+  window.addEventListener('resize', function() {
+    if (window.innerWidth !== lastVhWidth) {
+      var crossedBreakpoint = (window.innerWidth <= 768) !== (lastVhWidth <= 768);
+      lastVhWidth = window.innerWidth;
+      setHeroVH();
+      if (crossedBreakpoint) watchHeroBg();
+    }
+  });
   window.addEventListener('orientationchange', setHeroVH);
   themeBtns.forEach(btn => btn.addEventListener('click', () => applyTheme(btn.dataset.themeVal)));
 
@@ -1972,6 +2413,36 @@ In a crowded market, the biggest risk is being ignored. We craft bold, high-impa
     });
   });
 
+  /* ===== FLYER SUB-TABS ===== */
+  const flyerTabs      = document.querySelectorAll('.flyer-tab');
+  const flyerPanels    = document.querySelectorAll('.flyer-panel');
+  const flyerTabsAnchor = document.getElementById('flyerTabs');
+  // IMPORTANT: we do NOT read flyerTabsAnchor.offsetTop directly.
+  // .flyer-tabs is position:sticky, and once it's "stuck" onscreen,
+  // Chromium reports its offsetTop as its CURRENT stuck screen position
+  // (scrollY + 72), not its true static position in the page. That made
+  // the target a moving goalpost — each click only closed part of the
+  // gap, which is why it took several clicks to crawl to the top.
+  // #panel-flyer is a plain (non-sticky) wrapper around the tabs, so its
+  // offsetTop is stable no matter where the page is scrolled or which
+  // tab is active — that's the reliable reference point to use instead.
+  const flyerSectionAnchor = document.getElementById('panel-flyer');
+  flyerTabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      flyerTabs.forEach(function(t) { t.classList.remove('active'); });
+      flyerPanels.forEach(function(p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('flyer-panel-' + tab.dataset.cat).classList.add('active');
+      // Jump back to the start of the flyers at once, like a normal link.
+      if (flyerSectionAnchor) {
+        var navOffset = 88; // clears the fixed navbar + a little breathing room
+        var targetY = Math.max(flyerSectionAnchor.offsetTop - navOffset, 0);
+        document.documentElement.scrollTop = targetY;
+        document.body.scrollTop = targetY; // Safari fallback
+      }
+    });
+  });
+
   /* ===== LIGHTBOX ===== */
   const lightbox        = document.getElementById('lightbox');
   const lightboxContent = document.getElementById('lightboxContent');
@@ -1982,72 +2453,204 @@ In a crowded market, the biggest risk is being ignored. We craft bold, high-impa
     clearTimeout(closeTimer);
     lightboxContent.innerHTML = content;
     lightbox.classList.add('active');
+    document.body.classList.add('lightbox-open');
     document.body.style.overflow = 'hidden';
   }
   function closeLightbox() {
     lightbox.classList.remove('active');
+    document.body.classList.remove('lightbox-open');
     document.body.style.overflow = '';
     closeTimer = setTimeout(function() { lightboxContent.innerHTML = ''; }, 400);
   }
 
   lightboxClose.addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeLightbox(); closeMenu(); } });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeLightbox(); closeMenu(); }
+    if (lightbox.classList.contains('active') && activeGoTo) {
+      if (e.key === 'ArrowLeft') activeGoTo(-1);
+      if (e.key === 'ArrowRight') activeGoTo(1);
+    }
+  });
 
-  // Tapping anywhere in the content area that ISN'T the image itself closes the overlay.
-  // (The image is the only element inside lightboxContent that can be the click target,
-  // since it now receives pointer events normally.)
+  // Tapping anywhere in the content area that ISN'T a slide closes the overlay.
+  // Slides themselves navigate (see the coverflow click handler below) or are
+  // the currently-centered image, which does nothing.
   lightboxContent.addEventListener('click', function(e) {
-    if (e.target.tagName !== 'IMG') closeLightbox();
+    if (!e.target.closest('.coverflow-slide')) closeLightbox();
   });
 
   var activeGoTo = null;
   document.getElementById('lightboxPrev').addEventListener('click', function() { if (activeGoTo) activeGoTo(-1); });
   document.getElementById('lightboxNext').addEventListener('click', function() { if (activeGoTo) activeGoTo(1); });
 
+  /* ===== RETRY-ON-RECONNECT (generic) — moved above, see near the top
+     of this script, right before the THEME section, since it needs to
+     be initialized before applyTheme()'s first call (which now also
+     checks the hero background image and depends on this). ===== */
+
+  /* ---- images (flyer grid, about portrait, coverflow slides) ---- */
+  function watchImageLoad(img) {
+    var wrap = img.parentElement;
+    if (!wrap) return;
+    if (img.complete && img.naturalWidth > 0) {
+      wrap.classList.add('img-loaded');
+      return;
+    }
+    wrap.classList.add('img-loading');
+    var baseSrc = img.src.split('?')[0];
+    img.addEventListener('load', function() {
+      wrap.classList.remove('img-loading');
+      wrap.classList.add('img-loaded');
+    }, { once: true });
+    trackPending(
+      function() { return img.complete && img.naturalWidth > 0; },
+      function() { img.src = baseSrc + '?retry=' + Date.now(); }
+    );
+  }
+  document.querySelectorAll('.flyer-item img, .about-image-frame img').forEach(watchImageLoad);
+
+  /* ---- external stylesheets (Google Fonts, Tabler icon font) and
+     the Phosphor icon script ----
+     Detected via an inline onerror="" attribute directly on the tag
+     in <head> (see top of file) — that fires the instant the load
+     fails, so we never miss it regardless of when this script runs.
+     Checking link.sheet after the fact isn't reliable here: browsers
+     can populate .sheet with an empty stylesheet even after a 404, so
+     it doesn't reliably tell us the load truly failed.
+     We process window.__failedResources on DOMContentLoaded rather
+     than immediately: a <script defer> only fires its error event
+     after the whole document finishes parsing, which can be *after*
+     this inline script itself runs — reading the list too early would
+     silently miss it. */
+  function setupExternalResourceRetries() {
+    (window.__failedResources || []).forEach(function(el) {
+      if (el.tagName === 'LINK') {
+        var loaded = false;
+        var baseHref = el.href; // keep full original query string (e.g. Google Fonts family params)
+        el.addEventListener('load', function() { loaded = true; });
+        el.addEventListener('error', function() { loaded = false; });
+        trackPending(
+          function() { return loaded; },
+          function() { el.href = baseHref + (baseHref.indexOf('?') === -1 ? '?' : '&') + 'retry=' + Date.now(); }
+        );
+      } else if (el.tagName === 'SCRIPT') {
+        var scriptLoaded = false;
+        var baseSrc = el.src;
+        trackPending(
+          function() { return scriptLoaded; },
+          function() {
+            var fresh = document.createElement('script');
+            fresh.src = baseSrc + (baseSrc.indexOf('?') === -1 ? '?' : '&') + 'retry=' + Date.now();
+            fresh.defer = true;
+            fresh.addEventListener('load', function() { scriptLoaded = true; });
+            document.head.appendChild(fresh);
+          }
+      );
+    }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupExternalResourceRetries);
+  } else {
+    setupExternalResourceRetries();
+  }
+
   var flyerItems = Array.prototype.slice.call(document.querySelectorAll('.flyer-item'));
-  var flyerSrcs = flyerItems.map(function(item) { return item.querySelector('img').src; });
-  var totalFlyers = flyerSrcs.length;
 
-  flyerItems.forEach(function(item, i) {
+  flyerItems.forEach(function(item) {
     item.addEventListener('click', function() {
-      // Clone last slide at the start and first slide at the end, so swiping past
-      // either edge lands on a duplicate — giving the illusion of infinite scroll.
-      var extended = [flyerSrcs[totalFlyers - 1]].concat(flyerSrcs, [flyerSrcs[0]]);
-      var slidesHtml = extended.map(function(src) {
-        return '<div class="lightbox-slide"><img src="' + src + '"></div>';
+      // Scope navigation to just this flyer's own category tab.
+      var categoryItems = Array.prototype.slice.call(item.closest('.flyer-grid').querySelectorAll('.flyer-item'));
+      var flyerData = categoryItems.map(function(el) {
+        var img = el.querySelector('img');
+        return { src: img.src, alt: img.alt || 'Flyer design' };
+      });
+      var total = flyerData.length;
+      var current = categoryItems.indexOf(item);
+
+      var slidesHtml = flyerData.map(function(data, idx) {
+        return '<div class="coverflow-slide" data-index="' + idx + '"><img src="' + data.src + '" alt="' + data.alt + '"></div>';
       }).join('');
-      openLightbox('<div class="lightbox-track" id="lightboxTrack">' + slidesHtml + '</div>');
+      openLightbox(
+        '<div class="coverflow-stage" id="coverflowStage">' + slidesHtml + '</div>' +
+        '<div class="coverflow-counter" id="coverflowCounter"></div>'
+      );
 
-      var track = document.getElementById('lightboxTrack');
-      var current = i + 1; // +1 to account for the cloned slide at index 0
-      track.style.scrollBehavior = 'auto';
-      track.scrollLeft = current * track.clientWidth;
-      setTimeout(function() { track.style.scrollBehavior = 'smooth'; }, 50);
+      var stage      = document.getElementById('coverflowStage');
+      var counter    = document.getElementById('coverflowCounter');
+      var slideEls   = Array.prototype.slice.call(stage.querySelectorAll('.coverflow-slide'));
+      slideEls.forEach(function(el) { watchImageLoad(el.querySelector('img')); });
+      var prevBtn    = document.getElementById('lightboxPrev');
+      var nextBtn    = document.getElementById('lightboxNext');
+      prevBtn.style.display = total > 1 ? '' : 'none';
+      nextBtn.style.display = total > 1 ? '' : 'none';
 
-      function goTo(index) {
-        current = index;
-        track.scrollLeft = current * track.clientWidth;
+      // Signed distance from current to idx, wrapping around the shorter way —
+      // this is what gives the illusion of an infinite carousel with no clones.
+      function offsetOf(idx) {
+        var diff = idx - current;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+        return diff;
       }
 
-      // After scrolling settles, silently snap clones back to their real counterpart.
-      function checkWrap() {
-        var w = track.clientWidth;
-        var pos = Math.round(track.scrollLeft / w);
-        if (pos === 0 || pos === totalFlyers + 1) {
-          track.style.scrollBehavior = 'auto';
-          current = (pos === 0) ? totalFlyers : 1;
-          track.scrollLeft = current * w;
-          setTimeout(function() { track.style.scrollBehavior = 'smooth'; }, 50);
-        } else {
-          current = pos;
-        }
+      function render() {
+        slideEls.forEach(function(el) {
+          var idx = parseInt(el.dataset.index, 10);
+          var offset = offsetOf(idx);
+          var abs = Math.abs(offset);
+          el.classList.toggle('is-center', offset === 0);
+          if (abs > 2) {
+            el.style.opacity = '0';
+            el.style.pointerEvents = 'none';
+            el.style.zIndex = '0';
+            el.style.transform = 'translate(-50%,-50%) translateX(' + (offset > 0 ? 90 : -90) + '%) scale(0.5) rotateY(' + (offset > 0 ? -45 : 45) + 'deg)';
+            // These slides are fully invisible (opacity 0), but without
+            // this they were still being fully painted and composited
+            // every frame — 3D transform + blur + box-shadow on layers
+            // nobody can see is exactly what was causing the lag when
+            // opening the overlay. Pull them out of the render tree
+            // entirely, but only once their fade-out finishes so we
+            // don't cut the transition short.
+            clearTimeout(el.__hideTimer);
+            el.__hideTimer = setTimeout(function() { el.style.visibility = 'hidden'; }, 550);
+            return;
+          }
+          clearTimeout(el.__hideTimer);
+          el.style.visibility = 'visible';
+          el.style.pointerEvents = 'auto';
+          var scale  = 1 - abs * 0.18;
+          var rotate = offset * -28;
+          el.style.transform = 'translate(-50%,-50%) translateX(' + (offset * 42) + '%) scale(' + scale + ') rotateY(' + rotate + 'deg)';
+          el.style.opacity = String(1 - abs * 0.35);
+          el.style.zIndex = String(10 - abs);
+        });
+        if (counter) counter.textContent = (current + 1) + ' / ' + total;
       }
-      var scrollTimer;
-      track.addEventListener('scroll', function() {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(checkWrap, 120);
+
+      function goTo(idx) {
+        current = ((idx % total) + total) % total;
+        render();
+      }
+
+      slideEls.forEach(function(el) {
+        el.addEventListener('click', function() {
+          var idx = parseInt(el.dataset.index, 10);
+          if (idx !== current) goTo(idx);
+        });
       });
 
+      // Swipe support
+      var touchStartX = null;
+      stage.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', function(e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+        touchStartX = null;
+      });
+
+      render();
       activeGoTo = function(direction) { goTo(current + direction); };
     });
   });
