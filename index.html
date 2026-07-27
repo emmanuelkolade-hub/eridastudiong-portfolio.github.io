@@ -1196,26 +1196,36 @@ body.lightbox-open .flyer-grid .img-loading::after {
 
 /* ===== TIPS TICKER ===== */
 .tips-ticker {
+  position: absolute;
+  top: 50%;
+  left: 0;
   width: 100%;
-  height: 128px;
+  transform: translateY(-50%);
+  height: auto;
+  min-height: 128px;
   background: rgba(8,196,209,0.06);
   border-top: 1px solid rgba(8,196,209,0.2);
   border-bottom: 1px solid rgba(8,196,209,0.2);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: var(--sp-4);
   overflow: hidden;
-  margin: var(--sp-8) 0;
-}
+  /* margin removed — .tips-slot now owns the fixed spacing */
+	}
+
+	.tips-slot {
+  position: relative;
+  height: 320px; /* margin-top 96 + box 128 + margin-bottom 96 — the original total space */
+	}
 
 .tips-inner {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--sp-3);
   width: 100%;
-  max-width: 720px;
+  max-width: 72)0px;
 }
 
 .tips-icon {
@@ -1228,18 +1238,19 @@ body.lightbox-open .flyer-grid .img-loading::after {
   font-size: 0.82rem;
   color: var(--text-2);
   line-height: 1.6;
-  text-align: center;
-  animation: tipsFade 0.6s ease;
+  text-align: left;
+  animation: tipsFade 0.8s ease;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 @keyframes tipsFade {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
 }
+	
 
 /* ===== FOOTER ===== */
 footer {
@@ -1728,11 +1739,13 @@ We craft bold, high-impact designs that cut through noises and get you seen.
 </section>
 
 <!-- TIPS TICKER -->
-<div class="tips-ticker" id="tips">
-  <div class="tips-inner">
+<div class="tips-slot" id="tips">
+  <div class="tips-ticker">
+    <div class="tips-inner">
     <span class="tips-icon"><i class="ph ph-lightbulb"></i></span>
     <p class="tips-text"></p>
   </div>
+</div>
 </div>
 
 
@@ -2799,22 +2812,113 @@ const tips = [
   "Dark theme is recommended for better view.",
   "Click on any flyer to view it in fullscreen.",
   "Images doesn't load? Probably due to poor network quality. Reload site or wait for images to load.",
+	 "Click on far left and right ends of the tips to go to the previous and next tip respectively.",
+	 "Touch and hold on the tips to pause.",
   "Website's theme will not work effectively if 'dark theme' or 'night mode' is forced on all sites in your browser."
 ];
 
 const tipsEl = document.querySelector('.tips-text');
+const tickerEl = document.querySelector('.tips-ticker');
+
 if (tipsEl) {
   let index = 0;
+  let timeoutId = null;
+  let remaining = 0;
+  let tipStartTime = 0;
+  let paused = false;
+  let holdTimer = null;
+  let pressStartX = 0;
 
-  tipsEl.textContent = tips[index];
+  const TAP_THRESHOLD = 250; // ms — press shorter than this = tap
 
-  setInterval(() => {
-    index = (index + 1) % tips.length;
+  function scheduleNext(delay) {
+    remaining = delay;
+    tipStartTime = Date.now();
+    timeoutId = setTimeout(showTip, delay);
+  }
+
+  function renderTip() {
     tipsEl.style.animation = 'none';
     tipsEl.offsetHeight;
     tipsEl.textContent = tips[index];
     tipsEl.style.animation = 'tipsFade 1s ease';
-  }, 3000);
+  }
+
+  function readTimeFor(i) {
+    return Math.min(Math.max(tips[i].length * 50, 2500), 7000);
+  }
+
+  function showTip() {
+    renderTip();
+    const readTime = readTimeFor(index);
+    index = (index + 1) % tips.length;
+    scheduleNext(readTime);
+  }
+
+  function goToTip(newIndex) {
+    clearTimeout(timeoutId);
+    paused = false; // a real nav action always cancels any pause state
+    index = (newIndex + tips.length) % tips.length;
+    renderTip();
+    const readTime = readTimeFor(index); // fresh full time for the newly shown tip
+    index = (index + 1) % tips.length;
+    scheduleNext(readTime);
+  }
+
+  function pauseTips() {
+    if (paused) return;
+    paused = true;
+    clearTimeout(timeoutId);
+    remaining -= (Date.now() - tipStartTime);
+    if (remaining < 300) remaining = 300;
+  }
+
+  function resumeTips() {
+    if (!paused) return;
+    paused = false;
+    scheduleNext(remaining);
+  }
+
+  if (tickerEl) {
+    tickerEl.addEventListener('pointerdown', (e) => {
+      pressStartX = e.clientX;
+      clearTimeout(holdTimer);
+      holdTimer = setTimeout(pauseTips, TAP_THRESHOLD); // only pauses if press lasts this long
+    });
+
+    tickerEl.addEventListener('pointerup', (e) => {
+      const wasHeld = paused; // true only if holdTimer had already fired
+      clearTimeout(holdTimer);
+
+      const rect = tickerEl.getBoundingClientRect();
+      const relativeX = (e.clientX - rect.left) / rect.width;
+
+      if (!wasHeld) {
+        // genuine tap — pause/remaining were never touched
+        if (relativeX <= 0.2) {
+          goToTip(index - 2);
+          return;
+        } else if (relativeX >= 0.8) {
+          goToTip(index);
+          return;
+        }
+        return; // tap in middle zone — do nothing
+      }
+
+      resumeTips();
+    });
+
+    tickerEl.addEventListener('pointerleave', () => {
+      clearTimeout(holdTimer);
+      resumeTips();
+    });
+    tickerEl.addEventListener('pointercancel', () => {
+      clearTimeout(holdTimer);
+      resumeTips();
+    });
+  }
+
+  showTip();
 }
 
 })();
