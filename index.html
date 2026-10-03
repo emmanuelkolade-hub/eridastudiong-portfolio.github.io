@@ -4,26 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark light">
-<title>ERIDA STUDIO NG — Graphic Design Studio</title>
+<title>Emmanuel K.— Graphic Designer</title>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600&display=swap" rel="stylesheet" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">	
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&display=swap" rel="stylesheet" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://unpkg.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Syne:wght@300;400;500;600&family=Sacramento:wght@400;500;700&display=swap" rel="stylesheet" fetchpriority="high">
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer onerror="(window.__failedResources=window.__failedResources||[]).push(this)"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" onerror="(window.__failedResources=window.__failedResources||[]).push(this)">
 <style>
 /* ===== CSS VARIABLES ===== */
 :root {
-  --accent-1: #08C4D1;
-  --accent-2: #29539E;
   --gold: #FFB347;
-  --gradient: linear-gradient(135deg, #08C4D1, #29539E);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --dur: 0.6s;
 
@@ -46,21 +43,25 @@
    ===================================================================== */
 :root {
   /* ---- DESKTOP (769px and wider) ---- */
-  --hero-img-desktop-dark:      url('hero.jpg');
+  --hero-img-desktop-dark:      url('me.jpg');
   --hero-img-desktop-light:     url('hero.jpg');
   --hero-overlay-desktop-dark:  linear-gradient(to bottom, rgba(10,10,10,0.0) 0%, rgba(10,10,10,0.85) 50%, rgba(10,10,10,1.0) 100%);
-  --hero-overlay-desktop-light: linear-gradient(to bottom, rgba(255,255,255,0.25) 10%, rgba(255,255,255,1.0) 100%);
+  --hero-overlay-desktop-light:  linear-gradient(to bottom left, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,1.0) 60%, rgba(255,255,255,1.0) 90%);
 
   /* ---- MOBILE (768px and narrower) ---- */
-  --hero-img-mobile-dark:       url('minimalist.png');
-  --hero-img-mobile-light:      url('hero.jpg');
+  --hero-img-mobile-dark:       url('me.jpg');
+  --hero-img-mobile-light:      url('pexelsmedia3.jpeg');
   --hero-overlay-mobile-dark:   linear-gradient(to bottom, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.55) 30%, rgba(10,10,10,0.92) 55%, rgba(10,10,10,1.0) 100%);
-  --hero-overlay-mobile-light:  linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.95) 95%, rgba(255,255,255,1.0) 100%);
+  --hero-overlay-mobile-light:  linear-gradient(to bottom, rgba(255,255,255,0.1) 10%,  rgba(255,255,255,1.0) 58%, rgba(255,255,255,1.0) 100%);
 }
 
 /* DARK THEME (default) */
 :root, [data-theme="dark"] {
 		color-scheme: dark light;
+  --accent-1: #1AFFD0;
+  --accent-2: #FFFFFF;
+  --accent-1-rgb: 26,255,208;
+  --gradient: linear-gradient(150deg, var(--accent-2), var(--accent-1));
   --bg: #080A0C;
   --bg-2: #0F1215;
   --bg-3: #161A1F;
@@ -70,7 +71,7 @@
   --text: #F0F2F5;
   --text-2: #9AA3AE;
   --text-3: #5A6370;
-  --highlight: #08C4D1;
+  --highlight: var(--accent-1);
   --glass-bg: rgba(8,10,12,0.72);
   --glass-border: rgba(255,255,255,0.08);
   --card-bg: #0F1215;
@@ -91,6 +92,10 @@
 /* LIGHT THEME */
 [data-theme="light"] {
 		color-scheme: light dark;
+  --accent-2: #0A0A0A;
+  --accent-1: #058A94;
+  --accent-1-rgb: 0,125,100;
+  --gradient: linear-gradient(135deg, var(--accent-2), var(--accent-1));
   --bg: #F4F5F7;
   --bg-2: #EDEEF1;
   --bg-3: #E5E7EB;
@@ -100,7 +105,7 @@
   --text: #0D0F12;
   --text-2: #4A5260;
   --text-3: #8A939E;
-  --highlight: #0997A1;
+  --highlight: var(--accent-1);
   --glass-bg: rgba(244,245,247,0.78);
   --glass-border: rgba(0,0,0,0.08);
   --card-bg: #FFFFFF;
@@ -121,10 +126,13 @@
 /* SYSTEM PREFERENCE */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
+    color-scheme: light dark;
+    --accent-2: #0A0A0A; --accent-1: #058A94; --accent-1-rgb: 0,125,100;
+    --gradient: linear-gradient(135deg, var(--accent-2), var(--accent-1));
     --bg: #F4F5F7; --bg-2: #EDEEF1; --bg-3: #E5E7EB; --bg-4: #DDDFE3;
     --border: rgba(0,0,0,0.07); --border-strong: rgba(0,0,0,0.12);
     --text: #0D0F12; --text-2: #4A5260; --text-3: #8A939E;
-    --highlight: #0997A1;
+    --highlight: var(--accent-1);
     --glass-bg: rgba(244,245,247,0.78); --glass-border: rgba(0,0,0,0.08);
     --card-bg: #FFFFFF; --card-hover: #F8F9FA;
     --input-bg: rgba(0,0,0,0.04); --overlay: rgba(0,0,0,0.75);
@@ -140,7 +148,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Sora', sans-serif;
+ font-feature-settings: "ss01" 1;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -158,11 +167,11 @@ ul { list-style: none; }
 ::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 2px; }
 
 /* ===== TYPOGRAPHY ===== */
-.t-hero { font-size: clamp(2.8rem, 7vw, 3rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; }
-.t-display { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; }
-.t-hero span {
-  font-family: 'Bricolage Grotesque', sans-serif;
-	}	
+.t-hero { font-family: 'Sora', sans-serif;
+	font-size: clamp(2.5rem, 6.5vw, 3rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; 
+ font-feature-settings: "ss01" 1; }
+.t-hero span { font-family: 'Sacramento', sans-serif; font-weight: 900; font-size: clamp(2.8rem, 1vw, 1rem); }
+.t-display { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; }
 .t-title { font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 600; letter-spacing: -0.02em; }
 .t-body { font-size: 0.95rem; font-weight: 300; color: var(--text-2); line-height: 1.75; }
 .t-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
@@ -196,8 +205,8 @@ section { padding: var(--sp-8) 0; }
 .navbar .container {
   height: 100%; display: flex; align-items: center; justify-content: space-between;
 }
-.nav-logo { height: 36px; display: flex; align-items: center; }
-.nav-logo img { height: 36px; width: auto; }
+.nav-logo { height: 13px; display: flex; align-items: center; }
+.nav-logo img { height: 10px; width: auto; }
 /* Logo visibility — explicit rules, no CSS var() in display (unreliable cross-browser) */
 /* Dark mode default: show light logo, hide dark logo */
 .logo-light { display: block; }
@@ -213,19 +222,19 @@ section { padding: var(--sp-8) 0; }
 }
 
 .hamburger {
-  width: 40px; height: 40px;
+  width: 20px; height: 20px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 6px; cursor: pointer; z-index: 1001; position: relative;
+  gap: 5px; cursor: pointer; z-index: 1001; position: relative;
 }
 .hamburger span {
-  display: block; width: 19px; height: 1px;
+  display: block; width: 15px; height: 1px;
   background: var(--text);
   transition: all 0.6s var(--ease);
   transform-origin: center;
 }
-.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 .nav-links {
   display: flex;
@@ -364,8 +373,8 @@ section { padding: var(--sp-8) 0; }
 
 /* ===== HERO ===== */
 .hero {
-  min-height: calc(var(--vh, 1vh) * 85);
-  min-height: 85svh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  min-height: 100svh;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -376,7 +385,44 @@ section { padding: var(--sp-8) 0; }
   color: #ffffff;
 }
 
+ .hero-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: var(--sp-4);
+  width: fit-content;
+ }
+
+ [data-theme="light"] .hero-role {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .hero-role {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+.hero-role .role-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--highlight);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 [data-theme="light"] .hero { color: #0a0a0a; }
+
 
 .hero .container {
   position: relative;
@@ -401,11 +447,17 @@ section { padding: var(--sp-8) 0; }
 
 [data-theme="dark"] .hero-bg {
   background-image: var(--hero-img-desktop-dark);
-  background-position: center top;
+  background-position: center bottom;
 }
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) .hero-bg { background-image: var(--hero-img-desktop-light); }
+  :root:not([data-theme]) .hero-bg { background-position: center center; }
 }
+ @media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .hero-bg { background-image: var(--hero-img-desktop-dark); }
+  :root:not([data-theme]) .hero-bg { background-position: center bottom; }
+  :root:not([data-theme]) .btn-primary { color: #0a0a0a; }
+ }
 
 .hero-overlay {
   position: absolute; inset: 0; z-index: 0;
@@ -418,18 +470,19 @@ section { padding: var(--sp-8) 0; }
 
 .hero-headline {
   margin-bottom: 35px;
-  max-width: 800px;
+  max-width: 500px;
 }
-.hero-headline .t-hero { display: inline; }
+.hero-headline .t-hero { 
+ display: inline; 
+    font-size: clamp(2.5rem, 4.5vw, 20rem);
+}
 .hero-headline .t-hero span {
-  background: linear-gradient(135deg, #08C4D1, #3498DB);
+ display: block;
+    font-size: clamp(2.5rem, 5.5vw, 20rem);
+ font-weight: 300;
+  background: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-[data-theme="light"] .hero-headline .t-hero span {
-  background: linear-gradient(135deg, #058A94, #1D3F7A);
-  -webkit-background-clip: text;
   background-clip: text;
 }
 @media (prefers-color-scheme: light) {
@@ -437,18 +490,13 @@ section { padding: var(--sp-8) 0; }
   :root:not([data-theme]) .hero-overlay {
     background: var(--hero-overlay-desktop-light);
   }
-  :root:not([data-theme]) .hero-headline .t-hero span {
-    background: linear-gradient(135deg, #058A94, #1D3F7A);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
   :root:not([data-theme]) .btn-secondary { border-color: rgba(10,10,10,0.4); }
 }
 
 .hero-sub {
-  max-width: 600px;
+  max-width: 400px;
   margin-bottom: 60px;
-  font-size: 1.15rem;
+  font-size: 16px;
   font-weight: 300;
   color: var(--text-2);
   line-height: 1.35;
@@ -463,15 +511,19 @@ section { padding: var(--sp-8) 0; }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: var(--sp-2);
-  padding: 12px 28px;
+  padding: 13.5px 28px;
   background: var(--gradient);
   color: #fff; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em;
   border-radius: 50px;
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), opacity 0.4s var(--ease);
   text-transform: uppercase;
-  box-shadow: 0 8px 32px rgba(8,196,209,0.25);
+  box-shadow: 0 8px 32px rgba(var(--accent-1-rgb),0.25);
 }
-.btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 48px rgba(8,196,209,0.35); }
+.btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 48px rgba(var(--accent-1-rgb),0.35); }
+
+ [data-theme="dark"] .btn-primary {
+  color: #0a0a0a;
+ }
 
 .btn-secondary {
   display: inline-flex; align-items: center; gap: var(--sp-2);
@@ -482,16 +534,17 @@ section { padding: var(--sp-8) 0; }
   transition: all 0.4s var(--ease);
   text-transform: uppercase;
 }
-.btn-secondary:hover { border-color: var(--highlight); color: var(--highlight); background: rgba(8,196,209,0.05); transform: translateY(-2px); }
+.btn-secondary:hover { border-color: var(--highlight); color: var(--highlight); background: rgba(var(--accent-1-rgb),0.05); transform: translateY(-2px); }
 
 [data-theme="light"] .btn-secondary {
   border-color: rgba(10,10,10,0.4);
 }
+ 
 @media (max-width: 768px) {
   .hero {
-    min-height: calc(var(--vh, 1vh) * 100);
-    min-height: 100svh;
-    padding-bottom: 56px;
+    min-height: calc(var(--vh, 1vh) * 90);
+    min-height: 90svh;
+    padding-bottom: 100px;
   }
   .hero .container {
     padding: 0 var(--sp-4);
@@ -518,14 +571,20 @@ section { padding: var(--sp-8) 0; }
     background-image: var(--hero-img-mobile-dark);
   }
   .hero-headline {
-    max-width: 100%;
+    max-width: 500px;
     margin-bottom: 12px;
   }
   .hero-headline .t-hero {
-    font-size: clamp(1.5rem, 6.5vw, 1.9rem);
+    font-size: clamp(2.5rem, 6.5vw, 20rem);
     line-height: 1.15;
   }
+   
+   .hero-headline .t-hero span {
+  display: block; font-weight: 300;
+   }
+  
   .hero-sub {
+   font-weight: 300;
     max-width: 100%;
     font-size: 0.8rem;
     line-height: 1.5;
@@ -537,7 +596,13 @@ section { padding: var(--sp-8) 0; }
     align-items: flex-start;
     gap: 10px;
   }
-  .btn-primary,
+  .btn-primary {
+    width: auto;
+    min-width: unset;
+    padding: 9.5px 14px;
+    font-size: 0.55rem;
+  }
+
   .btn-secondary {
     width: auto;
     min-width: unset;
@@ -545,25 +610,27 @@ section { padding: var(--sp-8) 0; }
     font-size: 0.55rem;
   }
 }
-	
 
 @media (min-width: 769px) {
   .hero-bg {
     background-position: center top;
     background-size: cover;
   }
-}
-
+	}
 /* System theme (no explicit light/dark chosen) on mobile — same
    mobile-specific image/overlay variables as above, just triggered by
    OS preference instead of the in-page toggle. */
 @media (max-width: 768px) and (prefers-color-scheme: light) {
   :root:not([data-theme]) .hero-overlay { background: var(--hero-overlay-mobile-light); }
   :root:not([data-theme]) .hero-bg { background-image: var(--hero-img-mobile-light); }
+  :root:not([data-theme]) .hero-bg { background-position: center top; }
 }
 @media (max-width: 768px) and (prefers-color-scheme: dark) {
   :root:not([data-theme]) .hero-overlay { background: var(--hero-overlay-mobile-dark); }
   :root:not([data-theme]) .hero-bg { background-image: var(--hero-img-mobile-dark); }
+  :root:not([data-theme]) .hero-bg { background-position: center top; }
+  :root:not([data-theme]) .btn-primary { color: #0a0a0a; }
+
 }
 
 
@@ -580,8 +647,7 @@ section { padding: var(--sp-8) 0; }
 .about { background: var(--bg-2); }
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: var(--sp-8);
+grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);  gap: var(--sp-8);
   align-items: center;
 }
 .about-image-wrap {
@@ -594,11 +660,17 @@ section { padding: var(--sp-8) 0; }
   aspect-ratio: 4/5;
 }
 .about-image-frame img {
+ position: absolute; 
+ inset: 0;
   width: 100%; height: 100%;
   object-fit: cover; object-position: top;
   transition: transform 0.8s var(--ease);
 }
 .about-image-frame:hover img { transform: scale(1.03); }
+ .about-image-frame.img-loading::after {
+  inset: 0;
+  filter: none;
+ }
 .about-image-frame::before {
   content: '';
   position: absolute; inset: 0; z-index: 1;
@@ -613,54 +685,20 @@ section { padding: var(--sp-8) 0; }
 
 .about-content { padding-left: var(--sp-4); }
 .about-name {
-font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 600;
   letter-spacing: -0.025em;
   margin: var(--sp-4) 0 var(--sp-3);
 }
 .about-name span {
+ font-family: 'sora', sans-serif;
   background: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.about-role {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 100px;
-  font-size: 0.88rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.55);
-  margin-bottom: var(--sp-4);
-  width: fit-content;
-}
-.about-desc { margin-bottom: var(--sp-6); max-width: 520px; }
-[data-theme="light"] .about-role {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.1);
-  color: rgba(0, 0, 0, 0.5);
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .about-role {
-    background: rgba(0, 0, 0, 0.04);
-    border-color: rgba(0, 0, 0, 0.1);
-    color: rgba(0, 0, 0, 0.5);
-  }
-}
-.about-role .role-dot {
-  width: 8px;
-  height: 8px;
-  background: #08C4D1;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
 
+.about-desc { margin-bottom: var(--sp-6); max-width: 800px; }
 .about-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); margin-top: var(--sp-6); }
 .metric {
   padding: var(--sp-4);
@@ -748,113 +786,73 @@ font-family: 'Bricolage Grotesque', sans-serif;
 .flyer-panel { display: none; }
 .flyer-panel.active { display: block; }
 
-/* Brand Identity */
-.brand-cases { display: flex; flex-direction: column; gap: var(--sp-6); }
-.brand-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
-}
-.brand-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
-.brand-card-header {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 0;
-  min-height: 320px;
-}
-.brand-card-visual {
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  min-height: 320px;
-}
-.brand-card-header img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.brand-card-info {
-  padding: var(--sp-6);
-  display: flex; flex-direction: column; justify-content: space-between;
-}
-.brand-badge {
-  display: inline-flex;
-  padding: var(--sp-1) var(--sp-3);
-  background: rgba(8,196,209,0.1);
-  border: 1px solid rgba(8,196,209,0.2);
-  border-radius: 100px;
-  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--highlight);
-  margin-bottom: var(--sp-4);
-  width: fit-content;
-}
-.brand-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: var(--sp-3); letter-spacing: -0.02em; }
-.brand-case-items { display: flex; flex-direction: column; gap: var(--sp-3); margin-bottom: var(--sp-5); }
-.brand-case-item { }
-.brand-case-item .t-label { margin-bottom: var(--sp-1); }
-.brand-case-item p { font-size: 0.88rem; color: var(--text-2); font-weight: 300; }
+/* ===== FLYER TABS OFF + PAGED GALLERY =====
+   Tabs are switched off (not deleted) while #panel-flyer has the class
+   "flyer-tabs-off". To bring the tabs back, remove that one class from
+   the #panel-flyer div in the HTML. */
+.flyer-all { display: none; }
+.flyer-tabs-off .flyer-tabs,
+.flyer-tabs-off .flyer-panel { display: none !important; }
+.flyer-tabs-off .flyer-all { display: block; }
+.flyer-item[hidden] { display: none !important; }
 
-.btn-expand {
-  display: inline-flex; align-items: center; gap: var(--sp-2);
-  padding: 12px 24px;
-  border: 1px solid var(--border-strong);
-  border-radius: 4px;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+.flyer-pager {
+  display: flex; align-items: center; justify-content: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-6);
+}
+.flyer-pager[hidden] { display: none; }
+ .flyer-pager-top { margin-top: 0; margin-bottom: var(--sp-5); }
+.flyer-pager-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-width: 104px;
+  padding: var(--sp-2) var(--sp-3);
+  font-family: inherit; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--text-2);
-  cursor: pointer; background: none; font-family: inherit;
-  transition: all 0.3s var(--ease);
-  width: fit-content;
+  background: none; border: none; cursor: pointer;
+  transition: color 0.3s var(--ease);
 }
-.btn-expand:hover { border-color: var(--highlight); color: var(--highlight); background: rgba(8,196,209,0.05); }
-.btn-expand svg { transition: transform 0.3s var(--ease); }
-.btn-expand:hover svg { transform: translateX(4px); }
-
-/* Brand project visuals */
-.brand-visual-1 { background: linear-gradient(135deg, #0A1628 0%, #162A50 50%, #1A3060 100%); }
-.brand-visual-2 { background: linear-gradient(135deg, #1A0A00 0%, #2D1500 50%, #3A1C00 100%); }
-.brand-visual-3 { background: linear-gradient(135deg, #0A0A1A 0%, #0D0D2A 50%, #151530 100%); } 
-
-/* Brand expanded */
-.brand-expanded {
-  display: none;
-  border-top: 1px solid var(--border);
-  padding: var(--sp-6);
-  background: var(--bg-3);
+.flyer-pager-btn:hover { color: var(--text); }
+.flyer-pager-btn[data-dir="prev"] { justify-content: flex-start; }
+.flyer-pager-btn[data-dir="next"] { justify-content: flex-end; }
+/* Hidden (not removed) so the dots never shift sideways */
+.flyer-pager-btn[hidden] { display: inline-flex; visibility: hidden; pointer-events: none; }
+.flyer-dots { display: flex; align-items: center; gap: 10px; }
+.flyer-dot {
+  width: 6px; height: 6px; padding: 0;
+  border-radius: 50%; border: none; cursor: pointer;
+  background: var(--text-3); opacity: 0.5;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), background 0.3s var(--ease);
 }
-.brand-expanded.open { display: block; }
-.brand-slides {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3);
-  margin-top: var(--sp-4);
-}
-.brand-slide {
-  aspect-ratio: 16/10; border-radius: 4px; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--border);
-  font-size: 0.75rem; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase;
-}
+.flyer-dot:hover { opacity: 0.85; }
+.flyer-dot.active { background: var(--accent-1); opacity: 1; transform: scale(1.35); }
 
 
 /* Flyer Grid */
 .flyer-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-1);
+  column-count: 2;
+  column-gap: var(--sp-1);
+ max-width: 860px;
+margin: 0 auto;
 }
-.flyer-item {
-  aspect-ratio: 3/4;
-  border-radius: 4px; overflow: hidden;
-  cursor: pointer; position: relative;
+ .flyer-item {
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
   border: 1px solid var(--border);
+  background: var(--bg-2); /* or whatever neutral tone fits your palette */
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  break-inside: avoid;
+margin-bottom: var(--sp-1);
 }
 .flyer-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  display: block;
 }
-.flyer-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow); }
+ .flyer-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: var(--shadow); }
 .flyer-item .flyer-overlay {
   position: absolute; inset: 0;
   background: rgba(0,0,0,0.5);
@@ -906,8 +904,13 @@ font-family: 'Bricolage Grotesque', sans-serif;
 [data-theme="light"] .img-loading::after {
   background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 60%, transparent 100%);
 }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .img-loading::after {
+    background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 60%, transparent 100%);
+  }
+}
 @keyframes img-shimmer {
-  100% { transform: translateX(70%); }
+  100% { transform: translateX(100%); }
 }
 /* The flyer grid sits completely hidden behind the lightbox's opaque
    overlay once it's open — but a paused/hidden CSS animation still
@@ -921,19 +924,10 @@ body.lightbox-open .flyer-grid .img-loading::after {
   animation-play-state: paused;
   display: none;
 }
-/* The coverflow slides ARE visible and already mid 3D-transform
-   (rotateY/scale/translateX) while cycling — a full 24px blur on top
-   of that is the expensive combination. Keep the same soft look with
-   a lighter, cheaper blur here specifically. */
-.coverflow-slide .img-loading::after {
+/* Same lighter, cheaper blur as before, just scoped to the bounded
+   .ig-img-wrap box now instead of the full-screen slide. */
+.ig-img-wrap.img-loading::after {
   filter: blur(14px);
-}
-/* Only the centered slide needs the actively-moving shimmer — side
-   slides are already faded/scaled/rotated and don't need their own
-   independent animation running too. Testing showed this alone nearly
-   doubled the frame rate while the overlay is open. */
-.coverflow-slide:not(.is-center) .img-loading::after {
-  animation-play-state: paused;
 }
 
 
@@ -974,61 +968,102 @@ body.lightbox-open .flyer-grid .img-loading::after {
   color: var(--lightbox-close-hover-color);
   background: var(--lightbox-close-hover-bg);
 }
-.coverflow-arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 52px; height: 52px;
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.85);
-  font-size: 1.4rem;
-  cursor: pointer;
-  z-index: 25;
-  transition: all 0.3s var(--ease);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-.coverflow-arrow:hover {
-  border-color: rgba(255,255,255,0.9);
-  color: #fff;
-  background: rgba(255,255,255,0.14);
-  transform: translateY(-50%) scale(1.08);
-}
-.coverflow-prev { left: 20px; }
-.coverflow-next { right: 20px; }
-@media (max-width: 768px) {
-  .coverflow-arrow { width: 42px; height: 42px; font-size: 1.1rem; }
-  .coverflow-prev { left: 8px; }
-  .coverflow-next { right: 8px; }
-}
-
-.coverflow-stage {
-  position: relative;
+/* ===== INSTAGRAM-STYLE VERTICAL CAROUSEL =====
+   Replaces the old coverflow. Each flyer is centered, full-screen,
+   one visible at a time — like the original — but instead of native
+   scrolling (which requires dragging the full screen height to reach
+   the next one), a short vertical flick or wheel-tick pages the whole
+   track over in one animated step. That's what shortens the distance
+   needed to move between images while keeping the "one at a time,
+   centered" look. */
+.ig-carousel {
   width: 100%; height: 100%;
-  perspective: 1600px;
-}
-.coverflow-slide {
-  position: absolute; top: 50%; left: 50%;
-  width: min(52vw, 460px);
-  aspect-ratio: 3 / 4;
-  border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--lightbox-frame-shadow);
-  cursor: pointer;
-  transition: transform 0.55s var(--ease), opacity 0.55s var(--ease);
-  will-change: transform, opacity;
+  position: relative;
+  touch-action: none; /* paging is handled manually in JS below */
 }
-.coverflow-slide.is-center { cursor: default; }
-.coverflow-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-@media (max-width: 768px) {
-  .coverflow-slide { width: min(72vw, 340px); }
+.ig-track {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  will-change: transform;
+ transition: transform 0.9s var(--ease);
 }
-.coverflow-counter {
-  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-  color: rgba(255,255,255,0.65);
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+.ig-slide {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+/* The shimmer/loading state (see .img-loading above) is applied to an
+   image's parentElement. For a full-bleed .ig-slide that parent used
+   to be the slide itself — full screen — so with no internet the
+   shimmer filled the entire overlay instead of just where the image
+   will be. .ig-img-wrap gives the image a properly-sized box (same
+   3:4 proportions as the flyer grid) so the shimmer, the loading
+   background, and the "no picture yet" state are all localized to
+   just the image, not the whole viewport. */
+.ig-img-wrap {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.ig-img-wrap img {
+  display: block;
+  width: auto; height: auto;
+  max-width: 90vw; max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+box-shadow: var(--lightbox-frame-shadow);
+}
+.ig-img-wrap.img-loading { background: none; }
+.ig-img-wrap.img-loading::after { display: none; }
+ 
+/* Bottom hint: animated "Swipe >>" (not clickable) that turns into a
+   plain, non-animated "Back to start" button on the last flyer. */
+.ig-hint {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
   z-index: 20;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.ig-hint[hidden], .ig-hint [hidden] { display: none !important; }
+.ig-swipe { display: inline-flex; align-items: center; gap: 2px; pointer-events: none; user-select: none; }
+.ig-swipe-word { margin-right: 6px; animation: ig-word 1.8s ease-in-out infinite; }
+.lightbox .ig-hint svg {
+  width: 14px; height: 14px; flex: none;
+  max-width: none; max-height: none;
+  border-radius: 0; box-shadow: none; transform: none;
+  fill: none; stroke: currentColor; stroke-width: 2.2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.lightbox .ig-swipe .ig-chev { animation: ig-chev 1.4s ease-in-out infinite; }
+.lightbox .ig-swipe .ig-chev + .ig-chev { animation-delay: 0.2s; }
+@keyframes ig-word { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+@keyframes ig-chev {
+  0%, 100% { opacity: 0.2; transform: translateX(-4px); }
+  50%      { opacity: 1;   transform: translateX(4px); }
+}
+.ig-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px;
+  font: inherit; letter-spacing: inherit; text-transform: inherit;
+  color: #fff; background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.35); border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.ig-back:hover { background: rgba(255,255,255,0.2); border-color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .ig-swipe-word, .lightbox .ig-swipe .ig-chev { animation: none; }
 }
 
 /* ===== SERVICES ===== */
@@ -1054,8 +1089,8 @@ body.lightbox-open .flyer-grid .img-loading::after {
 .service-card:hover::before { transform: scaleX(1); }
 .service-icon {
   width: 48px; height: 48px;
-  background: rgba(8,196,209,0.1);
-  border: 1px solid rgba(8,196,209,0.2);
+  background: rgba(var(--accent-1-rgb),0.1);
+  border: 1px solid rgba(var(--accent-1-rgb),0.2);
   border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: var(--sp-4);
@@ -1074,7 +1109,7 @@ body.lightbox-open .flyer-grid .img-loading::after {
 .contact { background: var(--bg); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--sp-8); align-items: start; }
 .contact-info h2 { margin-bottom: var(--sp-4); }
-.contact-desc { margin-bottom: var(--sp-6); }
+.contact-desc { margin-bottom: var(--sp-6); max-width: 700px; }
 .contact-links { display: flex; flex-direction: column; gap: var(--sp-3); }
 .contact-link {
   display: flex; align-items: center; gap: var(--sp-3);
@@ -1095,7 +1130,7 @@ body.lightbox-open .flyer-grid .img-loading::after {
   flex-shrink: 0; font-size: 1rem;
   transition: background 0.3s var(--ease);
 }
-.contact-link:hover .contact-link-icon { background: rgba(8,196,209,0.1); }
+.contact-link:hover .contact-link-icon { background: rgba(var(--accent-1-rgb),0.1); }
 
 /* Icon sizing */
 .contact-link-icon i,
@@ -1129,7 +1164,7 @@ body.lightbox-open .flyer-grid .img-loading::after {
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
   border-color: var(--highlight);
-  background: rgba(8,196,209,0.04);
+  background: rgba(var(--accent-1-rgb),0.04);
 }
 .form-group textarea { resize: vertical; min-height: 120px; }
 .form-group select option { background: var(--bg-2); color: var(--text); }
@@ -1141,8 +1176,8 @@ body.lightbox-open .flyer-grid .img-loading::after {
 }
 
 .faq-list {
-  max-width: 720px;
-  margin: 0 auto;
+max-width: none;
+ margin: 0;
 }
 
 .faq-item {
@@ -1195,6 +1230,7 @@ body.lightbox-open .flyer-grid .img-loading::after {
   font-size: 0.9rem;
   color: var(--text-2);
   line-height: 1.75;
+ max-width: 720px;
 }
 
 /* ===== TIPS TICKER ===== */
@@ -1206,12 +1242,12 @@ body.lightbox-open .flyer-grid .img-loading::after {
   transform: translateY(-50%);
   height: auto;
   min-height: 128px;
-  background: rgba(8,196,209,0.06);
-  border-top: 1px solid rgba(8,196,209,0.2);
-  border-bottom: 1px solid rgba(8,196,209,0.2);
+  background: rgba(var(--accent-1-rgb),0.06);
+  border-top: 1px solid rgba(var(--accent-1-rgb),0.2);
+  border-bottom: 1px solid rgba(var(--accent-1-rgb),0.2);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: var(--sp-4);
   overflow: hidden;
   /* margin removed — .tips-slot now owns the fixed spacing */
@@ -1228,7 +1264,7 @@ body.lightbox-open .flyer-grid .img-loading::after {
   justify-content: flex-start;
   gap: var(--sp-3);
   width: 100%;
-  max-width: 72)0px;
+  max-width: 720px;
 }
 
 .tips-icon {
@@ -1245,6 +1281,7 @@ body.lightbox-open .flyer-grid .img-loading::after {
   animation: tipsFade 0.8s ease;
   display: -webkit-box;
   -webkit-line-clamp: 6;
+  line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1265,7 +1302,8 @@ footer {
   display: flex; align-items: center; justify-content: space-between;
   flex-wrap: wrap; gap: var(--sp-4);
 }
-.footer-logo { height: 28px; }
+.footer-logo { height: 10px; }
+.footer-logo img { height: 10px; width: auto; }
 .footer-copy { font-size: 0.78rem; color: var(--text-3); }
 .footer-links { display: flex; gap: var(--sp-5); }
 .footer-links a { font-size: 0.78rem; color: var(--text-3); transition: color 0.3s var(--ease); letter-spacing: 0.06em; }
@@ -1292,9 +1330,9 @@ footer {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .about-grid { grid-template-columns: 1fr 1.2fr; gap: var(--sp-6); }
+  .about-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+                gap: var(--sp-6); }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .brand-slides { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
   section { padding: var(--sp-7) 0; }
@@ -1302,355 +1340,23 @@ footer {
   .about-grid { grid-template-columns: 1fr; }
   .about-content { padding-left: 0; }
   .about-accent-bar { display: none; }
-  .brand-card-header { grid-template-columns: 1fr; }
-.brand-card-header img { height: 450px; width: 100%; }
-  .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .flyer-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .footer-inner { flex-direction: column; text-align: center; }
-  .brand-slides { grid-template-columns: 1fr; }
   .about-metrics { grid-template-columns: repeat(3,1fr); }
 
   /* Navbar: rebalance sizes so logo/icons aren't dwarfed by the hamburger/links */
-  .nav-logo, .nav-logo img { height: 40px; }
+  .nav-logo, .nav-logo img { height: 9px; }
   .nav-links a { font-size: 0.64rem; letter-spacing: 0.01em; }
   .nav-socials { gap: 14px; }
   .nav-socials a { font-size: 0.70rem; }
 }
 @media (max-width: 480px) {
-  .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .flyer-grid { grid-template-columns: repeat(2, 1fr); }
   .about-metrics { grid-template-columns: 1fr 1fr; }
   .hero-cta { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
-}
-
-.fs-overlay {
-  position: fixed;
-  inset: 0;
-  background: #f5f5f5;
-  z-index: 1000;
-  overflow-y: auto;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.fs-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-#fs-overlay-1 .fs-section-title,
-#fs-overlay-1 .fs-section-text,
-#fs-overlay-1 .fs-head-title,
-#fs-overlay-1 .fs-head-sub,
-#fs-overlay-1 .fs-mv-card p,
-#fs-overlay-1 .fs-font-sample-lg,
-#fs-overlay-1 .fs-font-sample-sm {
-  font-family: 'DM Sans', sans-serif;
-}
-
-.fs-close {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.08);
-  border: none;
-  color: #111;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1001;
-  transition: background 0.2s;
-}
-
-.fs-close:hover {
-  background: rgba(0,0,0,0.15);
-}
-
-.fs-slides {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Section Progress Indicator */
-.fs-progress {
-  position: fixed;
-  top: 50%;
-  left: 9px;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1002;
-}
-
-.fs-progress-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.2);
-  transition: background 0.3s, transform 0.3s;
-  cursor: pointer;
-}
-
-.fs-progress-dot.active {
-  background: #111;
-  transform: scale(1.4);
-}
-
-/* Head Image Section */
-.fs-section-head {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-}
-
-.fs-head-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.fs-head-overlay {
-  position: relative;
-  z-index: 2;
-  padding: 40px 28px;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-  width: 100%;
-}
-
-.fs-head-tag {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 8px;
-}
-
-.fs-head-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.fs-head-sub {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
-}
-
-/* Overview Section */
-.fs-section {
-  width: 100%;
-  min-height: 100vh;
-  padding: 80px 28px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-.fs-section-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.35);
-  margin-bottom: 32px;
-}
-
-.fs-section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 16px;
-  line-height: 1.2;
-}
-
-.fs-section-text {
-  font-size: 0.9rem;
-  color: rgba(0,0,0,0.6);
-  line-height: 1.8;
-  margin-bottom: 32px;
-}
-
-.fs-mv-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 8px;
-}
-
-.fs-mv-card {
-  background: rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 12px;
-  padding: 20px 16px;
-}
-
-.fs-mv-card h4 {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.4);
-  margin-bottom: 10px;
-}
-
-.fs-mv-card p {
-  font-size: 0.82rem;
-  color: rgba(0,0,0,0.6);
-  line-height: 1.6;
-}
-
-/* Logo Section */
-.fs-logo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.fs-logo-card {
-  background: rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 12px;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.fs-logo-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.fs-logo-card.wide {
-  grid-column: span 2;
-  aspect-ratio: 2/1;
-}
-
-/* Color Palette Section */
-.fs-palette {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.fs-color-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.fs-color-swatch {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.fs-color-info h4 {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 2px;
-}
-
-.fs-color-info span {
-  font-size: 0.75rem;
-  color: rgba(0,0,0,0.5);
-  font-family: monospace;
-}
-
-/* Typography Section */
-.fs-font-display {
-  margin-top: 24px;
-  padding: 28px;
-  background: rgba(0,0,0,0.04);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 16px;
-}
-
-.fs-font-name {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(0,0,0,0.35);
-  margin-bottom: 16px;
-}
-
-.fs-font-sample-lg {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: #111;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.fs-font-sample-sm {
-  font-size: 0.88rem;
-  color: rgba(0,0,0,0.55);
-  line-height: 1.7;
-}
-
-.fs-font-weights {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.fs-font-weight-tag {
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(0,0,0,0.12);
-  font-size: 0.75rem;
-  color: rgba(0,0,0,0.5);
-}
-
-/* Mockup Section */
-.fs-mockup-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.fs-mockup-card {
-  border-radius: 12px;
-  overflow: hidden;
-  aspect-ratio: 3/4;
-  background: rgba(0,0,0,0.05);
-}
-
-.fs-mockup-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.fs-mockup-card.tall {
-  grid-column: span 2;
-  aspect-ratio: 16/9;
 }
 
 </style>
@@ -1660,9 +1366,9 @@ footer {
 <!-- NAVBAR -->
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="container">
-    <a href="#" class="nav-logo" aria-label="Erida Studio NG Home">
-      <img src="LOGO_LIGHT_PLACEHOLDER" alt="Erida Studio NG" class="logo-light">
-      <img src="LOGO_DARK_PLACEHOLDER" alt="Erida Studio NG" class="logo-dark">
+    <a href="#home" class="nav-logo" aria-label="erida. Home">
+      <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1789627911/logodark_eim8z2.svg" alt="erida." class="logo-light">
+      <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1789627911/logolight_rlb1tf.svg" alt="erida." class="logo-dark">
     </a>
 
     <div class="nav-links">
@@ -1672,13 +1378,13 @@ footer {
     </div>
 
     <div class="nav-socials">
-      <a href="https://www.instagram.com/eridastudiong?" target="_blank" aria-label="Instagram">
+      <a href="https://www.instagram.com/simplyerida" target="_blank" aria-label="Instagram">
         <i class="ph ph-instagram-logo"></i>
       </a>
-      <a href="https://www.facebook.com/eridastudiong" target="_blank" aria-label="Facebook">
+      <a href="https://www.facebook.com/simplyerida" target="_blank" aria-label="Facebook">
         <i class="ph ph-facebook-logo"></i>
       </a>
-      <a href="https://wa.me/2349138037377" target="_blank" aria-label="WhatsApp">
+      <a href="https://wa.me/+2349130422402" target="_blank" aria-label="WhatsApp">
         <i class="ph ph-whatsapp-logo"></i>
       </a>
     </div>
@@ -1717,16 +1423,15 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="container">
-	  <div class="about-role fade-up">
+	  <div class="hero-role fade-up">
     <span class="role-dot"></span>
-    <h6>Graphic Design Studio, Nigeria</h6>
+    <h6>Graphic Designer, Nigeria</h6>
 	  </div>
     <div class="hero-headline">    
-<span class="t-hero fade-up fade-up-1">We don't just create designs— <span>we elevate brands.</span></span>
+<span class="t-hero fade-up fade-up-1">Made To<span><i> Stand Out</i></span></span>
     </div>
     <p class="hero-sub fade-up fade-up-3">
-We craft bold, high-impact designs that cut through noises and get you seen.
-</p>
+Print and digital design — flyers, posters, and more...</p>
     <div class="hero-cta fade-up fade-up-4">
       <a href="#work" class="btn-primary">
         View Work
@@ -1759,25 +1464,21 @@ We craft bold, high-impact designs that cut through noises and get you seen.
       <div class="about-image-wrap reveal">
         <div class="about-accent-bar"></div>
         <div class="about-image-frame">
-          <img src="PORTRAIT_PLACEHOLDER" alt="Emmanuel Kolade — flyer & print design specialist" loading="eager" fetchpriority="high"
+          <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753840/erida1_puiggj.jpg" loading="eager" fetchpriority="high"
   width="800"
   height="600">
         </div>
       </div>
       <div class="about-content">
-        <p class="t-label reveal">About the Designer</p>
+        <p class="t-label reveal">About Me</p>
         <h2 class="about-name reveal reveal-d1">Emmanuel <span>KOLADE</span></h2>
-        <div class="about-role reveal reveal-d1">
-  <span class="role-dot"></span>
-  <h6>Founder & Creative Director</h6>
-</div>
         <div class="about-desc reveal reveal-d2">
           <p class="t-body">
-            I'm a print & digital designer based in Nigeria, specialising in designs that grab attention and drive action. Through ERIDA STUDIO NG, I work with brands, event organisers, and businesses to create flyers, posters, and social media graphics that get seen and get results.
+            I'm a print & digital designer based in Nigeria, specialising in bold designs that grab attention and drive action. I work with brands, event organisers, and businesses to create promotional and advertising graphics that get seen and get results.
           </p>
           <br>
           <p class="t-body">
-            My approach blends strong visual hierarchy with meticulous craft — every layout, typeface, and colour is chosen with intention. Great design isn't just beautiful; it's precise, purposeful, and built to make your message impossible to ignore.
+          My core design principles include: bold type, strong focal point, controlled composition, purposeful imagery and well planned hierarchy— every layout, image, colour, and typeface is chosen with care and purpose. Great design isn't just beautiful; it's precise, purposeful, and built to make your message impossible to ignore.
           </p>
         </div>
         <div class="about-metrics reveal reveal-d3">
@@ -1807,52 +1508,45 @@ We craft bold, high-impact designs that cut through noises and get you seen.
       <h2 class="t-display">Designs created to last</h2>
       <div class="divider"></div>
     </div>
+  </div>
 
     <!-- PRINT & DIGITAL DESIGN -->
-    <div class="work-panel active" id="panel-flyer">
+    <div class="work-panel active flyer-tabs-off" id="panel-flyer">
 <div class="flyer-tabs" id="flyerTabs">
-  <button class="flyer-tab active" data-cat="business" type="button">Business</button>
-  <button class="flyer-tab" data-cat="events" type="button">Events</button>
+  <button class="flyer-tab active" data-cat="business" type="button">Corporate & Business</button>
+  <button class="flyer-tab" data-cat="events" type="button">Events & Birthdays</button>
   <button class="flyer-tab" data-cat="realestate" type="button">Real Estate</button>
-  <button class="flyer-tab" data-cat="food" type="button">Food</button>
-  <button class="flyer-tab" data-cat="health" type="button">Health</button>
-  <button class="flyer-tab" data-cat="retail" type="button">Retail</button>
-  <button class="flyer-tab" data-cat="education" type="button">Education</button>
-  <button class="flyer-tab" data-cat="church" type="button">Church</button>
+  <button class="flyer-tab" data-cat="foods" type="button">Foods & Restaurants</button>
+  <button class="flyer-tab" data-cat="beauty" type="button">Beauty & Skincare</button>
+  <button class="flyer-tab" data-cat="gadgets" type="button">Gadgets & Appliances</button>
+  <button class="flyer-tab" data-cat="education" type="button">Education & Training</button>
+  <button class="flyer-tab" data-cat="NGOs" type="button">NGOs & Non-profits</button>
 </div>
 
 <div class="flyer-panel active" id="flyer-panel-business">
   <div class="flyer-grid">
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Business flyer design 1" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1791064560/october_hvgxkq.jpg" alt="Business flyer design 1" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Business flyer design 2" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1791064556/harvest_v726uu.jpg" alt="Business flyer design 2" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" alt="Business flyer design 3" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753944/get_ready_ksoxhp.jpg" alt="Business flyer design 3" decoding="async" loading="lazy">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+   <div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753937/awareness_wj3gzc.jpg" alt="Business flyer design 4" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="Business flyer design 4" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753957/welcome_to_camp_fhhef7.jpg" alt="Business flyer design 5" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" alt="Business flyer design 5" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" alt="Business flyer design 6" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" alt="Business flyer design 7" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" alt="Business flyer design 8" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753945/children_xhrjjc.jpg" alt="Business flyer design 6" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
   </div>
@@ -1861,27 +1555,35 @@ We craft bold, high-impact designs that cut through noises and get you seen.
 <div class="flyer-panel" id="flyer-panel-events">
   <div class="flyer-grid">
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" alt="Events flyer design 1" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753940/birthday_girl_clkusy.jpg" alt="Events flyer design 1" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" alt="Events flyer design 2" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753940/birthday_boy_tm8ky0.jpg" alt="Events flyer design 2" decoding="async" loading="lazy">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+   <div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753945/hiring_eoa7gx.jpg" alt="Events flyer design 2" decoding="async" loading="lazy">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+   </div>
+   <div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1791064560/New_Month_zkieqi.jpg" alt="Events flyer design 2" decoding="async" loading="lazy">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+   </div>
+   <div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753943/enrollment_cy8yyz.jpg" alt="Events flyer design 3" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" alt="Events flyer design 3" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753954/predator_zri5gc.jpg" alt="Events flyer design 4" decoding="async" loading="lazy">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+<div class="flyer-item reveal" data-lightbox-type="flyer"> 
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753944/goktech_xiv67y.jpg" alt="Events flyer design 5" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">
-  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" alt="Events flyer design 4" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Events flyer design 5" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Events flyer design 6" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753940/call_dth9yz.jpg" alt="Events flyer design 6" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
   </div>
@@ -1890,136 +1592,84 @@ We craft bold, high-impact designs that cut through noises and get you seen.
 <div class="flyer-panel" id="flyer-panel-realestate">
   <div class="flyer-grid">
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" alt="Real Estate flyer design 1" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753949/master_aqvysz.jpg" alt="Real Estate flyer design 1" decoding="async" loading="lazy">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+</div>
+   <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753955/resumption_oel2nx.jpg" alt="Real Estate flyer design 1" decoding="async" loading="lazy">
+  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
+   </div>
+<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753957/velune_tlzwyn.jpg" alt="Real Estate flyer design 2" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="Real Estate flyer design 2" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" alt="Real Estate flyer design 3" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" alt="Real Estate flyer design 4" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753946/lumecare_z1lhj5.jpg" alt="Real Estate flyer design 3" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
   </div>
 </div>
 
-<div class="flyer-panel" id="flyer-panel-food">
+<div class="flyer-panel" id="flyer-panel-foods">
   <div class="flyer-grid">
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" alt="Food & Restaurant flyer design 1" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753950/nebula_gml6et.jpg" alt="Food & Restaurant flyer design 1" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" alt="Food & Restaurant flyer design 2" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753941/elevate_ksrbml.jpg" alt="Food & Restaurant flyer design 2" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" alt="Food & Restaurant flyer design 3" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753956/sunday_w44fl9.jpg" alt="Food & Restaurant flyer design 3" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" alt="Food & Restaurant flyer design 4" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753941/crunch_vgyfty.jpg" alt="Food & Restaurant flyer design 4" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" alt="Food & Restaurant flyer design 5" decoding="async">
+<div class="flyer-item reveal" data-lightbox-type="flyer">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753952/plumbing_services_ve2sqt.jpg" alt="Food & Restaurant flyer design 5" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
   </div>
 </div>
 
-<div class="flyer-panel" id="flyer-panel-health">
+<div class="flyer-panel" id="flyer-panel-beauty">
   <div class="flyer-grid">
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" alt="Health flyer design 1" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753938/burial_e7rful.jpg" alt="Health flyer design 1" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
 <div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Health flyer design 2" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Health flyer design 3" decoding="async">
+  <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1790753951/mirror_tver8i.jpg" alt="Health flyer design 2" decoding="async" loading="lazy">
   <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
 </div>
   </div>
 </div>
 
-<div class="flyer-panel" id="flyer-panel-retail">
-  <div class="flyer-grid">
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/CxYctNqm/children.jpg" alt="Retail flyer design 1" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/RZ9g8RHs/call.jpg" alt="Retail flyer design 2" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/pLxs7ZjL/nebula.jpg" alt="Retail flyer design 3" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/JzmpgqXr/march.jpg" alt="Retail flyer design 4" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-  </div>
-</div>
 
-<div class="flyer-panel" id="flyer-panel-education">
-  <div class="flyer-grid">
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/QdsfPb7D/lume.jpg" alt="Education flyer design 1" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/Z5Zwgcdg/crunch.jpg" alt="Education flyer design 2" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/BnsmygFb/velmora.jpg" alt="Education flyer design 3" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-  </div>
-</div>
-
-<div class="flyer-panel" id="flyer-panel-church">
-  <div class="flyer-grid">
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/0yxV3fwH/burial.jpg" alt="Church flyer design 1" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/g2dg5DhY/master.jpg" alt="Church flyer design 2" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/zXTd0MV9/archive.jpg" alt="Church flyer design 3" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/SKLptPCQ/Canvas-(19)-(5).jpg" alt="Church flyer design 4" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-<div class="flyer-item reveal" data-lightbox-type="flyer">  <!-- placeholder: repeated image, replace with a real project -->
-  <img src="https://i.postimg.cc/cLZFjm3q/elevate.jpg" alt="Church flyer design 5" decoding="async">
-  <div class="flyer-overlay"><div class="view-icon">&#8599;</div></div>
-</div>
-  </div>
-</div>
-    </div>
+<!-- ALL FLYERS IN ONE PLACE (paged, 8 per page). Filled by script; only visible while tabs are off. -->
+<div class="flyer-all" id="flyerAll">
+  <nav class="flyer-pager flyer-pager-top" aria-label="Flyer pages top" hidden>
+    <button class="flyer-pager-btn" data-dir="prev" type="button" aria-label="Previous page"><i class="ph ph-caret-left"></i><span>Previous</span></button>
+    <div class="flyer-dots"></div>
+    <button class="flyer-pager-btn" data-dir="next" type="button" aria-label="Next page"><span>Next</span><i class="ph ph-caret-right"></i></button>
+  </nav>
+  <div class="flyer-grid" id="flyerAllGrid"></div>
+  <nav class="flyer-pager flyer-pager-bottom" aria-label="Flyer pages bottom" hidden>
+    <button class="flyer-pager-btn" data-dir="prev" type="button" aria-label="Previous page"><i class="ph ph-caret-left"></i><span>Previous</span></button>
+    <div class="flyer-dots"></div>
+    <button class="flyer-pager-btn" data-dir="next" type="button" aria-label="Next page"><span>Next</span><i class="ph ph-caret-right"></i></button>
+  </nav>
+</div>    </div>
 </section>
 
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="container">
     <div class="section-header reveal">
-      <p class="t-label">What we Offer</p>
+      <p class="t-label">What I Offer</p>
       <h2 class="t-display">Design services</h2>
       <div class="divider"></div>
     </div>
@@ -2029,8 +1679,8 @@ We craft bold, high-impact designs that cut through noises and get you seen.
         <div class="service-icon">
           <i class="ph ph-shapes"></i>
         </div>
-        <h3>Event Flyer Design</h3>
-        <p>Eye-catching flyers for events, parties, church programs, and launches — designed to stop the scroll and get people talking.</p>
+        <h3>Flyer Design</h3>
+        <p>Eye-catching flyers for events, parties, church programs, campaigns and launches — designed to stop the scroll and get people talking.</p>
       </div>
       <div class="service-card reveal reveal-d1">
         <span class="service-num">02</span>
@@ -2049,7 +1699,6 @@ We craft bold, high-impact designs that cut through noises and get you seen.
         <p>Posters, banners, and marketing collateral designed for real-world print — sharp, clear, and ready for production.</p>
       </div>
       </div>
-    </div>
   </div>
 </section>
 
@@ -2063,35 +1712,35 @@ We craft bold, high-impact designs that cut through noises and get you seen.
       <div class="divider"></div>
     </div>
     <p class="t-body contact-desc reveal reveal-d1" style="margin-bottom: var(--sp-6);">
-      Have a project in mind? we'd love to hear about it. Let's talk about how great design can transform your brand.
+      Have a project in mind? I'd love to hear about it. Let's talk about how great design can transform your brand.
     </p>
     <!-- Contact links + form side by side below the heading -->
     <div class="contact-grid">
       <div class="contact-info">
         <div class="contact-links reveal reveal-d1">
-          <a href="mailto:eridastudiong@gmail.com" class="contact-link">
+          <a href="mailto: simplyerida@gmail.com" class="contact-link">
             <span class="contact-link-icon">
               <i class="ph ph-envelope-simple"></i>
             </span>
-            eridastudiong@gmail.com
+            simplyerida@gmail.com
           </a>
-          <a href="https://www.instagram.com/eridastudiong" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://www.instagram.com/simplyerida" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-link-icon">
               <i class="ph ph-instagram-logo"></i>
             </span>
-            @eridastudiong
+            @simplyerida
           </a>
-          <a href="https://www.facebook.com/eridastudiong" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://www.facebook.com/simplyerida" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-link-icon">
               <i class="ph ph-facebook-logo"></i>
             </span>
-            @eridastudiong
+            @simplyerida
           </a>
-          <a href="https://wa.me/2349138037377" target="_blank" rel="noopener" class="contact-link">
+          <a href="https://wa.me/+2349130422402" target="_blank" rel="noopener" class="contact-link">
             <span class="contact-link-icon">
               <i class="ph ph-whatsapp-logo"></i>
             </span>
-            Emmanuel Kolade
+            Emmanuel K.
           </a>
         </div>
       </div>
@@ -2104,14 +1753,14 @@ We craft bold, high-impact designs that cut through noises and get you seen.
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="hello@yourbrand.com" autocomplete="email">
+              <input type="email" id="email" name="email" placeholder="emmanuelkolade@gmail.com" autocomplete="email">
             </div>
           </div>
           <div class="form-group">
             <label for="service">Service Required</label>
             <select id="service" name="service">
               <option value="" disabled selected>Select a service</option>
-              <option>Event Flyer Design</option>
+              <option>Flyer Design</option>
               <option>Social Media Graphics</option>
               <option>Print Design</option>
             </select>
@@ -2149,7 +1798,7 @@ We craft bold, high-impact designs that cut through noises and get you seen.
           <i class="ph ph-plus faq-icon"></i>
         </button>
         <div class="faq-answer">
-          <p>We design flyers, posters, banners, and social media graphics for events and brands. Every project is tailored to your goals and target audience.</p>
+          <p>I design flyers, posters, banners, and social media graphics for events and brands. Every project is tailored to your goals and target audience.</p>
         </div>
       </div>
 
@@ -2179,17 +1828,17 @@ We craft bold, high-impact designs that cut through noises and get you seen.
           <i class="ph ph-plus faq-icon"></i>
         </button>
         <div class="faq-answer">
-          <p>Absolutely. We work with clients globally. All communication and file delivery is done digitally so location is never a barrier.</p>
+          <p>Absolutely. I work with clients globally. All communication and file delivery is done digitally so location is never a barrier.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          What do I need to get started?
+          What should I do to get started?
           <i class="ph ph-plus faq-icon"></i>
         </button>
         <div class="faq-answer">
-          <p>Fill out the contact form with your project details or send us a message via Email/WhatsApp/Instagram/Facebook. We'll get back to you to discuss your flyer and design needs.</p>
+          <p>Fill out the contact form with your project details or send a message concerning your project via any of my contacts.</p>
         </div>
       </div>
 
@@ -2201,38 +1850,28 @@ We craft bold, high-impact designs that cut through noises and get you seen.
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <img src="LOGO_LIGHT_PLACEHOLDER" alt="ERIDA STUDIO NG" class="footer-logo logo-light">
-      <img src="LOGO_DARK_PLACEHOLDER" alt="ERIDA STUDIO NG" class="footer-logo logo-dark">
-      <p class="footer-copy">&copy; 2025 ERIDA STUDIO NG. All rights reserved.</p>
-      <nav class="footer-links">
+    <a href="#home" class="footer-logo" aria-label="erida. Home">
+      <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1789627911/logodark_eim8z2.svg" alt="erida." class="logo-light">
+      <img src="https://res.cloudinary.com/dgkw15npr/image/upload/v1789627911/logolight_rlb1tf.svg" alt="erida." class="logo-dark">
+    </a>
+<p class="footer-copy">&copy; <span id="year">2026</span> ERIDA STUDIO NG. All rights reserved.</p>      <nav class="footer-links">
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
-  </div>
+    </div>
 </footer>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close preview">&#x2715;</button>
-  <button class="coverflow-arrow coverflow-prev" id="lightboxPrev" type="button" aria-label="Previous flyer"><i class="ti ti-chevron-left"></i></button>
-  <button class="coverflow-arrow coverflow-next" id="lightboxNext" type="button" aria-label="Next flyer"><i class="ti ti-chevron-right"></i></button>
   <div id="lightboxContent"></div>
 </div>
 
 <script>
 (function() {
-
-  /* ===== LOGO IMAGES ===== */
-  const LOGO_LIGHT_SRC = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBDcmVhdGVkIHdpdGggR3JhZmlrYSAoaHR0cHM6Ly93d3cuZ3JhZmlrYS5jYy8pIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoJPGcgaWQ9Ikdyb3VwIDIzMiI+CgkJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMC4wODM2OTQ4MjMwODYyNjE3NSwgMCwgMCwgMC4wODM2OTQ4OTAxNDE0ODcxMiwgOTQuNjg0MzU2Njg5NDUzMTIsIDM4Mi45ODUyMjk0OTIxODc1KSIgZD0iTTYzMC43NCw2MDMuODEgTDYzMC43NCwzNDQ1LjY4IEMxNzYzLjU4LDMxMTYuMDcgMjM2Ni4xOCwxNjY5LjYgMzc3Ni41OCwxNDIzLjc5IEwzNzc2LjU4LDYwMy44MSBMNjMwLjc0LDYwMy44MSBMNjMwLjc0LDYwMy44MSBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiAvPgoJCTxnIGlkPSJHcm91cCAzMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC44NzE4MjEwNDU4NzU1NDkzLCAwLCAwLCAwLjg3MTgyMTc2MTEzMTI4NjYsIDI0OS40NjcyODUxNTYyNSwgNjc0LjQ2MzYyMzA0Njg3NSkiPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc3LjQ5MjQ5MjY3NTc4MTI1LCAtMzExLjk3OTU4Mzc0MDIzNDQpIiBkPSJNMzc3Ni4wOSwxNzc2Ljc0IEMyMzk1LjIsMTc3Ni43NCAyMzMzLjcyLDI3NjYgNjMwLjI1LDMzMDkuNDEgQzIzMDYuMywzMjE4LjEzIDIzOTUuMiwyMDk4LjYgMzc3Ni4wOSwyMzk4LjA1IEMzNzc2LjA5LDIyNTQuNjkgMzc3Ni4wOSwxOTcxLjU1IDM3NzYuMDksMTc3Ni43NCBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOEM0RDE7IiAvPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc4LjEwODMyMjE0MzU1NDcsIC0yOTEuMjg5MTU0MDUyNzM0NCkiIGQ9Ik0zNzgyLjUsMjY3OS4xMyBDMjc2OC42NywyMTgyLjUyIDI0NTIuMTksMzE2Ny42OSA2MzYuNjYsMzIwNS4zNiBDMjU1Ny45NiwzNTQ2LjUgMjY4NS41MiwyNTU1LjE4IDM3ODIuNDksMzMwMS4yOCBDMzc4Mi40OSwyOTM0LjcxIDM3ODIuNDksMjg5OS4xNCAzNzgyLjUsMjY3OS4xMyBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOEM0RDE7IiAvPgoJCTwvZz4KCTwvZz4KCTxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEuODgzMjA2NzI1MTIwNTQ0NCwgMCwgMCwgMS44ODMyMDY3MjUxMjA1NDQ0LCA3MDQuMDY3NDQzODQ3NjU2MiwgNTU0LjM1NjIwMTE3MTg3NSkiIGQ9Ik0tMTIxLjE5LC0zMC42NiBMLTEyMS4xOSwyMi40IEwtNzguNzgsMjIuNCBMLTc4Ljc4LDEwLjggTC0xMDYuMzksMTAuOCBMLTEwNi4zOSwxLjEgTC04Mi45NSwxLjEgTC04Mi45NSwtMTAuMTIgTC0xMDYuMzksLTEwLjEyIEwtMTA2LjM5LC0xOS4wNyBMLTc5Ljc4LC0xOS4wNyBMLTc5Ljc4LC0zMC42NiBMLTEyMS4xOSwtMzAuNjYgWk0tNzAuNDksLTMwLjY2IEwtNzAuNDksMjIuNCBMLTU1LjU1LDIyLjQgTC01NS41NSw4LjMgTC00Ny40LDguMyBMLTM3LjgzLDIyLjQgTC0yMS44MiwyMi40IEwtMzMuMjQsNS43IFEtMjguNDQsMy40MSAtMjUuNzYsLTAuNjggUS0yMi44OSwtNS4wNSAtMjIuODksLTExLjAyIFEtMjIuODksLTIwLjEzIC0yOS4xMSwtMjUuMzggUS0zNS4zNCwtMzAuNjYgLTQ2Ljg3LC0zMC42NiBMLTcwLjQ5LC0zMC42NiBaTS01NS41NSwtMy4zMSBMLTU1LjU1LC0xOC44MyBMLTQ3LjI2LC0xOC44MyBRLTQyLjU4LC0xOC44MyAtNDAuMjgsLTE2Ljc4IFEtMzcuOTcsLTE0Ljc0IC0zNy45NywtMTEuMDIgUS0zNy45NywtNy40IC00MC4yOCwtNS4zNCBRLTQyLjU4LC0zLjMxIC00Ny4yNiwtMy4zMSBMLTU1LjU1LC0zLjMxIFpNLTE0LjY1LDIyLjQgTC0xNC42NSwtMzAuNjYgTDAuMjgsLTMwLjY2IEwwLjI4LDIyLjQgTC0xNC42NSwyMi40IFpNMTAuOTIsLTMwLjY2IEwxMC45MiwyMi40IEwzNS44OCwyMi40IFE0NC42NSwyMi40IDUxLjI4LDE5LjE0IFE1Ny45MywxNS44OSA2MS42NSw5Ljk0IFE2NS4zOSwzLjk5IDY1LjM5LC00LjE0IFE2NS4zOSwtMTIuMzIgNjEuNjUsLTE4LjIyIFE1Ny45MywtMjQuMTQgNTEuMjgsLTI3LjQgUTQ0LjY1LC0zMC42NiAzNS44OCwtMzAuNjYgTDEwLjkyLC0zMC42NiBaTTM1LjI5LDEwLjQzIEwyNS44NiwxMC40MyBMMjUuODYsLTE4LjY4IEwzNS4yOSwtMTguNjggUTM5LjgsLTE4LjY4IDQzLjE2LC0xNi45OCBRNDYuNTMsLTE1LjI4IDQ4LjQxLC0xMiBRNTAuMywtOC43NSA1MC4zLC00LjE0IFE1MC4zLDAuNDEgNDguNDEsMy43MyBRNDYuNTMsNy4wMiA0My4xNiw4LjcyIFEzOS44LDEwLjQzIDM1LjI5LDEwLjQzIFpNODkuNDUsLTMwLjY2IEw2Ni4xNSwyMi40IEw4MS4zOCwyMi40IEw4NS41LDEyLjA5IEwxMDcuOSwxMi4wOSBMMTEyLjAyLDIyLjQgTDEyNy41NiwyMi40IEwxMDQuMTcsLTMwLjY2IEw4OS40NSwtMzAuNjYgWk0xMDMuNDgsMS4wMiBMODkuOTIsMS4wMiBMOTYuNywtMTUuOTUgTDEwMy40OCwxLjAyIFoiIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiAvPgoJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMS44ODMyMDY3MjUxMjA1NDQ0LCAwLCAwLCAxLjg4MzIwNjcyNTEyMDU0NDQsIDcxMC44OTU0NDY3NzczNDM4LCA2NTUuMDQ2ODEzOTY0ODQzOCkiIGQ9Ik0tMTIxLDguNjkgUS0xMTguNjMsOS4zOCAtMTE2LjA0LDkuMzggUS0xMTIuOTYsOS4zOCAtMTEwLjk1LDguNDUgUS0xMDguOTQsNy41MyAtMTA3LjkyLDYuMDMgUS0xMDYuOSw0LjUyIC0xMDYuOSwyLjcgUS0xMDYuOSwxLjAxIC0xMDcuNiwtMC4xIFEtMTA4LjI5LC0xLjIxIC0xMDkuNCwtMS44OCBRLTExMC41MSwtMi41NiAtMTExLjg0LC0yLjk2IFEtMTEzLjE4LC0zLjM2IC0xMTQuNTIsLTMuNjcgUS0xMTUuODYsLTMuOTggLTExNi45NywtNC4yOCBRLTExOC4wNywtNC41OSAtMTE4Ljc2LC01LjEgUS0xMTkuNDMsLTUuNjEgLTExOS40MywtNi40NCBRLTExOS40MywtNy4xNCAtMTE5LjAzLC03LjY4IFEtMTE4LjYzLC04LjIzIC0xMTcuNywtOC41NiBRLTExNi43OCwtOC45IC0xMTUuMzQsLTguOSBRLTExMy44OSwtOC45IC0xMTIuMzgsLTguNDggUS0xMTAuODcsLTguMDcgLTEwOS4zNiwtNy4yMSBMLTEwNy44MiwtMTAuOTkgUS0xMDkuMzMsLTExLjk0IC0xMTEuMywtMTIuNDIgUS0xMTMuMjcsLTEyLjkgLTExNS4zMSwtMTIuOSBRLTExOC4zNSwtMTIuOSAtMTIwLjM3LC0xMS45OSBRLTEyMi4zOSwtMTEuMDkgLTEyMy4zOCwtOS41NiBRLTEyNC4zOCwtOC4wNCAtMTI0LjM4LC02LjE5IFEtMTI0LjM4LC00LjQ3IC0xMjMuNjksLTMuMzYgUS0xMjMsLTIuMjUgLTEyMS45LC0xLjU4IFEtMTIwLjc4LC0wLjkgLTExOS40NSwtMC40NiBRLTExOC4xLC0wLjA0IC0xMTYuNzYsMC4yNiBRLTExNS40MywwLjU1IC0xMTQuMzIsMC44NyBRLTExMy4yMSwxLjIgLTExMi41MywxLjcxIFEtMTExLjg2LDIuMjEgLTExMS44NiwzLjA3IFEtMTExLjg2LDMuNzUgLTExMi4yOSw0LjI4IFEtMTEyLjcyLDQuOCAtMTEzLjYzLDUuMDkgUS0xMTQuNTMsNS4zOCAtMTE2LjAxLDUuMzggUS0xMTcuOTUsNS4zOCAtMTE5Ljg1LDQuNzUgUS0xMjEuNzQsNC4xMiAtMTIzLjEyLDMuMTQgTC0xMjQuODEsNi44OCBRLTEyMy4zNyw4IC0xMjEsOC42OSBaTS05MC4zMSwtOC40NyBMLTkwLjMxLDkuMDEgTC04NS4zMyw5LjAxIEwtODUuMzMsLTguNDcgTC03OC40NCwtOC40NyBMLTc4LjQ0LC0xMi41MyBMLTk3LjIxLC0xMi41MyBMLTk3LjIxLC04LjQ3IEwtOTAuMzEsLTguNDcgWk0tNjQuNjUsNi44MiBRLTYyLjA2LDkuMzggLTU3LjQ4LDkuMzggUS01Mi44OSw5LjM4IC01MC4zMSw2LjgyIFEtNDcuNzIsNC4yNyAtNDcuNzIsLTAuNDcgTC00Ny43MiwtMTIuNTMgTC01Mi42NSwtMTIuNTMgTC01Mi42NSwtMC42NSBRLTUyLjY1LDIuNDIgLTUzLjkxLDMuNzggUS01NS4xNyw1LjEzIC01Ny40NSw1LjEzIFEtNTkuNzIsNS4xMyAtNjAuOTksMy43OCBRLTYyLjI1LDIuNDIgLTYyLjI1LC0wLjY1IEwtNjIuMjUsLTEyLjUzIEwtNjcuMjQsLTEyLjUzIEwtNjcuMjQsLTAuNDcgUS02Ny4yNCw0LjI3IC02NC42NSw2LjgyIFpNLTM0LjA5LC0xMi41MyBMLTM0LjA5LDkuMDEgTC0yNC4zMSw5LjAxIFEtMjAuOCw5LjAxIC0xOC4xMiw3LjY3IFEtMTUuNDQsNi4zNCAtMTMuOTMsMy45MiBRLTEyLjQyLDEuNSAtMTIuNDIsLTEuNzYgUS0xMi40MiwtNS4wNSAtMTMuOTMsLTcuNDUgUS0xNS40NCwtOS44NiAtMTguMTIsLTExLjE5IFEtMjAuOCwtMTIuNTMgLTI0LjMxLC0xMi41MyBMLTM0LjA5LC0xMi41MyBaTS0yNC41NSw0LjkyIEwtMjkuMSw0LjkyIEwtMjkuMSwtOC40NCBMLTI0LjU1LC04LjQ0IFEtMjIuNCwtOC40NCAtMjAuODEsLTcuNjIgUS0xOS4yMywtNi44MSAtMTguMzUsLTUuMzEgUS0xNy40NywtMy44MiAtMTcuNDcsLTEuNzYgUS0xNy40NywwLjI3IC0xOC4zNSwxLjc4IFEtMTkuMjMsMy4yOSAtMjAuODEsNC4xIFEtMjIuNCw0LjkyIC0yNC41NSw0LjkyIFpNMC4wNCw5LjAxIEwwLjA0LC0xMi41MyBMNS4wMywtMTIuNTMgTDUuMDMsOS4wMSBMMC4wNCw5LjAxIFpNMjQuNTgsOC41NSBRMjYuNzYsOS4zOCAyOS4zMSw5LjM4IFEzMS44Myw5LjM4IDMzLjk3LDguNTUgUTM2LjExLDcuNzIgMzcuNjksNi4yMyBRMzkuMjgsNC43NCA0MC4xNywyLjY5IFE0MS4wNiwwLjY0IDQxLjA2LC0xLjc2IFE0MS4wNiwtNC4xOSA0MC4xNywtNi4yIFEzOS4yOCwtOC4yMyAzNy42OSwtOS43MyBRMzYuMTEsLTExLjI0IDMzLjk3LC0xMi4wNiBRMzEuODMsLTEyLjkgMjkuMjgsLTEyLjkgUTI2Ljc2LC0xMi45IDI0LjYsLTEyLjA2IFEyMi40NCwtMTEuMjQgMjAuODQsLTkuNzMgUTE5LjI0LC04LjIzIDE4LjM2LC02LjE5IFExNy40OSwtNC4xNiAxNy40OSwtMS43NiBRMTcuNDksMC42NCAxOC4zNiwyLjY4IFExOS4yNCw0LjcxIDIwLjgzLDYuMjIgUTIyLjQxLDcuNzIgMjQuNTgsOC41NSBaTTMxLjk0LDQuNjUgUTMwLjcyLDUuMTMgMjkuMjgsNS4xMyBRMjcuODMsNS4xMyAyNi42LDQuNjUgUTI1LjM3LDQuMTUgMjQuNDYsMy4yMyBRMjMuNTUsMi4zIDIzLjA0LDEuMDIgUTIyLjUzLC0wLjI1IDIyLjUzLC0xLjc2IFEyMi41MywtMy4zIDIzLjA0LC00LjU2IFEyMy41NSwtNS44MiAyNC40NywtNi43NCBRMjUuNCwtNy42NyAyNi42MSwtOC4xNiBRMjcuODMsLTguNjUgMjkuMjgsLTguNjUgUTMwLjcyLC04LjY1IDMxLjk1LC04LjE2IFEzMy4xOSwtNy42NyAzNC4wOSwtNi43NCBRMzUsLTUuODIgMzUuNTEsLTQuNTYgUTM2LjAyLC0zLjMgMzYuMDIsLTEuNzYgUTM2LjAyLC0wLjIyIDM1LjUxLDEuMDQgUTM1LDIuMyAzNC4wNywzLjIzIFEzMy4xNiw0LjE1IDMxLjk0LDQuNjUgWk03MC45NSwtMTIuNTMgTDcwLjk1LDkuMDEgTDc1Ljg3LDkuMDEgTDc1Ljg3LC00LjA2IEw4Ni42MSw5LjAxIEw5MC43MSw5LjAxIEw5MC43MSwtMTIuNTMgTDg1Ljc4LC0xMi41MyBMODUuNzgsMC41NCBMNzUuMDcsLTEyLjUzIEw3MC45NSwtMTIuNTMgWk0xMTAuMjIsOC41NyBRMTEyLjM3LDkuMzggMTE0LjkyLDkuMzggUTExNy4yMyw5LjM4IDExOS41Niw4LjY3IFExMjEuODgsNy45NyAxMjMuNjQsNi42NCBMMTIzLjY0LC0yLjEgTDExOS4wNywtMi4xIEwxMTkuMDcsNC4yMyBRMTE4LjU4LDQuNDkgMTE4LjA4LDQuNjYgUTExNi42OCw1LjEzIDExNS4yLDUuMTMgUTExMy42Niw1LjEzIDExMi4zOCw0LjY1IFExMTEuMTEsNC4xNSAxMTAuMTcsMy4yMSBRMTA5LjIzLDIuMjcgMTA4LjcyLDEuMDEgUTEwOC4yMSwtMC4yNSAxMDguMjEsLTEuNzYgUTEwOC4yMSwtMy4zIDEwOC43MiwtNC41NiBRMTA5LjIzLC01LjgyIDExMC4xNywtNi43NCBRMTExLjExLC03LjY3IDExMi40LC04LjE2IFExMTMuNywtOC42NSAxMTUuMjYsLTguNjUgUTExNi45LC04LjY1IDExOC4yOCwtOC4wNSBRMTE5LjY2LC03LjQ1IDEyMC44MywtNi4yMyBMMTI0LjAzLC05LjE4IFExMjIuNDYsLTEwLjk5IDEyMC4xNywtMTEuOTQgUTExNy44OCwtMTIuOSAxMTUuMDIsLTEyLjkgUTExMi40MywtMTIuOSAxMTAuMjgsLTEyLjA4IFExMDguMTIsLTExLjI3IDEwNi41MiwtOS43NiBRMTA0LjkyLC04LjI2IDEwNC4wNCwtNi4yMiBRMTAzLjE3LC00LjE5IDEwMy4xNywtMS43NiBRMTAzLjE3LDAuNjcgMTA0LjA0LDIuNzEgUTEwNC45Miw0Ljc0IDEwNi41LDYuMjUgUTEwOC4wOSw3Ljc1IDExMC4yMiw4LjU3IFoiIHN0eWxlPSJmaWxsOiNGRkZGRkY7IiAvPgo8L3N2Zz4=';
-  const LOGO_DARK_SRC  = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBDcmVhdGVkIHdpdGggR3JhZmlrYSAoaHR0cHM6Ly93d3cuZ3JhZmlrYS5jYy8pIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIxMDgwIiBoZWlnaHQ9IjEwODAiIHZpZXdCb3g9IjAgMCAxMDgwIDEwODAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoJPGcgaWQ9Ikdyb3VwIDIzMiI+CgkJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMC4wODM2OTQ4MjMwODYyNjE3NSwgMCwgMCwgMC4wODM2OTQ4OTAxNDE0ODcxMiwgOTQuNjg0MzU2Njg5NDUzMTIsIDM4Mi45ODUyMjk0OTIxODc1KSIgZD0iTTYzMC43NCw2MDMuODEgTDYzMC43NCwzNDQ1LjY4IEMxNzYzLjU4LDMxMTYuMDcgMjM2Ni4xOCwxNjY5LjYgMzc3Ni41OCwxNDIzLjc5IEwzNzc2LjU4LDYwMy44MSBMNjMwLjc0LDYwMy44MSBMNjMwLjc0LDYwMy44MSBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwQTBBMEE7IiAvPgoJCTxnIGlkPSJHcm91cCAzMiIgdHJhbnNmb3JtPSJtYXRyaXgoMC44NzE4MjEwNDU4NzU1NDkzLCAwLCAwLCAwLjg3MTgyMTc2MTEzMTI4NjYsIDI0OS40NjcyODUxNTYyNSwgNjc0LjQ2MzYyMzA0Njg3NSkiPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc3LjQ5MjQ5MjY3NTc4MTI1LCAtMzExLjk3OTU4Mzc0MDIzNDQpIiBkPSJNMzc3Ni4wOSwxNzc2Ljc0IEMyMzk1LjIsMTc3Ni43NCAyMzMzLjcyLDI3NjYgNjMwLjI1LDMzMDkuNDEgQzIzMDYuMywzMjE4LjEzIDIzOTUuMiwyMDk4LjYgMzc3Ni4wOSwyMzk4LjA1IEMzNzc2LjA5LDIyNTQuNjkgMzc3Ni4wOSwxOTcxLjU1IDM3NzYuMDksMTc3Ni43NCBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOTk3QTE7IiAvPgoJCQk8cGF0aCB0cmFuc2Zvcm09Im1hdHJpeCgwLjA5NjAwMDAwMDgzNDQ2NTAzLCAwLCAwLCAwLjA5NjAwMDAwMDgzNDQ2NTAzLCAtMTc4LjEwODMyMjE0MzU1NDcsIC0yOTEuMjg5MTU0MDUyNzM0NCkiIGQ9Ik0zNzgyLjUsMjY3OS4xMyBDMjc2OC42NywyMTgyLjUyIDI0NTIuMTksMzE2Ny42OSA2MzYuNjYsMzIwNS4zNiBDMjU1Ny45NiwzNTQ2LjUgMjY4NS41MiwyNTU1LjE4IDM3ODIuNDksMzMwMS4yOCBDMzc4Mi40OSwyOTM0LjcxIDM3ODIuNDksMjg5OS4xNCAzNzgyLjUsMjY3OS4xMyBaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJmaWxsOiMwOTk3QTE7IiAvPgoJCTwvZz4KCTwvZz4KCTxwYXRoIHRyYW5zZm9ybT0ibWF0cml4KDEuODgzMjA2NzI1MTIwNTQ0NCwgMCwgMCwgMS44ODMyMDY3MjUxMjA1NDQ0LCA3MDQuMDY3NDQzODQ3NjU2MiwgNTU0LjM1NjIwMTE3MTg3NSkiIGQ9Ik0tMTIxLjE5LC0zMC42NiBMLTEyMS4xOSwyMi40IEwtNzguNzgsMjIuNCBMLTc4Ljc4LDEwLjggTC0xMDYuMzksMTAuOCBMLTEwNi4zOSwxLjEgTC04Mi45NSwxLjEgTC04Mi45NSwtMTAuMTIgTC0xMDYuMzksLTEwLjEyIEwtMTA2LjM5LC0xOS4wNyBMLTc5Ljc4LC0xOS4wNyBMLTc5Ljc4LC0zMC42NiBMLTEyMS4xOSwtMzAuNjYgWk0tNzAuNDksLTMwLjY2IEwtNzAuNDksMjIuNCBMLTU1LjU1LDIyLjQgTC01NS41NSw4LjMgTC00Ny40LDguMyBMLTM3LjgzLDIyLjQgTC0yMS44MiwyMi40IEwtMzMuMjQsNS43IFEtMjguNDQsMy40MSAtMjUuNzYsLTAuNjggUS0yMi44OSwtNS4wNSAtMjIuODksLTExLjAyIFEtMjIuODksLTIwLjEzIC0yOS4xMSwtMjUuMzggUS0zNS4zNCwtMzAuNjYgLTQ2Ljg3LC0zMC42NiBMLTcwLjQ5LC0zMC42NiBaTS01NS41NSwtMy4zMSBMLTU1LjU1LC0xOC44MyBMLTQ3LjI2LC0xOC44MyBRLTQyLjU4LC0xOC44MyAtNDAuMjgsLTE2Ljc4IFEtMzcuOTcsLTE0Ljc0IC0zNy45NywtMTEuMDIgUS0zNy45NywtNy40IC00MC4yOCwtNS4zNCBRLTQyLjU4LC0zLjMxIC00Ny4yNiwtMy4zMSBMLTU1LjU1LC0zLjMxIFpNLTE0LjY1LDIyLjQgTC0xNC42NSwtMzAuNjYgTDAuMjgsLTMwLjY2IEwwLjI4LDIyLjQgTC0xNC42NSwyMi40IFpNMTAuOTIsLTMwLjY2IEwxMC45MiwyMi40IEwzNS44OCwyMi40IFE0NC42NSwyMi40IDUxLjI4LDE5LjE0IFE1Ny45MywxNS44OSA2MS42NSw5Ljk0IFE2NS4zOSwzLjk5IDY1LjM5LC00LjE0IFE2NS4zOSwtMTIuMzIgNjEuNjUsLTE4LjIyIFE1Ny45MywtMjQuMTQgNTEuMjgsLTI3LjQgUTQ0LjY1LC0zMC42NiAzNS44OCwtMzAuNjYgTDEwLjkyLC0zMC42NiBaTTM1LjI5LDEwLjQzIEwyNS44NiwxMC40MyBMMjUuODYsLTE4LjY4IEwzNS4yOSwtMTguNjggUTM5LjgsLTE4LjY4IDQzLjE2LC0xNi45OCBRNDYuNTMsLTE1LjI4IDQ4LjQxLC0xMiBRNTAuMywtOC43NSA1MC4zLC00LjE0IFE1MC4zLDAuNDEgNDguNDEsMy43MyBRNDYuNTMsNy4wMiA0My4xNiw4LjcyIFEzOS44LDEwLjQzIDM1LjI5LDEwLjQzIFpNODkuNDUsLTMwLjY2IEw2Ni4xNSwyMi40IEw4MS4zOCwyMi40IEw4NS41LDEyLjA5IEwxMDcuOSwxMi4wOSBMMTEyLjAyLDIyLjQgTDEyNy41NiwyMi40IEwxMDQuMTcsLTMwLjY2IEw4OS40NSwtMzAuNjYgWk0xMDMuNDgsMS4wMiBMODkuOTIsMS4wMiBMOTYuNywtMTUuOTUgTDEwMy40OCwxLjAyIFoiIHN0eWxlPSJmaWxsOiMwQTBBMEE7IiAvPgoJPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoMS44ODMyMDY3MjUxMjA1NDQ0LCAwLCAwLCAxLjg4MzIwNjcyNTEyMDU0NDQsIDcxMC44OTU0NDY3NzczNDM4LCA2NTUuMDQ2ODEzOTY0ODQzOCkiIGQ9Ik0tMTIxLDguNjkgUS0xMTguNjMsOS4zOCAtMTE2LjA0LDkuMzggUS0xMTIuOTYsOS4zOCAtMTEwLjk1LDguNDUgUS0xMDguOTQsNy41MyAtMTA3LjkyLDYuMDMgUS0xMDYuOSw0LjUyIC0xMDYuOSwyLjcgUS0xMDYuOSwxLjAxIC0xMDcuNiwtMC4xIFEtMTA4LjI5LC0xLjIxIC0xMDkuNCwtMS44OCBRLTExMC41MSwtMi41NiAtMTExLjg0LC0yLjk2IFEtMTEzLjE4LC0zLjM2IC0xMTQuNTIsLTMuNjcgUS0xMTUuODYsLTMuOTggLTExNi45NywtNC4yOCBRLTExOC4wNywtNC41OSAtMTE4Ljc2LC01LjEgUS0xMTkuNDMsLTUuNjEgLTExOS40MywtNi40NCBRLTExOS40MywtNy4xNCAtMTE5LjAzLC03LjY4IFEtMTE4LjYzLC04LjIzIC0xMTcuNywtOC41NiBRLTExNi43OCwtOC45IC0xMTUuMzQsLTguOSBRLTExMy44OSwtOC45IC0xMTIuMzgsLTguNDggUS0xMTAuODcsLTguMDcgLTEwOS4zNiwtNy4yMSBMLTEwNy44MiwtMTAuOTkgUS0xMDkuMzMsLTExLjk0IC0xMTEuMywtMTIuNDIgUS0xMTMuMjcsLTEyLjkgLTExNS4zMSwtMTIuOSBRLTExOC4zNSwtMTIuOSAtMTIwLjM3LC0xMS45OSBRLTEyMi4zOSwtMTEuMDkgLTEyMy4zOCwtOS41NiBRLTEyNC4zOCwtOC4wNCAtMTI0LjM4LC02LjE5IFEtMTI0LjM4LC00LjQ3IC0xMjMuNjksLTMuMzYgUS0xMjMsLTIuMjUgLTEyMS45LC0xLjU4IFEtMTIwLjc4LC0wLjkgLTExOS40NSwtMC40NiBRLTExOC4xLC0wLjA0IC0xMTYuNzYsMC4yNiBRLTExNS40MywwLjU1IC0xMTQuMzIsMC44NyBRLTExMy4yMSwxLjIgLTExMi41MywxLjcxIFEtMTExLjg2LDIuMjEgLTExMS44NiwzLjA3IFEtMTExLjg2LDMuNzUgLTExMi4yOSw0LjI4IFEtMTEyLjcyLDQuOCAtMTEzLjYzLDUuMDkgUS0xMTQuNTMsNS4zOCAtMTE2LjAxLDUuMzggUS0xMTcuOTUsNS4zOCAtMTE5Ljg1LDQuNzUgUS0xMjEuNzQsNC4xMiAtMTIzLjEyLDMuMTQgTC0xMjQuODEsNi44OCBRLTEyMy4zNyw4IC0xMjEsOC42OSBaTS05MC4zMSwtOC40NyBMLTkwLjMxLDkuMDEgTC04NS4zMyw5LjAxIEwtODUuMzMsLTguNDcgTC03OC40NCwtOC40NyBMLTc4LjQ0LC0xMi41MyBMLTk3LjIxLC0xMi41MyBMLTk3LjIxLC04LjQ3IEwtOTAuMzEsLTguNDcgWk0tNjQuNjUsNi44MiBRLTYyLjA2LDkuMzggLTU3LjQ4LDkuMzggUS01Mi44OSw5LjM4IC01MC4zMSw2LjgyIFEtNDcuNzIsNC4yNyAtNDcuNzIsLTAuNDcgTC00Ny43MiwtMTIuNTMgTC01Mi42NSwtMTIuNTMgTC01Mi42NSwtMC42NSBRLTUyLjY1LDIuNDIgLTUzLjkxLDMuNzggUS01NS4xNyw1LjEzIC01Ny40NSw1LjEzIFEtNTkuNzIsNS4xMyAtNjAuOTksMy43OCBRLTYyLjI1LDIuNDIgLTYyLjI1LC0wLjY1IEwtNjIuMjUsLTEyLjUzIEwtNjcuMjQsLTEyLjUzIEwtNjcuMjQsLTAuNDcgUS02Ny4yNCw0LjI3IC02NC42NSw2LjgyIFpNLTM0LjA5LC0xMi41MyBMLTM0LjA5LDkuMDEgTC0yNC4zMSw5LjAxIFEtMjAuOCw5LjAxIC0xOC4xMiw3LjY3IFEtMTUuNDQsNi4zNCAtMTMuOTMsMy45MiBRLTEyLjQyLDEuNSAtMTIuNDIsLTEuNzYgUS0xMi40MiwtNS4wNSAtMTMuOTMsLTcuNDUgUS0xNS40NCwtOS44NiAtMTguMTIsLTExLjE5IFEtMjAuOCwtMTIuNTMgLTI0LjMxLC0xMi41MyBMLTM0LjA5LC0xMi41MyBaTS0yNC41NSw0LjkyIEwtMjkuMSw0LjkyIEwtMjkuMSwtOC40NCBMLTI0LjU1LC04LjQ0IFEtMjIuNCwtOC40NCAtMjAuODEsLTcuNjIgUS0xOS4yMywtNi44MSAtMTguMzUsLTUuMzEgUS0xNy40NywtMy44MiAtMTcuNDcsLTEuNzYgUS0xNy40NywwLjI3IC0xOC4zNSwxLjc4IFEtMTkuMjMsMy4yOSAtMjAuODEsNC4xIFEtMjIuNCw0LjkyIC0yNC41NSw0LjkyIFpNMC4wNCw5LjAxIEwwLjA0LC0xMi41MyBMNS4wMywtMTIuNTMgTDUuMDMsOS4wMSBMMC4wNCw5LjAxIFpNMjQuNTgsOC41NSBRMjYuNzYsOS4zOCAyOS4zMSw5LjM4IFEzMS44Myw5LjM4IDMzLjk3LDguNTUgUTM2LjExLDcuNzIgMzcuNjksNi4yMyBRMzkuMjgsNC43NCA0MC4xNywyLjY5IFE0MS4wNiwwLjY0IDQxLjA2LC0xLjc2IFE0MS4wNiwtNC4xOSA0MC4xNywtNi4yIFEzOS4yOCwtOC4yMyAzNy42OSwtOS43MyBRMzYuMTEsLTExLjI0IDMzLjk3LC0xMi4wNiBRMzEuODMsLTEyLjkgMjkuMjgsLTEyLjkgUTI2Ljc2LC0xMi45IDI0LjYsLTEyLjA2IFEyMi40NCwtMTEuMjQgMjAuODQsLTkuNzMgUTE5LjI0LC04LjIzIDE4LjM2LC02LjE5IFExNy40OSwtNC4xNiAxNy40OSwtMS43NiBRMTcuNDksMC42NCAxOC4zNiwyLjY4IFExOS4yNCw0LjcxIDIwLjgzLDYuMjIgUTIyLjQxLDcuNzIgMjQuNTgsOC41NSBaTTMxLjk0LDQuNjUgUTMwLjcyLDUuMTMgMjkuMjgsNS4xMyBRMjcuODMsNS4xMyAyNi42LDQuNjUgUTI1LjM3LDQuMTUgMjQuNDYsMy4yMyBRMjMuNTUsMi4zIDIzLjA0LDEuMDIgUTIyLjUzLC0wLjI1IDIyLjUzLC0xLjc2IFEyMi41MywtMy4zIDIzLjA0LC00LjU2IFEyMy41NSwtNS44MiAyNC40NywtNi43NCBRMjUuNCwtNy42NyAyNi42MSwtOC4xNiBRMjcuODMsLTguNjUgMjkuMjgsLTguNjUgUTMwLjcyLC04LjY1IDMxLjk1LC04LjE2IFEzMy4xOSwtNy42NyAzNC4wOSwtNi43NCBRMzUsLTUuODIgMzUuNTEsLTQuNTYgUTM2LjAyLC0zLjMgMzYuMDIsLTEuNzYgUTM2LjAyLC0wLjIyIDM1LjUxLDEuMDQgUTM1LDIuMyAzNC4wNywzLjIzIFEzMy4xNiw0LjE1IDMxLjk0LDQuNjUgWk03MC45NSwtMTIuNTMgTDcwLjk1LDkuMDEgTDc1Ljg3LDkuMDEgTDc1Ljg3LC00LjA2IEw4Ni42MSw5LjAxIEw5MC43MSw5LjAxIEw5MC43MSwtMTIuNTMgTDg1Ljc4LC0xMi41MyBMODUuNzgsMC41NCBMNzUuMDcsLTEyLjUzIEw3MC45NSwtMTIuNTMgWk0xMTAuMjIsOC41NyBRMTEyLjM3LDkuMzggMTE0LjkyLDkuMzggUTExNy4yMyw5LjM4IDExOS41Niw4LjY3IFExMjEuODgsNy45NyAxMjMuNjQsNi42NCBMMTIzLjY0LC0yLjEgTDExOS4wNywtMi4xIEwxMTkuMDcsNC4yMyBRMTE4LjU4LDQuNDkgMTE4LjA4LDQuNjYgUTExNi42OCw1LjEzIDExNS4yLDUuMTMgUTExMy42Niw1LjEzIDExMi4zOCw0LjY1IFExMTEuMTEsNC4xNSAxMTAuMTcsMy4yMSBRMTA5LjIzLDIuMjcgMTA4LjcyLDEuMDEgUTEwOC4yMSwtMC4yNSAxMDguMjEsLTEuNzYgUTEwOC4yMSwtMy4zIDEwOC43MiwtNC41NiBRMTA5LjIzLC01LjgyIDExMC4xNywtNi43NCBRMTExLjExLC03LjY3IDExMi40LC04LjE2IFExMTMuNywtOC42NSAxMTUuMjYsLTguNjUgUTExNi45LC04LjY1IDExOC4yOCwtOC4wNSBRMTE5LjY2LC03LjQ1IDEyMC44MywtNi4yMyBMMTI0LjAzLC05LjE4IFExMjIuNDYsLTEwLjk5IDEyMC4xNywtMTEuOTQgUTExNy44OCwtMTIuOSAxMTUuMDIsLTEyLjkgUTExMi40MywtMTIuOSAxMTAuMjgsLTEyLjA4IFExMDguMTIsLTExLjI3IDEwNi41MiwtOS43NiBRMTA0LjkyLC04LjI2IDEwNC4wNCwtNi4yMiBRMTAzLjE3LC00LjE5IDEwMy4xNywtMS43NiBRMTAzLjE3LDAuNjcgMTA0LjA0LDIuNzEgUTEwNC45Miw0Ljc0IDEwNi41LDYuMjUgUTEwOC4wOSw3Ljc1IDExMC4yMiw4LjU3IFoiIHN0eWxlPSJmaWxsOiMwQTBBMEE7IiAvPgo8L3N2Zz4=';
-  const PORTRAIT_SRC = 'https://i.postimg.cc/3rv9x6CH/about2.jpg';
-  /* inject images */
-  document.querySelectorAll('img[src="LOGO_LIGHT_PLACEHOLDER"]').forEach(el => el.src = LOGO_LIGHT_SRC);
-  document.querySelectorAll('img[src="LOGO_DARK_PLACEHOLDER"]').forEach(el => el.src = LOGO_DARK_SRC);
-  document.querySelectorAll('img[src="PORTRAIT_PLACEHOLDER"]').forEach(el => el.src = PORTRAIT_SRC);
 
   /* ===== RETRY-ON-RECONNECT (generic) =====
      Browsers never automatically retry a failed resource request just
@@ -2487,18 +2126,74 @@ window.addEventListener('online', retryAllPending);
     });
   });
 
+/* ===== FLYER GALLERY (tabs off): all flyers in one place, paged ===== */
+  (function() {
+    var panel  = document.getElementById('panel-flyer');
+    var grid   = document.getElementById('flyerAllGrid');
+    var pagers = Array.prototype.slice.call(document.querySelectorAll('#flyerAll .flyer-pager'));
+    if (!panel || !grid || !pagers.length || !panel.classList.contains('flyer-tabs-off')) return;
+
+    var PER_PAGE = 8;
+    var all = Array.prototype.slice.call(panel.querySelectorAll('.flyer-panel .flyer-item'));
+    all.forEach(function(item) { grid.appendChild(item); });
+
+    var pages = Math.ceil(all.length / PER_PAGE);
+    var page = 0;
+
+    var bars = pagers.map(function(pg) {
+      var dotsEl = pg.querySelector('.flyer-dots');
+      var dots = [];
+      for (var i = 0; i < pages; i++) {
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'flyer-dot';
+        d.setAttribute('aria-label', 'Page ' + (i + 1));
+        d.dataset.page = i;
+        d.addEventListener('click', function() { show(parseInt(this.dataset.page, 10), true); });
+        dotsEl.appendChild(d);
+        dots.push(d);
+      }
+      var prev = pg.querySelector('[data-dir="prev"]');
+      var next = pg.querySelector('[data-dir="next"]');
+      prev.addEventListener('click', function() { show(page - 1, true); });
+      next.addEventListener('click', function() { show(page + 1, true); });
+      pg.hidden = pages <= 1;
+      return { dots: dots, prev: prev, next: next };
+    });
+
+    function show(n, scroll) {
+      page = Math.max(0, Math.min(pages - 1, n));
+      all.forEach(function(item, idx) {
+item.hidden = Math.floor(idx / PER_PAGE) !== page;
+if (!item.hidden) item.querySelector('img').loading = 'eager';      });
+      bars.forEach(function(b) {
+        b.dots.forEach(function(d, idx) { d.classList.toggle('active', idx === page); });
+        b.prev.hidden = (page === 0);
+        b.next.hidden = (page === pages - 1);
+      });
+      if (scroll) {
+        var top = panel.getBoundingClientRect().top + window.pageYOffset - 88;
+        window.scrollTo(0, Math.max(top, 0));
+      }
+    }
+    show(0, false);
+  })();
   /* ===== LIGHTBOX ===== */
   const lightbox        = document.getElementById('lightbox');
   const lightboxContent = document.getElementById('lightboxContent');
   const lightboxClose   = document.getElementById('lightboxClose');
 
   var closeTimer = null;
+  var lightboxClosingFromButton = false;
   function openLightbox(content) {
     clearTimeout(closeTimer);
     lightboxContent.innerHTML = content;
     lightbox.classList.add('active');
     document.body.classList.add('lightbox-open');
     document.body.style.overflow = 'hidden';
+    // Push a dummy history entry so the phone's back button/gesture
+    // closes just this overlay instead of leaving the site.
+    history.pushState({ lightboxOpen: true }, '');
   }
   function closeLightbox() {
     lightbox.classList.remove('active');
@@ -2507,25 +2202,28 @@ window.addEventListener('online', retryAllPending);
     closeTimer = setTimeout(function() { lightboxContent.innerHTML = ''; }, 400);
   }
 
-  lightboxClose.addEventListener('click', closeLightbox);
+  // User-initiated closes (X button, tap outside, Escape) go through
+  // this so the dummy history entry pushed in openLightbox gets
+  // consumed via back() — keeping browser history clean and matching
+  // how the phone back button itself will close the overlay.
+  function requestCloseLightbox() {
+    if (!lightbox.classList.contains('active')) return;
+    lightboxClosingFromButton = true;
+    closeLightbox();
+    history.back();
+  }
+
+  lightboxClose.addEventListener('click', requestCloseLightbox);
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closeLightbox(); closeMenu(); }
-    if (lightbox.classList.contains('active') && activeGoTo) {
-      if (e.key === 'ArrowLeft') activeGoTo(-1);
-      if (e.key === 'ArrowRight') activeGoTo(1);
-    }
+    if (e.key === 'Escape') { requestCloseLightbox(); closeMenu(); }
   });
 
-  // Tapping anywhere in the content area that ISN'T a slide closes the overlay.
-  // Slides themselves navigate (see the coverflow click handler below) or are
-  // the currently-centered image, which does nothing.
+  // Tapping anywhere in the content area that ISN'T a slide's image closes
+  // the overlay. Navigation between flyers is a short flick/wheel-tick —
+  // see the paging handlers below — not tap-to-navigate on the slides.
   lightboxContent.addEventListener('click', function(e) {
-    if (!e.target.closest('.coverflow-slide')) closeLightbox();
+    if (!e.target.closest('.ig-slide img, .ig-back')) requestCloseLightbox();
   });
-
-  var activeGoTo = null;
-  document.getElementById('lightboxPrev').addEventListener('click', function() { if (activeGoTo) activeGoTo(-1); });
-  document.getElementById('lightboxNext').addEventListener('click', function() { if (activeGoTo) activeGoTo(1); });
 
   /* ===== RETRY-ON-RECONNECT (generic) — moved above, see near the top
      of this script, right before the THEME section, since it needs to
@@ -2599,106 +2297,115 @@ window.addEventListener('online', retryAllPending);
     setupExternalResourceRetries();
   }
 
+function lightboxSrc(thumbSrc) { return thumbSrc; }
+var flyerItems = Array.prototype.slice.call(document.querySelectorAll('.flyer-item'));
   var flyerItems = Array.prototype.slice.call(document.querySelectorAll('.flyer-item'));
 
   flyerItems.forEach(function(item) {
     item.addEventListener('click', function() {
       // Scope navigation to just this flyer's own category tab.
-      var categoryItems = Array.prototype.slice.call(item.closest('.flyer-grid').querySelectorAll('.flyer-item'));
+      var categoryItems = Array.prototype.slice.call(item.closest('.flyer-grid').querySelectorAll('.flyer-item')).filter(function(el) { return !el.hidden; });
       var flyerData = categoryItems.map(function(el) {
         var img = el.querySelector('img');
-        return { src: img.src, alt: img.alt || 'Flyer design' };
+        return { src: lightboxSrc(img.src), alt: img.alt || 'Flyer design' };
       });
       var total = flyerData.length;
       var current = categoryItems.indexOf(item);
 
+      // Instagram-style sideways carousel: one full-screen, centered
+      // flyer visible at a time. A track holding all the flyers is
+      // moved with a CSS transform — a short horizontal flick or
+      // wheel-tick pages it over one full slide.
       var slidesHtml = flyerData.map(function(data, idx) {
-        return '<div class="coverflow-slide" data-index="' + idx + '"><img src="' + data.src + '" alt="' + data.alt + '"></div>';
+        return '<div class="ig-slide" data-index="' + idx + '"><div class="ig-img-wrap"><img src="' + data.src + '" alt="' + data.alt + '"></div></div>';
       }).join('');
+      var chev = '<svg class="ig-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"></polyline></svg>';
+      var backIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>';
       openLightbox(
-        '<div class="coverflow-stage" id="coverflowStage">' + slidesHtml + '</div>' +
-        '<div class="coverflow-counter" id="coverflowCounter"></div>'
+        '<div class="ig-carousel" id="igCarousel"><div class="ig-track" id="igTrack">' + slidesHtml + '</div></div>' +
+        '<div class="ig-hint" id="igHint">' +
+          '<span class="ig-swipe" id="igSwipe"><span class="ig-swipe-word">Swipe</span>' + chev + chev + '</span>' +
+          '<button type="button" class="ig-back" id="igBack" hidden>' + backIcon + '<span>Back to start</span></button>' +
+        '</div>'
       );
 
-      var stage      = document.getElementById('coverflowStage');
-      var counter    = document.getElementById('coverflowCounter');
-      var slideEls   = Array.prototype.slice.call(stage.querySelectorAll('.coverflow-slide'));
+      var carousel = document.getElementById('igCarousel');
+      var track    = document.getElementById('igTrack');
+      var hint     = document.getElementById('igHint');
+      var swipeEl  = document.getElementById('igSwipe');
+      var backBtn  = document.getElementById('igBack');
+      var slideEls = Array.prototype.slice.call(track.querySelectorAll('.ig-slide'));
       slideEls.forEach(function(el) { watchImageLoad(el.querySelector('img')); });
-      var prevBtn    = document.getElementById('lightboxPrev');
-      var nextBtn    = document.getElementById('lightboxNext');
-      prevBtn.style.display = total > 1 ? '' : 'none';
-      nextBtn.style.display = total > 1 ? '' : 'none';
 
-      // Signed distance from current to idx, wrapping around the shorter way —
-      // this is what gives the illusion of an infinite carousel with no clones.
-      function offsetOf(idx) {
-        var diff = idx - current;
-        if (diff > total / 2) diff -= total;
-        if (diff < -total / 2) diff += total;
-        return diff;
+      // "Swipe >>" everywhere except the last flyer, where it becomes a
+      // plain "Back to start" button. A single flyer needs neither.
+      function updateHint() {
+        var last = current === total - 1;
+        hint.hidden = total < 2;
+        swipeEl.hidden = last;
+        backBtn.hidden = !last;
       }
 
-      function render() {
-        slideEls.forEach(function(el) {
-          var idx = parseInt(el.dataset.index, 10);
-          var offset = offsetOf(idx);
-          var abs = Math.abs(offset);
-          el.classList.toggle('is-center', offset === 0);
-          if (abs > 2) {
-            el.style.opacity = '0';
-            el.style.pointerEvents = 'none';
-            el.style.zIndex = '0';
-            el.style.transform = 'translate(-50%,-50%) translateX(' + (offset > 0 ? 90 : -90) + '%) scale(0.5) rotateY(' + (offset > 0 ? -45 : 45) + 'deg)';
-            // These slides are fully invisible (opacity 0), but without
-            // this they were still being fully painted and composited
-            // every frame — 3D transform + blur + box-shadow on layers
-            // nobody can see is exactly what was causing the lag when
-            // opening the overlay. Pull them out of the render tree
-            // entirely, but only once their fade-out finishes so we
-            // don't cut the transition short.
-            clearTimeout(el.__hideTimer);
-            el.__hideTimer = setTimeout(function() { el.style.visibility = 'hidden'; }, 550);
-            return;
-          }
-          clearTimeout(el.__hideTimer);
-          el.style.visibility = 'visible';
-          el.style.pointerEvents = 'auto';
-          var scale  = 1 - abs * 0.18;
-          var rotate = offset * -28;
-          el.style.transform = 'translate(-50%,-50%) translateX(' + (offset * 42) + '%) scale(' + scale + ') rotateY(' + rotate + 'deg)';
-          el.style.opacity = String(1 - abs * 0.35);
-          el.style.zIndex = String(10 - abs);
-        });
-        if (counter) counter.textContent = (current + 1) + ' / ' + total;
+      function renderTrack(animate) {
+        var x = 'translateX(' + (-current * 100) + '%)';
+        if (!animate) {
+          track.style.transition = 'none';
+          track.style.transform = x;
+          void track.offsetHeight; // force reflow so the jump applies before transitions re-enable
+          track.style.transition = '';
+        } else {
+          track.style.transform = x;
+        }
       }
+      renderTrack(false); // jump straight to the tapped flyer, no animation
+      updateHint();
 
       function goTo(idx) {
-        current = ((idx % total) + total) % total;
-        render();
+        idx = Math.max(0, Math.min(total - 1, idx));
+        if (idx === current) return;
+        current = idx;
+        renderTrack(true);
+        updateHint();
       }
 
-      slideEls.forEach(function(el) {
-        el.addEventListener('click', function() {
-          var idx = parseInt(el.dataset.index, 10);
-          if (idx !== current) goTo(idx);
-        });
-      });
+      backBtn.addEventListener('click', function() { goTo(0); });
 
-      // Swipe support
-      var touchStartX = null;
-      stage.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-      stage.addEventListener('touchend', function(e) {
-        if (touchStartX === null) return;
+      // A short horizontal flick (or wheel-tick) is all it takes to page
+      // to the next/previous flyer — locked during the transition so a
+      // fast double-flick can't skip more than one at a time.
+      var THRESHOLD = 60;
+      var paging = false;
+      function unlockAfter(ms) { setTimeout(function() { paging = false; }, ms); }
+
+      carousel.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        // trackpads send deltaX for sideways scrolls; a plain mouse wheel sends deltaY
+        var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        if (paging || Math.abs(d) < 10) return;
+        paging = true;
+        goTo(current + (d > 0 ? 1 : -1));
+        unlockAfter(340);
+      }, { passive: false });
+
+      var touchStartX = null, touchStartY = null;
+      carousel.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      carousel.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false });
+      carousel.addEventListener('touchend', function(e) {
+        if (touchStartX === null || paging) { touchStartX = null; return; }
         var dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+        var dy = e.changedTouches[0].clientY - touchStartY;
         touchStartX = null;
-      });
-
-      render();
-      activeGoTo = function(direction) { goTo(current + direction); };
+        if (Math.abs(dx) < THRESHOLD || Math.abs(dx) < Math.abs(dy)) return;
+        paging = true;
+        goTo(current + (dx < 0 ? 1 : -1));
+        unlockAfter(340);
+      }, { passive: true });
     });
   });
-  
+
   /* ===== SCROLL REVEAL ===== */
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
@@ -2731,7 +2438,7 @@ window.addEventListener('online', retryAllPending);
       const data = await response.json();
       if (data.success) {
         btn.textContent = 'Message Sent ✓';
-        btn.style.background = 'linear-gradient(135deg, #08C4D1, #29539E)';
+        btn.style.background = 'var(--gradient)';
         setTimeout(() => { btn.innerHTML = 'Send Message <i class="ti ti-send"></i>'; btn.disabled = false; }, 3000);
       } else {
         btn.textContent = 'Failed. Try again.';
@@ -2777,6 +2484,14 @@ window.addEventListener('online', retryAllPending);
     });
 
     window.addEventListener('popstate', () => {
+      if (lightboxClosingFromButton) {
+        lightboxClosingFromButton = false;
+        return;
+      }
+      if (lightbox.classList.contains('active')) {
+        closeLightbox();
+        return;
+      }
       if (closingFromButton) {
         closingFromButton = false;
         return;
@@ -2816,8 +2531,7 @@ const tips = [
   "Click on any flyer to view it in fullscreen.",
   "Images doesn't load? Probably due to poor network quality. Reload site or wait for images to load.",
 	 "Click on far left and right ends of the tips to go to the previous and next tip respectively.",
-	 "Touch and hold on the tips to pause.",
-  "Website's theme will not work effectively if 'dark theme' or 'night mode' is forced on all sites in your browser."
+	 "Click and hold the tips bar to pause."
 ];
 
 const tipsEl = document.querySelector('.tips-text');
@@ -2983,6 +2697,9 @@ document.querySelectorAll('.fs-overlay').forEach(overlay => {
   if (location.search.indexOf('debug=1') !== -1) {
     document.getElementById('heroDebugPanel').style.display = 'block';
   }
+
+ document.getElementById('year').textContent = new Date().getFullYear();
+ 
 </script>
 
 </body>
